@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="null">
+    <meta name="keyword" content="null">
+    <link rel="shortcut icon" href="/hexo/img/favicon.ico">
+
+    <title>
+        
+        Quartz - s10715&#39;s Blog
+        
+    </title>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/hexo/css/aircloud.css">
+    <link rel="stylesheet" href="/hexo/css/gitment.css">
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> Yea, though I walk through the valley of the shadow of death, I will fear no evil: for thou art with me; thy rod and thy staff they comfort me. </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar">
+            <img src="/hexo/img/avatar.jpg">
+        </div>
+        <div class="name">
+            <i>s10715</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li>
+                <a href="/hexo/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>主页</span>
+                </a>
+            </li>
+            <li>
+                <a href="/hexo/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>标签</span>
+                </a>
+            </li>
+            <li>
+                <a href="/hexo/archive">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>存档</span>
+                </a>
+            </li>
+            <li>
+                <a href="/hexo/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>关于</span>
+                </a>
+            </li>
+            
+            <li>
+                <a id="search">
+                    <i class="iconfont icon-sousuo1"></i>
+                    <span>搜索</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Quartz"><span class="toc-text">Quartz</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#pom-xml"><span class="toc-text">pom.xml</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用"><span class="toc-text">使用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Job"><span class="toc-text">Job</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#DisallowConcurrentExecution"><span class="toc-text">@DisallowConcurrentExecution</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#PersistJobDataAfterExecution"><span class="toc-text">@PersistJobDataAfterExecution</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JobDetail"><span class="toc-text">JobDetail</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Trigger"><span class="toc-text">Trigger</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#SimpleTrigger"><span class="toc-text">SimpleTrigger</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#CalendarIntervalTrigger"><span class="toc-text">CalendarIntervalTrigger</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#DailyTimeIntervalTrigger"><span class="toc-text">DailyTimeIntervalTrigger</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#CronTrigger"><span class="toc-text">CronTrigger</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Calendar"><span class="toc-text">Calendar</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Misfire-错失策略"><span class="toc-text">Misfire(错失策略)</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Scheduler"><span class="toc-text">Scheduler</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#其他"><span class="toc-text">其他</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#自动设置"><span class="toc-text">自动设置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#JobListener"><span class="toc-text">JobListener</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#TriggerListener"><span class="toc-text">TriggerListener</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#SchedulerListener"><span class="toc-text">SchedulerListener</span></a></li></ol></li></ol></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input">
+            <span id="begin-search">搜索</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+        <div class="index-about-mobile">
+            <i> Yea, though I walk through the valley of the shadow of death, I will fear no evil: for thou art with me; thy rod and thy staff they comfort me. </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        Quartz
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">发布于：<span>2018-11-11 00:00:00</span></span>
+        
+        <span class="attr">标签：/
+        
+        <a class="tag" href="/hexo/tags/#JAVAEE" title="JAVAEE">JAVAEE</a>
+        <span>/</span>
+        
+        
+        </span>
+        <!-- <span class="attr">访问：<span id="busuanzi_value_page_pv"></span> -->
+
+
+    </div>
+    <div class="post-content ">
+        <h2 id="Quartz"><a href="#Quartz" class="headerlink" title="Quartz"></a>Quartz</h2><p>Quartz是一个任务调度框架</p>
+<p>几个概念</p>
+<ul>
+<li>Scheduler: 调度器。所有的任务调度都是由它控制</li>
+<li>Trigger: 定义触发的条件</li>
+<li>JobDetail: 任务数据</li>
+<li>Job: 要执行的任务</li>
+</ul>
+<h3 id="pom-xml"><a href="#pom-xml" class="headerlink" title="pom.xml"></a>pom.xml</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- Quartz --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.quartz-scheduler<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>quartz<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.2.3<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.quartz-scheduler<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>quartz-jobs<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.2.3<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- log4j --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.slf4j<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>slf4j-log4j12<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.6.1<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.slf4j<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>slf4j-api<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.6.1<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Main</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> SchedulerException </span>&#123;</span><br><span class="line">        <span class="comment">//任务的数据，其实是一个Map</span></span><br><span class="line">        JobDataMap jobDataMap = <span class="keyword">new</span> JobDataMap();</span><br><span class="line">        jobDataMap.put(<span class="string">"user"</span>, <span class="keyword">new</span> User(<span class="string">"小明"</span>));</span><br><span class="line"></span><br><span class="line">        <span class="comment">//任务详情，用于设置任务所需的数据</span></span><br><span class="line">        JobDetail jobDetail = JobBuilder.newJob(MyJob.class)</span><br><span class="line">                .withIdentity(<span class="string">"jobDetail1"</span>, <span class="string">"d_group1"</span>)<span class="comment">//设置jobDetail的id</span></span><br><span class="line">                .usingJobData(<span class="string">"key1"</span>, <span class="string">"data1"</span>)<span class="comment">//设置简单的数据</span></span><br><span class="line">                .usingJobData(jobDataMap)<span class="comment">//设置复杂的数据</span></span><br><span class="line">                .build();</span><br><span class="line"></span><br><span class="line">        <span class="comment">//触发器，设置任务何时触发，是否重复触发等</span></span><br><span class="line">        Trigger trigger = TriggerBuilder.newTrigger()</span><br><span class="line">                .withIdentity(<span class="string">"trigger1"</span>, <span class="string">"t_group1"</span>)<span class="comment">//设置trigger的id</span></span><br><span class="line">                .usingJobData(<span class="string">"key2"</span>, <span class="string">"data2"</span>)<span class="comment">//trigger也可以设置简单数据和复杂数据</span></span><br><span class="line">                .usingJobData(<span class="string">"key1"</span>,<span class="string">"trigger_data"</span>)</span><br><span class="line">                .withPriority(<span class="number">2</span>)<span class="comment">//优先级</span></span><br><span class="line">                .withSchedule(SimpleScheduleBuilder.simpleSchedule()</span><br><span class="line">                        .withIntervalInSeconds(<span class="number">10</span>)<span class="comment">//隔10秒执行一次</span></span><br><span class="line">                        .withRepeatCount(<span class="number">5</span>))<span class="comment">//或者.repeatForever())，重复执行，设置为5表示开始执行1次，然后在重复5次，总共执行6次</span></span><br><span class="line">                .startAt(<span class="keyword">new</span> Date(System.currentTimeMillis() + <span class="number">5000</span>))<span class="comment">//5秒后开始执行，或者.startNow()</span></span><br><span class="line">                .build();</span><br><span class="line"></span><br><span class="line">        <span class="comment">//调度器，用于执行任务</span></span><br><span class="line">        Scheduler scheduler = StdSchedulerFactory.getDefaultScheduler();</span><br><span class="line">        scheduler.scheduleJob(jobDetail, trigger);</span><br><span class="line">        scheduler.start();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">User</span> </span>&#123;</span><br><span class="line">    String name;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">User</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Job</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyJob</span> <span class="keyword">implements</span> <span class="title">Job</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//重复任务每次都会new，而不是使用之前的任务</span></span><br><span class="line">    <span class="comment">//底层使用了jobClass.newInstance()，所以必须要有public的无参构造器</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">MyJob</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"new MyJob()"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">execute</span><span class="params">(JobExecutionContext jobExecutionContext)</span> <span class="keyword">throws</span> JobExecutionException </span>&#123;</span><br><span class="line">        <span class="comment">//任务开始时间</span></span><br><span class="line">        DateFormat format = <span class="keyword">new</span> SimpleDateFormat(<span class="string">"yyyy-mm-dd--HH:mm:ss"</span>);</span><br><span class="line">        System.out.println(<span class="string">"start time: "</span>+format.format(jobExecutionContext.getFireTime()));</span><br><span class="line"></span><br><span class="line">        <span class="comment">//获取从jobDetail或trigger处设置的数据，使用MergedJobDataMap时，如果key有重复，trigger会覆盖jobDetail的</span></span><br><span class="line">        System.out.println(<span class="string">"key1: "</span>+jobExecutionContext.getMergedJobDataMap().getString(<span class="string">"key1"</span>));</span><br><span class="line">        User user = (User) jobExecutionContext.getMergedJobDataMap().get(<span class="string">"user"</span>);</span><br><span class="line">        System.out.println(<span class="string">"user.name: "</span>+user.name);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//也可以获取jobDetail和trigger，这样即使key有重复也可以获取</span></span><br><span class="line">        <span class="comment">//直接set的数据其实是set到了map中</span></span><br><span class="line">        System.out.println(<span class="string">"jobDetail key1: "</span>+jobExecutionContext.getJobDetail().getJobDataMap().get(<span class="string">"key1"</span>));</span><br><span class="line">        System.out.println(<span class="string">"trigger key1: "</span>+jobExecutionContext.getTrigger().getJobDataMap().get(<span class="string">"key1"</span>));</span><br><span class="line">        System.out.println(<span class="string">"trigger key2: "</span>+jobExecutionContext.getTrigger().getJobDataMap().get(<span class="string">"key2"</span>));</span><br><span class="line"></span><br><span class="line">        System.out.println(<span class="string">"-----------------------------"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Job"><a href="#Job" class="headerlink" title="Job"></a>Job</h3><p>设计成<code>JobDetail</code>+<code>Job</code>的原因：重复的任务每次执行，都会新建一个<code>Job</code>的实例，这样可以避免并发产生的问题，但是有时候又需要设置一些共享的数据，于是就有了<code>JobDetail</code>，用于存储共享的数据</p>
+<h4 id="DisallowConcurrentExecution"><a href="#DisallowConcurrentExecution" class="headerlink" title="@DisallowConcurrentExecution"></a>@DisallowConcurrentExecution</h4><p>Job是有可能并发执行的，比如一个任务要执行10秒中，而调度算法是每5秒中触发1次，那么就有可能多个任务被并发执行。有时候我们并不想任务并发执行，比如<code>Job</code>是对系统做检测，重复的检测是没有意义的，这时就可以使用<code>@DisallowConcurrentExecution</code>。使用<code>@DisallowConcurrentExecution</code>后，会等待任务执行完毕以后再重新执行（这样会导致任务的执行不是按照我们预先定义的时间间隔执行）</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@DisallowConcurrentExecution</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyJob</span> <span class="keyword">implements</span> <span class="title">Job</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">execute</span><span class="params">(JobExecutionContext jobExecutionContext)</span> <span class="keyword">throws</span> JobExecutionException </span>&#123;</span><br><span class="line">        <span class="comment">//do something</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>@DisallowConcurrentExecution</code>是对<code>JobDetail</code>实例生效的，也就是如果你定义两个<code>JobDetail</code>实例，引用同一个<code>Job</code>类，仍然是可以并发执行的</p>
+<h4 id="PersistJobDataAfterExecution"><a href="#PersistJobDataAfterExecution" class="headerlink" title="@PersistJobDataAfterExecution"></a>@PersistJobDataAfterExecution</h4><p>表示当正常执行完Job后，JobDataMap中的数据应该被改动，以被下一次调用时用（在默认情况下，也就是没有设置<code>@PersistJobDataAfterExecution</code>的时候 每个<code>Job</code>都拥有独立<code>JobDataMap</code>）</p>
+<p>当使用<code>@PersistJobDataAfterExecution</code>注解时，为了避免并发时，存储数据造成混乱，建议把<code>@DisallowConcurrentExecution</code>注解也加上</p>
+<h3 id="JobDetail"><a href="#JobDetail" class="headerlink" title="JobDetail"></a>JobDetail</h3><p>除了identity、description、jobData等属性外，还有两个属性：</p>
+<ul>
+<li>durability: 默认为false，为false时，当没有<code>Trigger</code>关联<code>JobDetail</code>的时候，它就会被自动删除；为true时，如果没有<code>Trigger</code>关联，则会将<code>JobDetail</code>保存在队列中</li>
+<li>requestRecovery: 如果一个任务是”requests recovery”，那么当任务运行过程非正常退出时（比如进程崩溃，机器断电，但不包括抛出异常这种情况），Quartz再次启动时，会重新运行一次这个任务实例</li>
+</ul>
+<h3 id="Trigger"><a href="#Trigger" class="headerlink" title="Trigger"></a>Trigger</h3><h4 id="SimpleTrigger"><a href="#SimpleTrigger" class="headerlink" title="SimpleTrigger"></a>SimpleTrigger</h4><p>指定从某一个时间开始，以一定的时间间隔（单位可以是毫秒、秒、分钟、小时）执行的任务，它可以指定重复的次数</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">SimpleTrigger simpleTrigger = TriggerBuilder.newTrigger()</span><br><span class="line">        .withIdentity(<span class="string">"trigger"</span>)</span><br><span class="line">        .withSchedule(SimpleScheduleBuilder.simpleSchedule()</span><br><span class="line">                .withMisfireHandlingInstructionFireNow()</span><br><span class="line">                .withIntervalInSeconds(<span class="number">5</span>)</span><br><span class="line">                .withRepeatCount(<span class="number">5</span>))</span><br><span class="line">        .startNow()</span><br><span class="line">        .build();</span><br></pre></td></tr></table></figure>
+<h4 id="CalendarIntervalTrigger"><a href="#CalendarIntervalTrigger" class="headerlink" title="CalendarIntervalTrigger"></a>CalendarIntervalTrigger</h4><p>指定从某一个时间开始，以一定的时间间隔执行的任务，它支持的时间单位比<code>SimpleTrigger</code>多，<code>CalendarIntervalTrigger</code>支持的间隔单位有秒、分钟、小时、天、星期、月，年，但是<code>CalendarIntervalTrigger</code>不能指定重复次数</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">CalendarIntervalTrigger calendarIntervalTrigger = TriggerBuilder.newTrigger()</span><br><span class="line">        .withIdentity(<span class="string">"trigger"</span>)</span><br><span class="line">        .withSchedule(CalendarIntervalScheduleBuilder.calendarIntervalSchedule()</span><br><span class="line">                .withIntervalInWeeks(<span class="number">1</span>))</span><br><span class="line">        .startNow()</span><br><span class="line">        .build();</span><br></pre></td></tr></table></figure>
+<h4 id="DailyTimeIntervalTrigger"><a href="#DailyTimeIntervalTrigger" class="headerlink" title="DailyTimeIntervalTrigger"></a>DailyTimeIntervalTrigger</h4><p>指定每天的某个时间段内，以一定的时间间隔执行任务，它还可以支持指定星期几</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">DailyTimeIntervalTrigger dailyTimeIntervalTrigger = TriggerBuilder.newTrigger()</span><br><span class="line">        .withIdentity(<span class="string">"trigger"</span>)</span><br><span class="line">        .withSchedule(DailyTimeIntervalScheduleBuilder.dailyTimeIntervalSchedule()</span><br><span class="line">                .startingDailyAt(TimeOfDay.hourAndMinuteOfDay(<span class="number">9</span>, <span class="number">0</span>)) <span class="comment">//每天9：00开始</span></span><br><span class="line">                .endingDailyAt(TimeOfDay.hourAndMinuteOfDay(<span class="number">16</span>, <span class="number">0</span>)) <span class="comment">//16：00 结束</span></span><br><span class="line">                .onDaysOfTheWeek(MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY) <span class="comment">//周一至周五执行</span></span><br><span class="line">                .withIntervalInHours(<span class="number">1</span>) <span class="comment">//每间隔1小时执行一次</span></span><br><span class="line">                .withRepeatCount(<span class="number">100</span>)) <span class="comment">//最多重复100次（实际执行100+1次）</span></span><br><span class="line">        .startNow()</span><br><span class="line">        .build();</span><br></pre></td></tr></table></figure>
+<h4 id="CronTrigger"><a href="#CronTrigger" class="headerlink" title="CronTrigger"></a>CronTrigger</h4><p>适合于更复杂的任务，它支持类型于Linux Cron的语法，可以通过cron表达式设置任务的执行时间</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">CronTrigger cronTrigger = TriggerBuilder.newTrigger()</span><br><span class="line">        .withIdentity(<span class="string">"trigger"</span>)</span><br><span class="line">        .withSchedule(CronScheduleBuilder.cronSchedule(<span class="string">"0 0/2 8-17 * * ?"</span>)) <span class="comment">//每天8:00-17:00，每隔2分钟执行一次</span></span><br><span class="line">        .startNow()</span><br><span class="line">        .build();</span><br></pre></td></tr></table></figure>
+<p>Cron表达式：</p>
+<table>
+<thead>
+<tr>
+<th>位置</th>
+<th>时间域</th>
+<th>允许值</th>
+<th>特殊值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>秒</td>
+<td>0-59</td>
+<td>, - * /</td>
+</tr>
+<tr>
+<td>2</td>
+<td>分钟</td>
+<td>0-59</td>
+<td>, - * /</td>
+</tr>
+<tr>
+<td>3</td>
+<td>小时</td>
+<td>0-23</td>
+<td>, - * /</td>
+</tr>
+<tr>
+<td>4</td>
+<td>日期</td>
+<td>1-31</td>
+<td>, - * ? / L W C</td>
+</tr>
+<tr>
+<td>5</td>
+<td>月份</td>
+<td>1-12</td>
+<td>, - * /</td>
+</tr>
+<tr>
+<td>6</td>
+<td>星期</td>
+<td>1-7</td>
+<td>, - * ? / L C #</td>
+</tr>
+<tr>
+<td>7</td>
+<td>年份（可选）</td>
+<td>1-31</td>
+<td>, - * /</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><p>星号(<code>*</code>): 可用在所有字段中，表示对应时间域的每一个时刻，例如，* 在分钟字段时，表示“每分钟”；</p>
+</li>
+<li><p>问号(<code>?</code>): 该字符只在日期和星期字段中使用，它通常指定为“无意义的值”，相当于点位符；</p>
+</li>
+<li><p>减号(<code>-</code>): 表达一个范围，如在小时字段中使用“10-12”，则表示从10到12点，即10,11,12；</p>
+</li>
+<li><p>逗号(<code>,</code>): 表达一个列表值，如在星期字段中使用“MON,WED,FRI”，则表示星期一，星期三和星期五；</p>
+</li>
+<li><p>斜杠(<code>/</code>): x/y表达一个等步长序列，x为起始值，y为增量步长值。如在分钟字段中使用0/15，则表示为0,15,30和45秒，而5/15在分钟字段中表示5,20,35,50，你也可以使用*/y，它等同于0/y；</p>
+</li>
+<li><p>L: 该字符只在日期和星期字段中使用，代表“Last”的意思，但它在两个字段中意思不同。L在日期字段中，表示这个月份的最后一天，如一月的31号，非闰年二月的28号；如果L用在星期中，则表示星期六，等同于7。但是，如果L出现在星期字段里，而且在前面有一个数值X，则表示“这个月的最后X天”，例如，6L表示该月的最后星期五；</p>
+</li>
+<li><p>W: 该字符只能出现在日期字段里，是对前导日期的修饰，表示离该日期最近的工作日。例如15W表示离该月15号最近的工作日，如果该月15号是星期六，则匹配14号星期五；如果15日是星期日，则匹配16号星期一；如果15号是星期二，那结果就是15号星期二。但必须注意关联的匹配日期不能够跨月，如你指定1W，如果1号是星期六，结果匹配的是3号星期一，而非上个月最后的那天。W字符串只能指定单一日期，而不能指定日期范围；</p>
+</li>
+<li><p>LW组合: 在日期字段可以组合使用LW，它的意思是当月的最后一个工作日；</p>
+</li>
+<li><p>井号(<code>#</code>): 该字符只能在星期字段中使用，表示当月某个工作日。如6#3表示当月的第三个星期五(6表示星期五，#3表示当前的第三个)，而4#5表示当月的第五个星期三，假设当月没有第五个星期三，忽略不触发；</p>
+</li>
+<li><p>C: 该字符只在日期和星期字段中使用，代表“Calendar”的意思。它的意思是计划所关联的日期，如果日期没有被关联，则相当于日历中所有日期。例如5C在日期字段中就相当于日历5日以后的第一天。1C在星期字段中相当于星期日后的第一天。</p>
+</li>
+</ul>
+<p>Cron表达式对特殊字符的大小写不敏感，对代表星期、月份的缩写英文大小写也不敏感（星期使用数字时，1表示星期天，2才是星期一；星期可以使用英文缩写代替，如MON、FRI；月份也可以使用英文缩写，如JAN、DEC）</p>
+<h4 id="Calendar"><a href="#Calendar" class="headerlink" title="Calendar"></a>Calendar</h4><p><code>Trigger</code>可以使用Quartz的<code>Calendar</code>来执行周期较长的任务</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">AnnualCalendar cal = <span class="keyword">new</span> AnnualCalendar(); <span class="comment">//定义一个每年执行Calendar，精度为天</span></span><br><span class="line">java.util.Calendar excludeDay = <span class="keyword">new</span> GregorianCalendar();</span><br><span class="line">excludeDay.setTime(newDate().inMonthOnDay(<span class="number">2</span>, <span class="number">25</span>).build());</span><br><span class="line">cal.setDayExcluded(excludeDay, <span class="keyword">true</span>); <span class="comment">//设置排除2.25这个日期</span></span><br><span class="line">scheduler.addCalendar(<span class="string">"FebCal"</span>, cal, <span class="keyword">false</span>, <span class="keyword">false</span>); <span class="comment">//scheduler加入这个Calendar</span></span><br><span class="line"></span><br><span class="line">Trigger trigger = TriggerBuilder.newTrigger().withIdentity(<span class="string">"trigger1"</span>, <span class="string">"group1"</span>)</span><br><span class="line">        .startNow()<span class="comment">//一旦加入scheduler，立即生效</span></span><br><span class="line">        .modifiedByCalendar(<span class="string">"FebCal"</span>) <span class="comment">//使用Calendar !!</span></span><br><span class="line">        .withSchedule(simpleSchedule()</span><br><span class="line">                .withIntervalInSeconds(<span class="number">1</span>)</span><br><span class="line">                .repeatForever())</span><br><span class="line">        .build();</span><br></pre></td></tr></table></figure>
+<p>一共有如下<code>Calendar</code></p>
+<ul>
+<li>HolidayCalendar: 指定特定的日期，比如20180101。精度到天</li>
+<li>DailyCalendar: 指定每天的时间段（rangeStartingTime, rangeEndingTime)，格式是HH:MM[:SS[:mmm]]。也就是最大精度可以到毫秒</li>
+<li>WeeklyCalendar: 指定每星期的星期几，可选值比如为java.util.Calendar.SUNDAY。精度是天</li>
+<li>MonthlyCalendar: 指定每月的几号。可选值为1-31。精度是天</li>
+<li>AnnualCalendar: 指定每年的哪一天。精度是天</li>
+<li>CronCalendar: 指定Cron表达式。精度取决于Cron表达式，也就是最大精度可以到秒</li>
+</ul>
+<h4 id="Misfire-错失策略"><a href="#Misfire-错失策略" class="headerlink" title="Misfire(错失策略)"></a>Misfire(错失策略)</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Trigger trigger = TriggerBuilder.newTrigger()</span><br><span class="line">    .withIdentity(<span class="string">"trigger1"</span>, <span class="string">"t_group1"</span>)</span><br><span class="line">    .withSchedule(SimpleScheduleBuilder.simpleSchedule()</span><br><span class="line">                  <span class="comment">//设置错失策略，对应SimpleTrigger.MISFIRE_INSTRUCTION_FIRE_NOW;</span></span><br><span class="line">                  .withMisfireHandlingInstructionFireNow()</span><br><span class="line">                  .withIntervalInSeconds(<span class="number">5</span>)</span><br><span class="line">                  .withRepeatCount(<span class="number">5</span>))</span><br><span class="line">    .usingJobData(map)</span><br><span class="line">    .startNow()</span><br><span class="line">    .build();</span><br></pre></td></tr></table></figure>
+<p>通用的错失策略</p>
+<ul>
+<li>MISFIRE_INSTRUCTION_SMART_POLICY: 默认值，如果是只执行一次的调度，使用MISFIRE_INSTRUCTION_FIRE_NOW；如果是无限次的调度，使用MISFIRE_INSTRUCTION_RESCHEDULE_NEXT_WITH_REMAINING_COUNT；否则，使用MISFIRE_INSTRUCTION_RESCHEDULE_NOW_WITH_EXISTING_REPEAT_COUNT</li>
+<li>MISFIRE_INSTRUCTION_IGNORE_MISFIRE_POLICY: 在资源合适的时候，重新触发所有的MisFire任务，并且不会影响现有的调度时间。比如，SimpleTrigger每15秒执行一次，而中间有5分钟时间它都MisFire了，一共错失了20个，5分钟后，假设资源充足了，并且任务允许并发，它会被一次性触发</li>
+</ul>
+<p>SimpleTrigger的错失策略</p>
+<ul>
+<li>MISFIRE_INSTRUCTION_FIRE_NOW: 忽略已经MisFire的任务，并且立即执行调度。这通常只适用于只执行一次的任务</li>
+<li>MISFIRE_INSTRUCTION_RESCHEDULE_NOW_WITH_EXISTING_REPEAT_COUNT: 将startTime设置当前时间，立即重新调度任务，包括的MisFire的</li>
+<li>MISFIRE_INSTRUCTION_RESCHEDULE_NOW_WITH_REMAINING_REPEAT_COUNT: 忽略已经MisFire的任务，并将startTime设置当前时间，立即重新调度任务</li>
+<li>MISFIRE_INSTRUCTION_RESCHEDULE_NEXT_WITH_REMAINING_COUNT: 忽略已经MisFire的任务，在下一次调度时间点，重新开始调度任务</li>
+<li>MISFIRE_INSTRUCTION_RESCHEDULE_NEXT_WITH_EXISTING_COUNT: 在下一次调度时间点，重新开始调度任务，包括的MisFire的</li>
+<li>REPEAT_INDEFINITELY: 一直执行</li>
+</ul>
+<p>CronTrigger的错失策略</p>
+<ul>
+<li>MISFIRE_INSTRUCTION_FIRE_ONCE_NOW: 立即执行一次，然后等到下一次调度的时间点继续按触发频率执行</li>
+<li>MISFIRE_INSTRUCTION_DO_NOTHING: 在下一次调度的时间点继续按触发频率执行</li>
+</ul>
+<h3 id="Scheduler"><a href="#Scheduler" class="headerlink" title="Scheduler"></a>Scheduler</h3><p><code>Scheduler</code>由<code>SchedulerFactory</code>创建，<code>SchedulerFactory</code>有两种实现，一种是<code>DirectSchedulerFactory</code>，可以在代码中设置<code>Scheduler</code>的各种参数；另一种是<code>StdSchdulerFactory</code>，通过读取classpath下的quartz.properties来配置<code>Scheduler</code>，如果文件不存在，则取默认值</p>
+<p>一个简单的配置文件如下</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># scheduler</span></span><br><span class="line">org.quartz.scheduler.instanceName = DefaultQuartzScheduler</span><br><span class="line">org.quartz.scheduler.instanceId = AUTO</span><br><span class="line"></span><br><span class="line"><span class="comment"># ThreadPool</span></span><br><span class="line">org.quartz.threadPool.class = org.quartz.simpl.SimpleThreadPool</span><br><span class="line">org.quartz.threadPool.threadCount = 10 </span><br><span class="line">org.quartz.threadPool.threadPriority = 5</span><br><span class="line">org.quartz.threadPool.threadsInheritContextClassLoaderOfInitializingThread = true</span><br><span class="line"></span><br><span class="line"><span class="comment"># jobStore</span></span><br><span class="line">org.quartz.jobStore.class = org.quartz.simpl.RAMJobStore</span><br></pre></td></tr></table></figure>
+<p>Scheduler包含一个两个重要组件: JobStore和ThreadPool</p>
+<p><strong>JobStore</strong></p>
+<p>JobStore是会来存储运行时信息的，包括Trigger、Schduler、JobDetail、业务锁等，它有多种实现：RAMJob(内存实现)、JobStoreTX(JDBC，事务由Quartz管理）、JobStoreCMT(JDBC，使用容器事务)、ClusteredJobStore(集群实现)、TerracottaJobStore</p>
+<p><strong>ThreadPool</strong></p>
+<p>ThreadPool就是线程池，Quartz有自己的线程池实现。所有任务的都会由线程池执行</p>
+<h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><h4 id="自动设置"><a href="#自动设置" class="headerlink" title="自动设置"></a>自动设置</h4><p>如果在Job中有成员变量，且设置了set方法，可以自动设置</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyJob</span> <span class="keyword">implements</span> <span class="title">Job</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String jobData;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setJobData</span><span class="params">(String jobData)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.jobData = jobData;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">execute</span><span class="params">(JobExecutionContext jobExecutionContext)</span> <span class="keyword">throws</span> JobExecutionException </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"jobData: "</span> + jobData);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>使用时</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">JobDetail jobDetail = JobBuilder.newJob(MyJob.class)</span><br><span class="line">    .withIdentity(<span class="string">"jobDetail1"</span>, <span class="string">"d_group1"</span>)</span><br><span class="line">    .usingJobData(<span class="string">"jobData"</span>,<span class="string">"任务数据"</span>)<span class="comment">//可以自动调用setJobData</span></span><br><span class="line">    .build();</span><br></pre></td></tr></table></figure>
+<h4 id="JobListener"><a href="#JobListener" class="headerlink" title="JobListener"></a>JobListener</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyJobListener</span> <span class="keyword">implements</span> <span class="title">JobListener</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"MyJobListener"</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//执行前</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">jobToBeExecuted</span><span class="params">(JobExecutionContext context)</span> </span>&#123;</span><br><span class="line">        System.out.println(getName() + <span class="string">"正在监听"</span>+context.getJobDetail().getJobClass().getName());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//JobDetail被否决，否决是由TriggerListener执行的</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">jobExecutionVetoed</span><span class="params">(JobExecutionContext context)</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"jobExecutionVetoed"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//执行完</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">jobWasExecuted</span><span class="params">(JobExecutionContext context, JobExecutionException jobException)</span> </span>&#123;</span><br><span class="line">        System.out.println(getName() + <span class="string">"完成对监听"</span>+context.getJobDetail().getJobClass().getName());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>注册</strong></p>
+<p>可以给单个<code>JobDetail</code>注册监听，也可以给所有<code>JobDetail</code>注册监听</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">JobDetail jobDetail = JobBuilder.newJob(MyJob.class)</span><br><span class="line">        .withIdentity(<span class="string">"jobDetail1"</span>, <span class="string">"d_group1"</span>)</span><br><span class="line">        .build();</span><br><span class="line"></span><br><span class="line">Trigger trigger = TriggerBuilder.newTrigger()</span><br><span class="line">        .withIdentity(<span class="string">"trigger1"</span>, <span class="string">"t_group1"</span>)</span><br><span class="line">        .withSchedule(SimpleScheduleBuilder.simpleSchedule()</span><br><span class="line">                .withIntervalInSeconds(<span class="number">10</span>)</span><br><span class="line">                .withRepeatCount(<span class="number">5</span>))</span><br><span class="line">        .startNow()</span><br><span class="line">        .build();</span><br><span class="line"></span><br><span class="line">Scheduler scheduler = StdSchedulerFactory.getDefaultScheduler();</span><br><span class="line">scheduler.scheduleJob(jobDetail, trigger);</span><br><span class="line"></span><br><span class="line">MyJobListener listener = <span class="keyword">new</span> MyJobListener();</span><br><span class="line"></span><br><span class="line"><span class="comment">//给单个jobDetail注册一个全局的Job Listener</span></span><br><span class="line"><span class="comment">//scheduler.getListenerManager().addJobListener(listener, KeyMatcher.keyEquals(JobKey.jobKey("jobDetail1", "d_group1")));</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//注册一个全局的Job Listener</span></span><br><span class="line">scheduler.getListenerManager().addJobListener(listener);</span><br><span class="line"></span><br><span class="line">scheduler.start();</span><br></pre></td></tr></table></figure>
+<p>给单个jobDetail注册时使用的Matcher除了<code>KeyMatcher</code>，还有<code>OrMatcher</code>、<code>AndMatcher</code>、<code>GroupMatcher</code>、<code>EverythingMatcher</code></p>
+<h4 id="TriggerListener"><a href="#TriggerListener" class="headerlink" title="TriggerListener"></a>TriggerListener</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyTriggerListener</span> <span class="keyword">implements</span> <span class="title">TriggerListener</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//相当于设置触发器的名称</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"MyTriggerListener"</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//当与监听器相关联的Trigger被触发，即Job上的execute()方法将被执行时，Scheduler就调用该方法</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">triggerFired</span><span class="params">(Trigger trigger, JobExecutionContext context)</span> </span>&#123;  &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//在 Trigger 触发后，Job 将要被执行时由 Scheduler 调用这个方法。TriggerListener 给了一个选择去否决 Job 的执行。假如这个方法返回 true，这个 Job 将不会为此次 Trigger 触发而得到执行</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">vetoJobExecution</span><span class="params">(Trigger trigger, JobExecutionContext context)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//Scheduler 调用这个方法是在 Trigger 错过触发时。你应该关注此方法中持续时间长的逻辑：在出现许多错过触发的 Trigger 时，长逻辑会导致骨牌效应。你应当保持这上方法尽量的小</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">triggerMisfired</span><span class="params">(Trigger trigger)</span> </span>&#123;  &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//Trigger 被触发并且完成了 Job 的执行时，Scheduler 调用这个方法</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">triggerComplete</span><span class="params">(Trigger trigger, JobExecutionContext context, Trigger.CompletedExecutionInstruction triggerInstructionCode)</span> </span>&#123;  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>注册</strong></p>
+<p>注册和JobListener类似</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//单个</span></span><br><span class="line">scheduler.getListenerManager().addTriggerListener(<span class="keyword">new</span> MyTriggerListener(),KeyMatcher.keyEquals(TriggerKey.triggerKey(<span class="string">"trigger"</span>,<span class="string">"group"</span>)));</span><br><span class="line"><span class="comment">//全局</span></span><br><span class="line">scheduler.getListenerManager().addTriggerListener(<span class="keyword">new</span> MyTriggerListener());</span><br></pre></td></tr></table></figure>
+<h4 id="SchedulerListener"><a href="#SchedulerListener" class="headerlink" title="SchedulerListener"></a>SchedulerListener</h4><p>SchedulerListener接口定义如下</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">SchedulerListener</span> </span>&#123;</span><br><span class="line">    <span class="comment">//用于部署JobDetail时调用</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">jobScheduled</span><span class="params">(Trigger trigger)</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//用于卸载JobDetail时调用</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">jobUnscheduled</span><span class="params">(TriggerKey triggerKey)</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//当一个 Trigger 来到了再也不会触发的状态时调用这个方法。除非这个 Job 已设置成了持久性，否则它就会从 Scheduler 中移除</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">triggerFinalized</span><span class="params">(Trigger trigger)</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//当一个 Trigger 或一组 Trigger 被暂停时调用triggerPaused</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">triggerPaused</span><span class="params">(TriggerKey triggerKey)</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">triggersPaused</span><span class="params">(String triggerGroup)</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//当一个 Trigger 或一组 Trigger 从暂停中恢复时调用triggerResumed</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">triggerResumed</span><span class="params">(TriggerKey triggerKey)</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">triggersResumed</span><span class="params">(String triggerGroup)</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">jobAdded</span><span class="params">(JobDetail jobDetail)</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">jobDeleted</span><span class="params">(JobKey jobKey)</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//当一个或一组 JobDetail 暂停时调用jobPaused</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">jobPaused</span><span class="params">(JobKey jobKey)</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">jobsPaused</span><span class="params">(String jobGroup)</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//当一个或一组 Job 从暂停上恢复时调用jobResumed</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">jobResumed</span><span class="params">(JobKey jobKey)</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">jobsResumed</span><span class="params">(String jobGroup)</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">schedulerError</span><span class="params">(String msg, SchedulerException cause)</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//当Scheduler处于StandBy模式时，调用该方法</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">schedulerInStandbyMode</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//当Scheduler 开启时，调用该方法</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">schedulerStarted</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">schedulerStarting</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//当Scheduler停止时，调用该方法</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">schedulerShutdown</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">schedulerShuttingdown</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//当Scheduler中的数据被清除时，调用该方法</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">schedulingDataCleared</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>注册</strong></p>
+<p>注册和前面的一样，但是<code>Scheduler</code>只有一个，所以没有区分单个和全局</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scheduler.getListenerManager().addSchedulerListener(<span class="keyword">new</span> MySchedulerListener());</span><br></pre></td></tr></table></figure>
+
+        
+            <div class="donate-container">
+    <div class="donate-button">
+        <button id="donate-button">赞赏</button>
+    </div>
+    <div class="donate-img-container hide" id="donate-img-container">
+        <img id="donate-img" src="" data-src="/hexo/img/donate.jpg">
+        <p> 感谢鼓励 </p>
+    </div>
+</div>
+        
+        <br>
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+
+        <div id="lv-container">
+        </div>
+
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+
+        
+
+        
+        <li>
+            <a target="_blank" href="https://github.com/s10715">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-github"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+
+    </ul>
+    
+    <p>
+        <span>/</span>
+        
+        <span><a href="http://s10715.org">s10715</a></span>
+        <span>/</span>
+        
+    </p>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span>
+        Created By <a href="https://hexo.io/">Hexo</a>  Theme <a href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = "search.json"
+    window.hexo_root = "/hexo/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+
+<script src="/hexo/js/index.js"></script>
+<!-- 
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+-->
+
+
+
+
+</html>

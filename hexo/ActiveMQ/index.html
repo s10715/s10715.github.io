@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="null">
+    <meta name="keyword" content="null">
+    <link rel="shortcut icon" href="/hexo/img/favicon.ico">
+
+    <title>
+        
+        ActiveMQ - s10715&#39;s Blog
+        
+    </title>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/hexo/css/aircloud.css">
+    <link rel="stylesheet" href="/hexo/css/gitment.css">
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> Yea, though I walk through the valley of the shadow of death, I will fear no evil: for thou art with me; thy rod and thy staff they comfort me. </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar">
+            <img src="/hexo/img/avatar.jpg">
+        </div>
+        <div class="name">
+            <i>s10715</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li>
+                <a href="/hexo/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>主页</span>
+                </a>
+            </li>
+            <li>
+                <a href="/hexo/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>标签</span>
+                </a>
+            </li>
+            <li>
+                <a href="/hexo/archive">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>存档</span>
+                </a>
+            </li>
+            <li>
+                <a href="/hexo/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>关于</span>
+                </a>
+            </li>
+            
+            <li>
+                <a id="search">
+                    <i class="iconfont icon-sousuo1"></i>
+                    <span>搜索</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#ActiveMQ"><span class="toc-text">ActiveMQ</span></a></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input">
+            <span id="begin-search">搜索</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+        <div class="index-about-mobile">
+            <i> Yea, though I walk through the valley of the shadow of death, I will fear no evil: for thou art with me; thy rod and thy staff they comfort me. </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        ActiveMQ
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">发布于：<span>2018-11-11 00:00:00</span></span>
+        
+        <span class="attr">标签：/
+        
+        <a class="tag" href="/hexo/tags/#JAVAEE" title="JAVAEE">JAVAEE</a>
+        <span>/</span>
+        
+        
+        </span>
+        <!-- <span class="attr">访问：<span id="busuanzi_value_page_pv"></span> -->
+
+
+    </div>
+    <div class="post-content ">
+        <h2 id="ActiveMQ"><a href="#ActiveMQ" class="headerlink" title="ActiveMQ"></a>ActiveMQ</h2><p><a href="http://activemq.apache.org/download.html" target="_blank" rel="noopener">下载ActiveMQ</a></p>
+<p>ActiveMQ是Apache的基于JMS的消息中间件，同类型的有RabbitMQ（支持AMQP事务处理），Kafka（使用zero-copy机制，高吞吐量(tps)）</p>
+<p>ActiveMQ支持点对点（queue）和一对多（topic）两种消息机制</p>
+<p><strong>启动</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apache-activemq-5.15.7/bin/activemq start</span><br></pre></td></tr></table></figure>
+<p>登录后台: <a href="http://127.0.0.1:8161/admin/" target="_blank" rel="noopener">http://127.0.0.1:8161/admin/</a> （默认账号: admin，密码: admin，可以在conf/jetty.xml中配置）</p>
+<p>开发时可以使用ActiveMQ解压目录下的activemq.jar，也可以使用maven</p>
+<p><strong>pom.xml</strong></p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- https://mvnrepository.com/artifact/org.apache.activemq/activemq-core --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.activemq<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>activemq-core<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">version</span>&gt;</span>5.7.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p><strong>使用</strong>（注意要让消费者先启动）：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test1</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">//ActiveMq 的默认用户名、密码、连接地址</span></span><br><span class="line">        String username = ActiveMQConnection.DEFAULT_USER;</span><br><span class="line">        String password = ActiveMQConnection.DEFAULT_PASSWORD;</span><br><span class="line">        String brokenUrl = ActiveMQConnection.DEFAULT_BROKER_URL;<span class="comment">//默认为failover://tcp://localhost:61616</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">//连接工厂</span></span><br><span class="line">        ConnectionFactory connectionFactory;</span><br><span class="line">        <span class="comment">//连接接对象</span></span><br><span class="line">        Connection connection = <span class="keyword">null</span>;</span><br><span class="line">        <span class="comment">//事务管理</span></span><br><span class="line">        Session session = <span class="keyword">null</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="comment">//用户名密码可以在conf/jetty-realm.properties中配置</span></span><br><span class="line">            connectionFactory = <span class="keyword">new</span> ActiveMQConnectionFactory(username, password, brokenUrl);</span><br><span class="line">            connection = connectionFactory.createConnection();</span><br><span class="line">            connection.start();</span><br><span class="line"></span><br><span class="line">            <span class="comment">//第一个参数指定是否使用事务，第二个参数为应答方式，使用事务时为Session.SESSION_TRANSACTED</span></span><br><span class="line">            <span class="comment">//生产者和消费者的session模式可以不同，但最好一致</span></span><br><span class="line">            session = connection.createSession(<span class="keyword">true</span>, Session.SESSION_TRANSACTED);</span><br><span class="line"></span><br><span class="line">            <span class="comment">/*</span></span><br><span class="line"><span class="comment">            //使用点对点</span></span><br><span class="line"><span class="comment">            Destination destination = session.createQueue("name");</span></span><br><span class="line"><span class="comment">            producer = session.createProducer(destination);</span></span><br><span class="line"><span class="comment">            //设置持久化传输（对该生产者有效），持久化可以通过conf/activemq.xml中的persistenceAdapter属性配置</span></span><br><span class="line"><span class="comment">            producer.setDeliveryMode(DeliveryMode.PERSISTENT);</span></span><br><span class="line"><span class="comment">            */</span></span><br><span class="line">            <span class="comment">//使用一对多</span></span><br><span class="line">            <span class="comment">//producter和consumer要使用同一个topic才能收到消息</span></span><br><span class="line">            Topic topic = session.createTopic(<span class="string">"topic1"</span>);</span><br><span class="line">            TextMessage message = session.createTextMessage(<span class="string">"消息1"</span>);</span><br><span class="line">            <span class="comment">/*</span></span><br><span class="line"><span class="comment">            //设置持久化传输（对该消息有效）</span></span><br><span class="line"><span class="comment">            message.setJMSDeliveryMode(DeliveryMode.PERSISTENT);</span></span><br><span class="line"><span class="comment">            */</span></span><br><span class="line">            <span class="comment">//生产者</span></span><br><span class="line">            MessageProducer producter = session.createProducer(topic);</span><br><span class="line">            producter.send(message);</span><br><span class="line">            session.commit();</span><br><span class="line"></span><br><span class="line">            System.out.println(Thread.currentThread().getName() + <span class="string">"--发送了消息"</span>);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (JMSException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">            <span class="keyword">if</span> (connection != <span class="keyword">null</span>) &#123;</span><br><span class="line">                <span class="keyword">try</span> &#123;</span><br><span class="line">                    connection.close();</span><br><span class="line">                &#125; <span class="keyword">catch</span> (JMSException e) &#123;</span><br><span class="line">                    e.printStackTrace();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (session != <span class="keyword">null</span>) &#123;</span><br><span class="line">                <span class="keyword">try</span> &#123;</span><br><span class="line">                    session.close();</span><br><span class="line">                &#125; <span class="keyword">catch</span> (JMSException e) &#123;</span><br><span class="line">                    e.printStackTrace();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test2</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">//ActiveMq 的默认用户名、密码、连接地址</span></span><br><span class="line">        String username = ActiveMQConnection.DEFAULT_USER;</span><br><span class="line">        String password = ActiveMQConnection.DEFAULT_PASSWORD;</span><br><span class="line">        String brokenUrl = ActiveMQConnection.DEFAULT_BROKER_URL;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//连接工厂</span></span><br><span class="line">        ConnectionFactory connectionFactory;</span><br><span class="line">        <span class="comment">//连接接对象</span></span><br><span class="line">        Connection connection = <span class="keyword">null</span>;</span><br><span class="line">        <span class="comment">//事务管理</span></span><br><span class="line">        Session session = <span class="keyword">null</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            connectionFactory = <span class="keyword">new</span> ActiveMQConnectionFactory(username, password, brokenUrl);</span><br><span class="line">            connection = connectionFactory.createConnection();</span><br><span class="line">            connection.start();</span><br><span class="line"></span><br><span class="line">            <span class="comment">//第一个参数指定是否使用事务，第二个参数为应答方式，这里使用Session.CLIENT_ACKNOWLEDGE，需要我们手动应答，这时失败可以重发（也可以设置成Session.AUTO_ACKNOWLEDGE，但可能会丢失信息）</span></span><br><span class="line">            session = connection.createSession(<span class="keyword">false</span>, Session.CLIENT_ACKNOWLEDGE);</span><br><span class="line"></span><br><span class="line">            <span class="comment">//producter和consumer要使用同一个topic才能收到消息</span></span><br><span class="line">            Topic topic = session.createTopic(<span class="string">"topic1"</span>);</span><br><span class="line">            TextMessage message = session.createTextMessage(<span class="string">"消息1"</span>);</span><br><span class="line">            <span class="comment">//消费者</span></span><br><span class="line">            MessageConsumer consumer = session.createConsumer(topic);</span><br><span class="line">            <span class="comment">/*</span></span><br><span class="line"><span class="comment">            消费者可以指定接收何种类型的message，这里可以支持SQL的条件语法（AND、OR、IN...）</span></span><br><span class="line"><span class="comment">            MessageConsumer consumer = session.createConsumer(destination,"JMSXGroupID='A'");</span></span><br><span class="line"><span class="comment">            此时生产者需要：message.setStringProperty("JMSXGroupID","A");</span></span><br><span class="line"><span class="comment">            */</span></span><br><span class="line">            <span class="keyword">final</span> Session finalSession = session;</span><br><span class="line">            consumer.setMessageListener(<span class="keyword">new</span> MessageListener() &#123;</span><br><span class="line">                <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onMessage</span><span class="params">(Message message)</span> </span>&#123;</span><br><span class="line">                    <span class="keyword">try</span> &#123;</span><br><span class="line">                        System.out.println(Thread.currentThread().getName() + <span class="string">"--收到: -"</span> + ((TextMessage) message).getText());</span><br><span class="line">                        <span class="comment">//手动应答</span></span><br><span class="line">                        message.acknowledge();</span><br><span class="line">                    &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">                        e.printStackTrace();</span><br><span class="line">                        <span class="keyword">try</span> &#123;</span><br><span class="line">                            System.out.println(Thread.currentThread().getName() + <span class="string">"--接收失败，正在重试"</span>);</span><br><span class="line">                            <span class="comment">//失败时重发</span></span><br><span class="line">                            finalSession.recover();</span><br><span class="line">                        &#125; <span class="keyword">catch</span> (JMSException e1) &#123;</span><br><span class="line">                            e1.printStackTrace();</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;);</span><br><span class="line">            <span class="comment">//如果线程结束，则无法接收到发过来的消息</span></span><br><span class="line">            <span class="keyword">while</span> (<span class="keyword">true</span>) &#123;</span><br><span class="line">                <span class="keyword">try</span> &#123;</span><br><span class="line">                    Thread.sleep(<span class="number">1000</span>);</span><br><span class="line">                &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                    e.printStackTrace();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (JMSException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">            <span class="keyword">if</span> (connection != <span class="keyword">null</span>) &#123;</span><br><span class="line">                <span class="keyword">try</span> &#123;</span><br><span class="line">                    connection.close();</span><br><span class="line">                &#125; <span class="keyword">catch</span> (JMSException e) &#123;</span><br><span class="line">                    e.printStackTrace();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (session != <span class="keyword">null</span>) &#123;</span><br><span class="line">                <span class="keyword">try</span> &#123;</span><br><span class="line">                    session.close();</span><br><span class="line">                &#125; <span class="keyword">catch</span> (JMSException e) &#123;</span><br><span class="line">                    e.printStackTrace();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+        
+            <div class="donate-container">
+    <div class="donate-button">
+        <button id="donate-button">赞赏</button>
+    </div>
+    <div class="donate-img-container hide" id="donate-img-container">
+        <img id="donate-img" src="" data-src="/hexo/img/donate.jpg">
+        <p> 感谢鼓励 </p>
+    </div>
+</div>
+        
+        <br>
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+
+        <div id="lv-container">
+        </div>
+
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+
+        
+
+        
+        <li>
+            <a target="_blank" href="https://github.com/s10715">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-github"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+
+    </ul>
+    
+    <p>
+        <span>/</span>
+        
+        <span><a href="http://s10715.org">s10715</a></span>
+        <span>/</span>
+        
+    </p>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span>
+        Created By <a href="https://hexo.io/">Hexo</a>  Theme <a href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = "search.json"
+    window.hexo_root = "/hexo/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+
+<script src="/hexo/js/index.js"></script>
+<!-- 
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+-->
+
+
+
+
+</html>

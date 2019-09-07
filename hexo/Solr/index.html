@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="null">
+    <meta name="keyword" content="null">
+    <link rel="shortcut icon" href="/hexo/img/favicon.ico">
+
+    <title>
+        
+        Solr - s10715&#39;s Blog
+        
+    </title>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/hexo/css/aircloud.css">
+    <link rel="stylesheet" href="/hexo/css/gitment.css">
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> Yea, though I walk through the valley of the shadow of death, I will fear no evil: for thou art with me; thy rod and thy staff they comfort me. </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar">
+            <img src="/hexo/img/avatar.jpg">
+        </div>
+        <div class="name">
+            <i>s10715</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li>
+                <a href="/hexo/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>主页</span>
+                </a>
+            </li>
+            <li>
+                <a href="/hexo/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>标签</span>
+                </a>
+            </li>
+            <li>
+                <a href="/hexo/archive">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>存档</span>
+                </a>
+            </li>
+            <li>
+                <a href="/hexo/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>关于</span>
+                </a>
+            </li>
+            
+            <li>
+                <a id="search">
+                    <i class="iconfont icon-sousuo1"></i>
+                    <span>搜索</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Solr"><span class="toc-text">Solr</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#安装"><span class="toc-text">安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#配置"><span class="toc-text">配置</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#field相关"><span class="toc-text">field相关</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#DHI"><span class="toc-text">DHI</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#添加数据"><span class="toc-text">添加数据</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#查询语法"><span class="toc-text">查询语法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JAVA客户端"><span class="toc-text">JAVA客户端</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#集群搭建"><span class="toc-text">集群搭建</span></a></li></ol></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input">
+            <span id="begin-search">搜索</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+        <div class="index-about-mobile">
+            <i> Yea, though I walk through the valley of the shadow of death, I will fear no evil: for thou art with me; thy rod and thy staff they comfort me. </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        Solr
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">发布于：<span>2018-11-11 00:00:00</span></span>
+        
+        <span class="attr">标签：/
+        
+        <a class="tag" href="/hexo/tags/#JAVAEE" title="JAVAEE">JAVAEE</a>
+        <span>/</span>
+        
+        
+        </span>
+        <!-- <span class="attr">访问：<span id="busuanzi_value_page_pv"></span> -->
+
+
+    </div>
+    <div class="post-content ">
+        <h2 id="Solr"><a href="#Solr" class="headerlink" title="Solr"></a>Solr</h2><h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p>下载地址：<a href="https://lucene.apache.org/solr/" target="_blank" rel="noopener">Apache Solr</a>，<a href="http://lucene.apache.org/solr/guide/7_5/index.html" target="_blank" rel="noopener">Solr-7.5文档</a></p>
+<p>Solr对中文支持不太好，所以需要另外安装中文分词器，这里用的是<a href="https://code.google.com/archive/p/ik-analyzer/" target="_blank" rel="noopener">IKAnalyzer2012</a>或者<a href="https://github.com/magese/ik-analyzer-solr7" target="_blank" rel="noopener">ik-analyzer-solr7</a></p>
+<p><strong>Solr安装</strong></p>
+<p>下载完Solr后，解压，运行</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">unzip solr-7.5.0.zip</span><br><span class="line">sudo mv solr-7.5.0 /opt/solr</span><br><span class="line"><span class="built_in">cd</span> /opt/solr/bin/</span><br><span class="line">solr start -p 8983</span><br></pre></td></tr></table></figure>
+<p>此时可以通过<code>http://127.0.0.1:8983/solr</code>访问Solr的web界面，我们可以使用web界面创建core，也可以通过命令行创建core（core就是solr的一个实例，一个solr服务下可以有多个core，每个core下都有自己的索引库和与之相应的配置文件，类似数据库中的database和table的关系），下面以命令行为例</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">solr create -c corename</span><br></pre></td></tr></table></figure>
+<p>命令说明</p>
+<ul>
+<li><code>solr -help</code>: 查看帮助</li>
+<li><code>bin/solr start</code>: 单机版启动，可以加<code>-cloud</code>参数改为分布式启动；默认端口为8983，也可以通过<code>-p</code>参数指定其他端口；可以通过<code>-f</code>参数指定为前台启动</li>
+<li><code>solr restart</code>: 重启Solr</li>
+<li><code>solr stop -all</code>: 停止Solr</li>
+<li><code>solr status</code>: 查看Solr状态</li>
+<li><code>solr create -c corename</code>: 创建指定名字的core，默认的创建位置在solr安装目录下的<code>server/solr</code>下</li>
+<li><code>solr delete -c corename</code>: 删除core</li>
+</ul>
+<p><strong>中文分词器安装</strong></p>
+<p>解压分词器的压缩包，把<code>ik-analyzer-7.5.0.jar</code>复制到Solr安装目录下的<code>server/solr-webapp/webapp/WEB-INF/lib</code>中，把<code>IKAnalyzer.cfg.xml</code>、<code>ext.dic</code>、<code>stopword.dic</code>、<code>ik.conf</code>、<code>dynamicdic.txt</code>五个文件复制到<code>server/solr-webapp/webapp/WEB-INF/classes</code>中，其中<code>classes</code>文件夹需要手动创建</p>
+<p>在<code>server/solr/configsets/_default/conf/managed-schema</code>中配置</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- ik分词器 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">fieldType</span> <span class="attr">name</span>=<span class="string">"text_ik"</span> <span class="attr">class</span>=<span class="string">"solr.TextField"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">analyzer</span> <span class="attr">type</span>=<span class="string">"index"</span> <span class="attr">useSmart</span>=<span class="string">"false"</span> <span class="attr">class</span>=<span class="string">"org.wltea.analyzer.lucene.IKAnalyzer"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">analyzer</span> <span class="attr">type</span>=<span class="string">"query"</span> <span class="attr">useSmart</span>=<span class="string">"false"</span> <span class="attr">class</span>=<span class="string">"org.wltea.analyzer.lucene.IKAnalyzer"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">fieldType</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 使用ik.conf配置文件可以这样配 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">fieldType</span> <span class="attr">name</span>=<span class="string">"text_ik"</span> <span class="attr">class</span>=<span class="string">"solr.TextField"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">analyzer</span> <span class="attr">type</span>=<span class="string">"index"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">tokenizer</span> <span class="attr">class</span>=<span class="string">"org.wltea.analyzer.lucene.IKTokenizerFactory"</span> <span class="attr">useSmart</span>=<span class="string">"false"</span> <span class="attr">conf</span>=<span class="string">"ik.conf"</span>/&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">filter</span> <span class="attr">class</span>=<span class="string">"solr.LowerCaseFilterFactory"</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">analyzer</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">analyzer</span> <span class="attr">type</span>=<span class="string">"query"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">tokenizer</span> <span class="attr">class</span>=<span class="string">"org.wltea.analyzer.lucene.IKTokenizerFactory"</span> <span class="attr">useSmart</span>=<span class="string">"true"</span> <span class="attr">conf</span>=<span class="string">"ik.conf"</span>/&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">filter</span> <span class="attr">class</span>=<span class="string">"solr.LowerCaseFilterFactory"</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">analyzer</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">fieldType</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>这时使用<code>solr create -c corename</code>创建的core就会使用该配置创建；如果是使用web端创建，会提示创建失败，但<code>server/solr</code>下确实多了一个叫corename的文件夹，这时我们手动把<code>server/solr/configsets/_default</code>下的conf文件夹复制到<code>server/solr/corename</code>中即可；如果是之前就创建好的core，直接修改<code>server/solr/corename</code>下的配置文件即可</p>
+<p>重启Solr，然后登录web端，找到刚才创建的corename，选择Analysis标签，即可测试分词器</p>
+<p>如果想要扩展词库，可以在ext.dic文件中配置自定义的中文词组（编码是UTF-8无BOM模式），在stopword.dic中配置禁止使用的词</p>
+<h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><h4 id="field相关"><a href="#field相关" class="headerlink" title="field相关"></a>field相关</h4><p>前面都是使用默认配置，Solr的配置在<code>server/solr/configsets</code>中，默认配置的文件夹是<code>_default</code>，其中<code>managed-schema</code>是主要的配置文件，它负责管理字段相关的配置</p>
+<ul>
+<li>field: 创建索引用的字段，可以通过<code>indexed</code>指定是否生成索引，通过<code>stored</code>指定是否存储索引，通过<code>required</code>指定是否必须，通过<code>multiValued</code>指定是否可以有多个值，通过<code>type</code>指定其类型，该类型由<code>fieldType</code>标签定义</li>
+<li>dynamicField: 动态字段，允许solr索引没有在schema中明确定义的字段，其实就是可以使用通配符适配的字段（先在常规字段中匹配，没有再匹配动态字段）</li>
+<li>copyField: 把指定<code>source</code>的数据复制到<code>dest</code>中，<code>source</code>和<code>dest</code>都可以使用通配符，如果查询字段要来自多个字段，使用CopyField可以化多个字段为一个字段，但缺点是不能区分各个字段的重要度差别</li>
+<li>fieldType: 为field定义类型，最主要作用是定义分词器，分词器决定着如何从文档中检索关键字<ul>
+<li>analyzer: 分词器，是fieldType的子标签，它通过<code>tokenizer</code>子标签指定分词器的class，通过<code>filter</code>指定过滤器</li>
+</ul>
+</li>
+</ul>
+<p>下面是一个简单使用的例子</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"id"</span> <span class="attr">type</span>=<span class="string">"string"</span> <span class="attr">indexed</span>=<span class="string">"true"</span> <span class="attr">stored</span>=<span class="string">"true"</span> <span class="attr">required</span>=<span class="string">"true"</span> <span class="attr">multiValued</span>=<span class="string">"false"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"_text_"</span> <span class="attr">type</span>=<span class="string">"text_general"</span> <span class="attr">indexed</span>=<span class="string">"true"</span> <span class="attr">stored</span>=<span class="string">"false"</span> <span class="attr">multiValued</span>=<span class="string">"true"</span>/&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">dynamicField</span> <span class="attr">name</span>=<span class="string">"*_t"</span> <span class="attr">type</span>=<span class="string">"text_general"</span> <span class="attr">indexed</span>=<span class="string">"true"</span> <span class="attr">stored</span>=<span class="string">"true"</span> <span class="attr">multiValued</span>=<span class="string">"false"</span>/&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">copyField</span> <span class="attr">source</span>=<span class="string">"*_name"</span> <span class="attr">dest</span>=<span class="string">"destinationFieldName"</span> <span class="attr">maxChars</span>=<span class="string">"30000"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">copyField</span> <span class="attr">source</span>=<span class="string">"*_content"</span> <span class="attr">dest</span>=<span class="string">"destinationFieldName"</span> <span class="attr">maxChars</span>=<span class="string">"30000"</span>/&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">uniqueKey</span>&gt;</span>id<span class="tag">&lt;/<span class="name">uniqueKey</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">fieldType</span> <span class="attr">name</span>=<span class="string">"string"</span> <span class="attr">class</span>=<span class="string">"solr.StrField"</span> <span class="attr">sortMissingLast</span>=<span class="string">"true"</span> <span class="attr">docValues</span>=<span class="string">"true"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">fieldType</span> <span class="attr">name</span>=<span class="string">"text_general"</span> <span class="attr">class</span>=<span class="string">"solr.TextField"</span> <span class="attr">positionIncrementGap</span>=<span class="string">"100"</span> <span class="attr">multiValued</span>=<span class="string">"true"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">analyzer</span> <span class="attr">type</span>=<span class="string">"index"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">tokenizer</span> <span class="attr">class</span>=<span class="string">"solr.StandardTokenizerFactory"</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">filter</span> <span class="attr">class</span>=<span class="string">"solr.StopFilterFactory"</span> <span class="attr">ignoreCase</span>=<span class="string">"true"</span> <span class="attr">words</span>=<span class="string">"stopwords.txt"</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">filter</span> <span class="attr">class</span>=<span class="string">"solr.LowerCaseFilterFactory"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">analyzer</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">fieldType</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>如果直接修改上面的配置需要重启Solr，在实际应用中，我们需要动态修改配置而不重启，这时可以使用Solr的Schema API上传配置</p>
+<p>Schema API其实就是用post请求向Solr服务器发送携带json参数的请求，所有操作内容都封装在json中，如果是linux系统直接使用curl工具，如果是windows系统推荐使用Postman</p>
+<p>Solr的配置上传可以使用web界面，也可以使用命令行，在Solr安装目录下的<code>example/exampledocs</code>有一个<code>post.jar</code>可以通过该jar包上传数据</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">java -jar post.jar -help</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> corename为core的名字，*.xml为要上传的文件</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 通过java参数上传</span></span><br><span class="line">java -Durl=http://localhost:8983/solr/corename/update -jar post.jar *.xml</span><br><span class="line"><span class="meta">#</span><span class="bash"> 或者</span></span><br><span class="line">java -Dtype=text/csv -Dc=corename -jar post.jar *.csv</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 通过curl工具上传</span></span><br><span class="line">curl http://localhost:8983/solr/corename/update --data-binary @*.xml -H 'Content-type:text/xml; charset=utf-8'</span><br><span class="line"><span class="meta">#</span><span class="bash"> 或者使用json数据，具体参考文档中Documents, Fields, and Schema Design一章中Schema API小节</span></span><br><span class="line">curl -X POST -H 'Content-type:application/json' --data-binary '&#123;</span><br><span class="line">  "add-field":&#123;</span><br><span class="line">     "name":"sell_by",</span><br><span class="line">     "type":"pdate",</span><br><span class="line">     "stored":true &#125;</span><br><span class="line">&#125;' http://localhost:8983/solr/corename/schema</span><br><span class="line"></span><br><span class="line">curl -X POST -H 'Content-type:application/json' --data-binary '&#123;</span><br><span class="line">  "delete-field" : &#123; "name":"sell_by" &#125;</span><br><span class="line">&#125;' http://localhost:8983/solr/corename/schema</span><br><span class="line"></span><br><span class="line">curl -X POST -H 'Content-type:application/json' --data-binary '&#123;</span><br><span class="line">  "replace-field":&#123;</span><br><span class="line">     "name":"sell_by",</span><br><span class="line">     "type":"date",</span><br><span class="line">     "stored":false &#125;</span><br><span class="line">&#125;' http://localhost:8983/solr/corename/schema</span><br></pre></td></tr></table></figure>
+<h4 id="DHI"><a href="#DHI" class="headerlink" title="DHI"></a>DHI</h4><p>DIH全称是Data Import Handler数据导入处理器，大部分情况下我们需要连接数据库来对数据进行索引，来提升我们的查询效率</p>
+<p>下载mysql连接驱动<code>mysql-connector-java-8.0.13.jar</code>，并找到Solr安装目录下的<code>dist</code>文件夹下的<code>solr-dataimporthandler-7.5.0.jar</code>和<code>solr-dataimporthandler-extras-7.5.0.jar</code>两个jar包，复制到<code>server\solr-webapp\webapp\WEB-INF\lib</code>中</p>
+<p>数据库的配置可以参考<code>example/example-DIH/solr/db/conf</code></p>
+<p>修改<code>server/solr/corename/conf</code>下的<code>solrconfig.xml</code>，指定数据库配置文件的位置，其中<code>/dataimport</code>是指当请求以<code>http://localhost:8983/solr/corename/dataimport/</code>开头时(<code>localhost:8983</code>可以是其他url)，匹配该数据库配置文件（Solr命令执行的方式就是通过发起命令请求）</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">requestHandler</span> <span class="attr">name</span>=<span class="string">"/dataimport"</span> <span class="attr">class</span>=<span class="string">"solr.DataImportHandler"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">lst</span> <span class="attr">name</span>=<span class="string">"defaults"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">str</span> <span class="attr">name</span>=<span class="string">"config"</span>&gt;</span>db-data-config.xml<span class="tag">&lt;/<span class="name">str</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">lst</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">requestHandler</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>修改<code>db-data-config.xml</code>，配置entity与数据库中字段的对应关系（document相当于数据库中的database，entity相当于数据库中的一个表），比如</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dataConfig</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dataSource</span> <span class="attr">driver</span>=<span class="string">"com.mysql.jdbc.Driver"</span> <span class="attr">url</span>=<span class="string">"jdbc:mysql://127.0.0.1:3306/solr?charactorEncoding=utf-8"</span> <span class="attr">user</span>=<span class="string">"root"</span> <span class="attr">password</span>=<span class="string">"root"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">document</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">entity</span> <span class="attr">name</span>=<span class="string">"student"</span> <span class="attr">query</span>=<span class="string">"select * from student"</span> <span class="attr">pk</span>=<span class="string">"id"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">field</span> <span class="attr">column</span>=<span class="string">"id"</span> <span class="attr">name</span>=<span class="string">"id"</span> /&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">field</span> <span class="attr">column</span>=<span class="string">"name"</span> <span class="attr">name</span>=<span class="string">"name"</span> /&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">field</span> <span class="attr">column</span>=<span class="string">"code"</span> <span class="attr">name</span>=<span class="string">"code"</span> /&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">field</span> <span class="attr">column</span>=<span class="string">"create_time"</span> <span class="attr">name</span>=<span class="string">"createTime"</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">entity</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">document</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dataConfig</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>数据库的建表语句如下</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> <span class="string">`student`</span> (</span><br><span class="line">  <span class="string">`id`</span> <span class="built_in">bigint</span>(<span class="number">20</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span> AUTO_INCREMENT,</span><br><span class="line">  <span class="string">`name`</span> <span class="built_in">varchar</span>(<span class="number">20</span>) <span class="keyword">DEFAULT</span> <span class="literal">NULL</span>,</span><br><span class="line">  <span class="string">`code`</span> <span class="built_in">varchar</span>(<span class="number">20</span>) <span class="keyword">DEFAULT</span> <span class="literal">NULL</span>,</span><br><span class="line">  <span class="string">`create_time`</span> datetime <span class="keyword">DEFAULT</span> <span class="literal">NULL</span>,</span><br><span class="line">  PRIMARY <span class="keyword">KEY</span> (<span class="string">`id`</span>)</span><br><span class="line">) <span class="keyword">ENGINE</span>=<span class="keyword">InnoDB</span> <span class="keyword">DEFAULT</span> <span class="keyword">CHARSET</span>=utf8;</span><br><span class="line"></span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> student <span class="keyword">value</span>(<span class="string">'1'</span>,<span class="string">'小明'</span>,<span class="string">'hello world'</span>,<span class="string">'2018-10-01'</span>);</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> student <span class="keyword">value</span>(<span class="string">'2'</span>,<span class="string">'小红'</span>,<span class="string">'hello 小明'</span>,<span class="string">'2018-10-01'</span>);</span><br></pre></td></tr></table></figure>
+<p>修改<code>managed-schema</code>，配置entity的索引，要和上面的配置对应</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"id"</span> <span class="attr">required</span>=<span class="string">"true"</span> <span class="attr">type</span>=<span class="string">"string"</span> <span class="attr">indexed</span>=<span class="string">"true"</span> <span class="attr">stored</span>=<span class="string">"true"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"name"</span> <span class="attr">type</span>=<span class="string">"string"</span> <span class="attr">indexed</span>=<span class="string">"true"</span> <span class="attr">stored</span>=<span class="string">"true"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"code"</span> <span class="attr">type</span>=<span class="string">"string"</span> <span class="attr">indexed</span>=<span class="string">"false"</span> <span class="attr">stored</span>=<span class="string">"true"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"createTime"</span> <span class="attr">type</span>=<span class="string">"pdate"</span> <span class="attr">indexed</span>=<span class="string">"false"</span> <span class="attr">stored</span>=<span class="string">"true"</span>/&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">uniqueKey</span>&gt;</span>id<span class="tag">&lt;/<span class="name">uniqueKey</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>配置完成后重启Solr，访问 <a href="http://127.0.0.1:8983/solr/#/corename/dataimport//dataimport" target="_blank" rel="noopener">http://127.0.0.1:8983/solr/#/corename/dataimport//dataimport</a> ，里面的Entity中有我们设置的student，点击Refresh Status导入数据</p>
+<p>上面的导入方式是手动的全量导入，如果要自动增量导入，需要使用<a href="https://github.com/yunois/solr-dataimportscheduler" target="_blank" rel="noopener">solr-dataimportscheduler</a></p>
+<p>全量导入其实就是发送<code>http://localhost:8983/solr/corename/dataimport?command=full-import</code>指令，增量导入就是发送<code>http://localhost:8983/solr/corename/dataimport?command=delta-import</code>指令</p>
+<p>修改<code>server/solr-webapp/webapp/WEB-INF</code>下的<code>web.xml</code>，添加监听器配置</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">listener</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">listener-class</span>&gt;</span></span><br><span class="line">        org.apache.solr.handler.dataimport.scheduler.ApplicationListener</span><br><span class="line">    <span class="tag">&lt;/<span class="name">listener-class</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">listener</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>在<code>server/solr</code>下创建<code>conf</code>文件夹，在此文件夹下创建<code>dataimport.properties</code>文件，内容如下</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#################################################</span></span><br><span class="line"><span class="comment">#       dataimport scheduler properties         #</span></span><br><span class="line"><span class="comment">#                                               #</span></span><br><span class="line"><span class="comment">#################################################</span></span><br><span class="line"><span class="comment">#  to sync or not to sync</span></span><br><span class="line"><span class="comment">#  1 - active; anything else - inactive</span></span><br><span class="line"><span class="attr">syncEnabled</span>=<span class="number">1</span></span><br><span class="line"><span class="comment">#  which cores to schedule</span></span><br><span class="line"><span class="comment">#  in a multi-core environment you can decide which cores you want syncronized</span></span><br><span class="line"><span class="comment">#  leave empty or comment it out if using single-core deployment</span></span><br><span class="line"><span class="comment">#  修改成你所使用的core</span></span><br><span class="line"><span class="attr">syncCores</span>=test01</span><br><span class="line"><span class="comment">#  solr server name or IP address</span></span><br><span class="line"><span class="comment">#  [defaults to localhost if empty]</span></span><br><span class="line"><span class="comment">#  这个一般都是localhost不会变</span></span><br><span class="line"><span class="attr">server</span>=<span class="number">172.0</span>.<span class="number">0.1</span></span><br><span class="line"><span class="comment">#  solr server port</span></span><br><span class="line"><span class="comment">#  [defaults to 80 if empty]</span></span><br><span class="line"><span class="comment">#  安装solr的tomcat端口，如果你使用的是默认的端口，就不用改了，否则改成自己的端口就好了</span></span><br><span class="line"><span class="attr">port</span>=<span class="number">8983</span></span><br><span class="line"><span class="comment">#  application name/context</span></span><br><span class="line"><span class="comment">#  [defaults to current ServletContextListener's context (app) name]</span></span><br><span class="line"><span class="comment">#  这里默认不改</span></span><br><span class="line"><span class="attr">webapp</span>=/</span><br><span class="line">  </span><br><span class="line"><span class="comment">#  URL params [mandatory]</span></span><br><span class="line"><span class="comment">#  remainder of URL</span></span><br><span class="line"><span class="comment">#  这里改成下面的形式，solr同步数据时请求的链接</span></span><br><span class="line"><span class="attr">params</span>=/dataimport?command=delta-import&amp;clean=<span class="literal">false</span>&amp;commit=<span class="literal">true</span></span><br><span class="line"><span class="comment">#  schedule interval</span></span><br><span class="line"><span class="comment">#  number of minutes between two runs</span></span><br><span class="line"><span class="comment">#  [defaults to 30 if empty]</span></span><br><span class="line"><span class="comment">#  这里是设置定时任务的，单位是秒，也就是多长时间你检测一次数据同步，根据项目需求修改</span></span><br><span class="line"><span class="comment">#  开始测试的时候为了方便看到效果，时间可以设置短一点</span></span><br><span class="line"><span class="attr">interval</span>=<span class="number">30</span></span><br><span class="line">  </span><br><span class="line"><span class="comment">#  重做索引的时间间隔，单位分钟，默认7200，即5天; </span></span><br><span class="line"><span class="comment">#  为空,为0,或者注释掉:表示永不重做索引</span></span><br><span class="line"><span class="comment">#reBuildIndexInterval=7200</span></span><br><span class="line">  </span><br><span class="line"><span class="comment">#  重做索引的参数</span></span><br><span class="line"><span class="comment">#reBuildIndexParams=/select?qt=/dataimport&amp;command=full-import&amp;clean=true&amp;commit=true</span></span><br><span class="line">  </span><br><span class="line"><span class="comment">#  重做索引时间间隔的计时开始时间，第一次真正执行的时间=reBuildIndexBeginTime+reBuildIndexInterval*60*1000；</span></span><br><span class="line"><span class="comment">#  两种格式：2012-04-11 03:10:00 或者  03:10:00，后一种会自动补全日期部分为服务启动时的日期</span></span><br><span class="line"><span class="comment">#reBuildIndexBeginTime=03:10:00</span></span><br><span class="line"><span class="comment">#  延迟执行时间 默认是30分钟</span></span><br><span class="line"><span class="attr">initialDelay</span>=<span class="number">1</span></span><br><span class="line"><span class="comment">#  执行线程数 默认是10</span></span><br><span class="line"><span class="attr">threadPoolCount</span>=<span class="number">10</span></span><br></pre></td></tr></table></figure>
+<p>在<code>server/solr/corename/conf/db-data-config.xml</code>中添加<code>deltaImportQuery</code>和<code>deltaQuery</code>，指定增量时使用的SQL</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dataConfig</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dataSource</span> <span class="attr">driver</span>=<span class="string">"com.mysql.jdbc.Driver"</span> <span class="attr">url</span>=<span class="string">"jdbc:mysql://127.0.0.1:3306/solr?charactorEncoding=utf-8"</span> <span class="attr">user</span>=<span class="string">"root"</span> <span class="attr">password</span>=<span class="string">"root"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">document</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">entity</span> <span class="attr">name</span>=<span class="string">"student"</span> <span class="attr">query</span>=<span class="string">"select * from student"</span> <span class="attr">pk</span>=<span class="string">"id"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">deltaImportQuery</span>=<span class="string">"select * from student where id='$&#123;dataimporter.delta.id&#125;'"</span></span></span><br><span class="line"><span class="tag">			<span class="attr">deltaQuery</span>=<span class="string">"select * from student where `create_time` &gt; '$&#123;dataimporter.last_index_time&#125;'"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">field</span> <span class="attr">column</span>=<span class="string">"id"</span> <span class="attr">name</span>=<span class="string">"id"</span> /&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">field</span> <span class="attr">column</span>=<span class="string">"name"</span> <span class="attr">name</span>=<span class="string">"name"</span> /&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">field</span> <span class="attr">column</span>=<span class="string">"code"</span> <span class="attr">name</span>=<span class="string">"code"</span> /&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">field</span> <span class="attr">column</span>=<span class="string">"create_time"</span> <span class="attr">name</span>=<span class="string">"createTime"</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">entity</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">document</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dataConfig</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p><code>${dataimporter.delta.id}</code>是根据主键的名字写的，如果主键id配置的不叫id，如叫studentId，那么，这个取变量就应该写成<code>${dataimporter.delta.studentId}</code>，而<code>${dataimporter.last_index_time}</code>是固定写法</p>
+<p>在<code>solr/server/solr/corename/conf</code>中创建<code>dataimport.properties</code>文件（和前面的配置文件名字相同但路径不同），内容如下</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 往前推迟的数量，单位秒</span></span><br><span class="line">before_second:1</span><br><span class="line"><span class="comment"># 最后更新时间，系统默认添加，每次系统自己记录</span></span><br><span class="line">student.last_index_time:2018-10-01 00\:00\:00</span><br><span class="line">last_index_time:2018-10-01 00\:00\:00</span><br></pre></td></tr></table></figure>
+<h3 id="添加数据"><a href="#添加数据" class="headerlink" title="添加数据"></a>添加数据</h3><p>使用web端添加数据可以在core的Documents页面使用xml格式添加</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- Solr没有更新，如果id已存在则是更新，否则是插入 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">add</span>&gt;</span> </span><br><span class="line">   <span class="tag">&lt;<span class="name">doc</span>&gt;</span> </span><br><span class="line">      <span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span> = <span class="string">"id"</span>&gt;</span>1<span class="tag">&lt;/<span class="name">field</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span> = <span class="string">"name"</span>&gt;</span>小明<span class="tag">&lt;/<span class="name">field</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span> = <span class="string">"age"</span>&gt;</span>14<span class="tag">&lt;/<span class="name">field</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;/<span class="name">doc</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">add</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 不要忘了提交 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">commit</span> /&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 根据id删除 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">delete</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">id</span>&gt;</span>1<span class="tag">&lt;/<span class="name">id</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">delete</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">commit</span> /&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 根据查询删除 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">delete</span>&gt;</span> </span><br><span class="line">   <span class="tag">&lt;<span class="name">query</span>&gt;</span>name:小明<span class="tag">&lt;/<span class="name">query</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;/<span class="name">delete</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">commit</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="查询语法"><a href="#查询语法" class="headerlink" title="查询语法"></a>查询语法</h3><p>web端的Query页面有如下查询条件</p>
+<ul>
+<li><code>qt</code>(query type): 使用哪个Request-Handler处理该查询，默认是<code>/select</code>，可以在<code>server/solr/corename/conf/solrconfig.xml</code>中配置Request-Handler</li>
+<li><code>q</code>(query): 查询的条件，比如<code>*:*</code>查询全部，<code>id=1</code>查询id为1的数据</li>
+<li><code>fq</code>(filter query): 过虑查询，最后会返回符合q查询的结果中同时符合的fq查询的结果</li>
+<li><code>sort</code>: 排序方式，比如<code>id  desc</code>根据id降序</li>
+<li><code>start</code>, <code>rows</code>: 分页，类似mysql的limit，第几页，每页几条记录，默认第0页，每页10条记录</li>
+<li><code>fl</code>: 指定返回哪些字段（字段区分大小写），如果有多个用逗号或空格分隔，比如<code>id,name,age</code></li>
+<li><code>df</code>: 默认的查询字段</li>
+<li><code>wt</code>(writer type): 输出格式，有json,xml,csv,php,python,ruby等</li>
+<li><code>indent</code>: 返回的结果是否缩进，默认关闭，一般调试json,php,phps,ruby输出才有必要用这个参数</li>
+<li><code>q.op</code>: q查询中的运算符（可以是AND或OR）</li>
+<li><code>hl</code>: 是否高亮，比如<code>hl=true</code></li>
+<li><code>hl.fl</code>: 需要高亮的字段，如果有多个用逗号或空格分隔，比如<code>hl.fl=name,age</code></li>
+<li><code>hl.simple.pre</code>、<code>hl.simple.post</code>: 高亮字段用什么包裹，比如<code>hl.simple.pre=&lt;em&gt;</code>，<code>hl.simple.post=&lt;/em&gt;</code>，一般用在html输出</li>
+<li><code>facet</code>: 是否启动统计</li>
+<li><code>facet.field</code>: 使用统计的字段</li>
+</ul>
+<p>关于查询语句，可以使用如下的检索运算符</p>
+<ul>
+<li><code>:</code>: 指定字段查指定值，比如<code>*:*</code>、<code>name:tom</code></li>
+<li><code>?</code>: 匹配单个字符，比如<code>te?t</code>，匹配test或者text</li>
+<li><code>*</code>: 匹配零个或多个字符，比如<code>xiao*</code>，匹配xiao或xiaoming</li>
+<li><code>AND</code>、<code>&amp;&amp;</code>: 与，两边的查询词要同时出现，比如<code>&quot;jakarta apache&quot; AND &quot;Apache Lucene&quot;</code></li>
+<li><code>OR</code>、<code>||</code>: 或，两边的查询词至少出现一个</li>
+<li><code>NOT</code>、<code>!</code>、<code>-</code>: 非，指定的查询词不能出现</li>
+<li><code>+</code>: 存在操作符，要求符号<code>+</code>后的项必须在文档相应的域中存在</li>
+<li><code>~</code>: 基于编辑距离的模糊检索，比如<code>roam~</code>，会匹配如<code>roams</code>、<code>foam</code>、<code>foams</code>；也可以指定相似度，比如<code>roam~0.7</code>，会检索相似度在0.7以上的记录；或者指定编辑距离，比如<code>roam~1</code>，指定编辑距离为1，可以匹配<code>roams</code>、<code>foam</code>，但不会匹配<code>foams</code></li>
+<li><code>~n</code>: 邻近查询，查找相隔一定距离的单词，比如<code>&quot;jakarta apache&quot;~10</code>，相隔10个单词</li>
+<li><code>TO</code>: 范围查询，<code>[]</code>包含边界，<code>{}</code>不包含边界，比如<code>[201810 TO 201811]</code>、<code>{201810 TO 201811}</code>，可以使用<code>*</code>，比如<code>[* TO 100]</code>，表示小于等于100</li>
+<li><code>^</code>: 加权因子，比如<code>jakarta^4 apache</code>查找结果中jakarta更相关</li>
+<li><code>^=</code>: 指定查询语句的score得分为常量，比如<code>(description:blue OR color:blue)^=1.0 text:shoes</code></li>
+<li><code>()</code>: 子查询，比如<code>title:(jakarta OR apache) AND website</code></li>
+<li><code>/*xxx*/</code>: 注释，比如<code>title:jakarta /*注释*/ OR apache</code></li>
+</ul>
+<p>如果要使用<code>+</code>、<code>-</code>、<code>&amp;&amp;</code>、<code>||</code>、<code>!</code>、<code>( )</code>、<code>{ }</code>、<code>[ ]</code>、<code>^</code>、<code>&quot;</code>、<code>~</code>、<code>*</code>、<code>?</code>、<code>:</code>、<code>/</code>这些特殊字符，需要加反斜杠进行转义，比如 <code>\(1\+1\):2</code></p>
+<p>可以在q中更改查询参数，比如<code>q={!q.op=AND df=title}jakarta apache</code>，更改参数的语句要以<code>{!</code>开头，以<code>}</code>结束，中间是任意用空格分隔的查询参数（key=value形式）</p>
+<p>Solr的日期的格式是<code>yyyy-MM-ddTHH:mm:ssZ</code>，日期和小时之间用T分隔，最后以Z结束（Z代表时区是UTC）</p>
+<p>日期的内建表达式（时间单位都可以带S,也可以不带,意义一样，比如HOUR或HOURS）：</p>
+<ul>
+<li><code>NOW</code>: 当前时间</li>
+<li><code>YEAR</code>: 年</li>
+<li><code>MONTH</code>: 月</li>
+<li><code>DAY</code>: 日</li>
+<li><code>DATE</code>: 日，和DAY一样</li>
+<li><code>HOUR</code>: 时</li>
+<li><code>MINUTE</code>: 分</li>
+<li><code>SECOND</code>: 秒</li>
+<li><code>MILLI</code>: 毫秒</li>
+<li><code>MILLISECOND</code>: 毫秒，和MILLI一样</li>
+<li><code>TZ</code>: 时区，默认是UTC，可以设置TZ=Asia/Shanghai北京时间，但它不能修正Solr输出、输入时区</li>
+<li><code>NOW+2MONTHS</code>: 之后的两个月时间内</li>
+<li><code>NOW-1DAY</code>: 一天前</li>
+<li><code>NOW/HOUR</code>: 从这个小时开始，从当前小时零分开始</li>
+</ul>
+<p>比如</p>
+<ul>
+<li><code>[2018-01-01T00:00:00 TO *]</code>: 2018年1月1号以后</li>
+<li><code>2018-01</code>: 表示2018年整个1月份</li>
+<li><code>2017-01T13</code>: 2017年整个1月每天13:00到14:00</li>
+<li><code>[2018-01-01 TO 2018-01-23]</code>: 表示2018年1月1号到23号</li>
+<li><code>[2018 TO 2018-01-23]</code>: 2018年1月1号到23号</li>
+<li><code>[ * TO 2018-01-23]</code>: 2018年1月23号之前</li>
+<li><code>NOW/DAY</code>: 当天零点零分</li>
+<li><code>[NOW-1YEAR/DAY TO NOW/DAY+1DAY]</code>: 一年前的这一天开始，到今天过后</li>
+</ul>
+<h3 id="JAVA客户端"><a href="#JAVA客户端" class="headerlink" title="JAVA客户端"></a>JAVA客户端</h3><p>maven依赖</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.solr<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>solr-solrj<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>7.5.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>java代码（一般配置DHI后只需直接查询，不需要增删改）</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line">String solrUrl = <span class="string">"http://127.0.0.1:8983/solr/corename"</span>;</span><br><span class="line">HttpSolrClient solrClient = <span class="keyword">new</span> HttpSolrClient.Builder(solrUrl).build();</span><br><span class="line"><span class="comment">// ------------ 插入 ------------</span></span><br><span class="line">Collection&lt;SolrInputDocument&gt; docs = <span class="keyword">new</span> ArrayList&lt;SolrInputDocument&gt;();</span><br><span class="line"></span><br><span class="line">SolrInputDocument doc1 = <span class="keyword">new</span> SolrInputDocument();</span><br><span class="line">doc1.addField(<span class="string">"id"</span>, <span class="number">3</span>);</span><br><span class="line">doc1.addField(<span class="string">"name"</span>, <span class="string">"小王"</span>);</span><br><span class="line">doc1.addField(<span class="string">"code"</span>, <span class="string">"hello"</span>);</span><br><span class="line">doc1.addField(<span class="string">"createTime"</span>, <span class="string">"2018-10-01"</span>);</span><br><span class="line"></span><br><span class="line">docs.add(doc1);</span><br><span class="line">UpdateResponse rsp1 = solrclient.add(docs);</span><br><span class="line">UpdateResponse rspcommit1 = solrclient.commit();</span><br><span class="line"></span><br><span class="line"><span class="comment">// ------------ 修改 ------------</span></span><br><span class="line">HashMap&lt;String, Object&gt; map = <span class="keyword">new</span> HashMap&lt;String, Object&gt;();</span><br><span class="line"><span class="comment">// 多值更新方法</span></span><br><span class="line"><span class="comment">//List&lt;String&gt; mulitValues = new ArrayList&lt;String&gt;();</span></span><br><span class="line"><span class="comment">//mulitValues.add("小花");</span></span><br><span class="line">map.put(<span class="string">"set"</span>, <span class="string">"小花"</span>);</span><br><span class="line">SolrInputDocument doc2 = <span class="keyword">new</span> SolrInputDocument();</span><br><span class="line">doc2.addField(<span class="string">"id"</span>, id);</span><br><span class="line">doc2.addField(<span class="string">"name"</span>, map);</span><br><span class="line">UpdateResponse rsp2 = solrclient.add(doc2);</span><br><span class="line">UpdateResponse rspCommit2 = solrclient.commit();</span><br><span class="line"></span><br><span class="line"><span class="comment">// ------------ 查询 ------------</span></span><br><span class="line"><span class="comment">// 创建搜索对象</span></span><br><span class="line">SolrQuery query = <span class="keyword">new</span> SolrQuery();</span><br><span class="line"><span class="comment">// 设置搜索条件</span></span><br><span class="line">query.set(<span class="string">"q"</span>,<span class="string">"name:小明"</span>);</span><br><span class="line"><span class="comment">// 分页参数</span></span><br><span class="line">query.setStart(<span class="number">0</span>);</span><br><span class="line"><span class="comment">// 设置每页显示多少条</span></span><br><span class="line">query.setRows(<span class="number">10</span>);</span><br><span class="line"><span class="comment">//发起搜索请求</span></span><br><span class="line">QueryResponse response = solrClient.query(query);</span><br><span class="line"><span class="comment">// 查询结果</span></span><br><span class="line">SolrDocumentList docs = response.getResults();</span><br><span class="line"><span class="comment">// 查询结果总数</span></span><br><span class="line"><span class="keyword">long</span> count= docs.getNumFound();</span><br><span class="line">System.out.println(<span class="string">"总条数为"</span>+count+<span class="string">"条"</span>);</span><br><span class="line"><span class="keyword">for</span> (SolrDocument doc : docs) &#123;</span><br><span class="line">    System.out.println(<span class="string">"id:"</span>+ doc.get(<span class="string">"id"</span>) + <span class="string">",name:"</span>+ doc.get(<span class="string">"name"</span>));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// ------------ 删除 ------------</span></span><br><span class="line">UpdateResponse rsp3 = solrclient.deleteById(id);</span><br><span class="line">solrclient.commit();</span><br><span class="line"><span class="comment">// 或者</span></span><br><span class="line">UpdateResponse rsp4 = client.deleteByQuery(<span class="string">"name:小明"</span>);</span><br><span class="line"></span><br><span class="line">solrClient.close();</span><br></pre></td></tr></table></figure>
+<p>通过JavaBean操作</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Student</span></span>&#123;</span><br><span class="line">    <span class="meta">@Field</span>(<span class="string">"id"</span>)</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> id;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Field</span>(<span class="string">"name"</span>)</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> name;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Field</span>(<span class="string">"code"</span>)</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> code;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Field</span>(<span class="string">"createTime"</span>)</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> createTime;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//省略构造器、get、set</span></span><br><span class="line">    <span class="comment">//...</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Main</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">        String solrUrl = <span class="string">"http://127.0.0.1:8983/solr/corename"</span>;</span><br><span class="line">        HttpSolrClient solrClient = <span class="keyword">new</span> HttpSolrClient.Builder(solrUrl).build();</span><br><span class="line">        Student student = <span class="keyword">new</span> Student(<span class="number">5</span>,<span class="string">"小明"</span>,<span class="string">"hello"</span>,<span class="string">"2018-10-01"</span>);</span><br><span class="line">        solrClient.addBean(student);</span><br><span class="line">        solrClient.commit();</span><br><span class="line"></span><br><span class="line">        SolrQuery query = <span class="keyword">new</span> SolrQuery();</span><br><span class="line">        query.set(<span class="string">"q"</span>,<span class="string">"*:*"</span>);</span><br><span class="line">        QueryResponse response = solrClient.query(query);</span><br><span class="line">        SolrDocumentList docs = response.getResults();</span><br><span class="line">        <span class="keyword">for</span> (SolrDocument doc : docs) &#123;</span><br><span class="line">            Student s = solrClient.getBinder().getBean(Student.class, doc);</span><br><span class="line">            System.out.println(s);</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="集群搭建"><a href="#集群搭建" class="headerlink" title="集群搭建"></a>集群搭建</h3><p>安装ZooKeeper集群（略）</p>
+<p>从安装包中解压脚本并执行，<code>--strip-components=2</code>是指去掉前两层目录，是tar命令的参数，该脚本的作用是把Solr安装成系统服务，以便运行，默认安装目录是<code>/opt</code>目录+压缩包名，建议先把压缩包重命名为<code>solr.tgz</code>，方便以后升级（以后升级只需替换<code>/opt/solr</code>的文件即可）</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">tar xzf solr-7.5.0.tgz solr-7.5.0/bin/install_solr_service.sh --strip-components=2</span><br><span class="line">sudo ./install_solr_service.sh solr-7.5.0.tgz</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 也可以指定安装参数</span></span><br><span class="line">sudo ./install_solr_service.sh solr-7.5.0.tgz -d /var/solr -i /opt/ -p 8983 -s solr -u solr -n</span><br><span class="line"></span><br><span class="line">sudo service solr start</span><br><span class="line">sudo service solr restart</span><br><span class="line">sudo service solr status</span><br><span class="line">sudo service solr stop</span><br></pre></td></tr></table></figure>
+<p>参数说明</p>
+<ul>
+<li><code>-d</code>: solr的一些参数和可写的文件存放的位置，默认为<code>/var/solr</code></li>
+<li><code>-i</code>: solr解压位置，默认为<code>/opt/</code></li>
+<li><code>-p</code>: 绑定的端口号</li>
+<li><code>-s</code>: service的名称</li>
+<li><code>-u</code>: 创建的用户名，默认为<code>solr</code>，solr会自动创建linux用户来运行solr</li>
+<li><code>-n</code>: 执行完脚本后不启动solr</li>
+<li><code>-f</code>: 更新solr，重建符号链接和启动脚本</li>
+</ul>
+<p>安装完成后，到<code>/var/solr/data</code>目录，修改<code>solr.xml</code>文件，修改host参数，在后面填入本机ip</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">solr</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">solrcloud</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">str</span> <span class="attr">name</span>=<span class="string">"host"</span>&gt;</span>$&#123;host:192.168.1.2&#125;<span class="tag">&lt;/<span class="name">str</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">int</span> <span class="attr">name</span>=<span class="string">"hostPort"</span>&gt;</span>$&#123;jetty.port:8983&#125;<span class="tag">&lt;/<span class="name">int</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">str</span> <span class="attr">name</span>=<span class="string">"hostContext"</span>&gt;</span>$&#123;hostContext:solr&#125;<span class="tag">&lt;/<span class="name">str</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">bool</span> <span class="attr">name</span>=<span class="string">"genericCoreNodeNames"</span>&gt;</span>$&#123;genericCoreNodeNames:true&#125;<span class="tag">&lt;/<span class="name">bool</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">int</span> <span class="attr">name</span>=<span class="string">"zkClientTimeout"</span>&gt;</span>$&#123;zkClientTimeout:30000&#125;<span class="tag">&lt;/<span class="name">int</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">int</span> <span class="attr">name</span>=<span class="string">"distribUpdateSoTimeout"</span>&gt;</span>$&#123;distribUpdateSoTimeout:600000&#125;<span class="tag">&lt;/<span class="name">int</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">int</span> <span class="attr">name</span>=<span class="string">"distribUpdateConnTimeout"</span>&gt;</span>$&#123;distribUpdateConnTimeout:60000&#125;<span class="tag">&lt;/<span class="name">int</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">str</span> <span class="attr">name</span>=<span class="string">"zkCredentialsProvider"</span>&gt;</span>$&#123;zkCredentialsProvider:org.apache.solr.common.cloud.DefaultZkCredentialsProvider&#125;<span class="tag">&lt;/<span class="name">str</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">str</span> <span class="attr">name</span>=<span class="string">"zkACLProvider"</span>&gt;</span>$&#123;zkACLProvider:org.apache.solr.common.cloud.DefaultZkACLProvider&#125;<span class="tag">&lt;/<span class="name">str</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">solrcloud</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">shardHandlerFactory</span> <span class="attr">name</span>=<span class="string">"shardHandlerFactory"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">class</span>=<span class="string">"HttpShardHandlerFactory"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">int</span> <span class="attr">name</span>=<span class="string">"socketTimeout"</span>&gt;</span>$&#123;socketTimeout:600000&#125;<span class="tag">&lt;/<span class="name">int</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">int</span> <span class="attr">name</span>=<span class="string">"connTimeout"</span>&gt;</span>$&#123;connTimeout:60000&#125;<span class="tag">&lt;/<span class="name">int</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">shardHandlerFactory</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">solr</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>再到<code>/etc/default/</code>下修改<code>solr.in.sh</code>文件，配置ZK_HOST参数</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">ZK_HOST</span>=<span class="string">"192.168.1.2:2181,192.168.1.3:2181,192.168.1.4:2181"</span></span><br></pre></td></tr></table></figure>
+<p>然后上传配置到ZooKeeper中</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">./solr zk upconfig -d [要上传的配置文件目录] -n [zookeeper上保存配置文件的节点名称] -z [zookeeper的集群地址]</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 使用/opt/solr/server/scripts/cloud-scripts/zkcli.sh也可以，三个参数也是对应的</span></span><br><span class="line"> ./zkcli.sh -zkhost 192.168.1.2:2181,192.168.1.3:2181,192.168.1.4:2181 -cmd upconfig -confdir /opt/solr/server/solr/corename/conf -confname myconf</span><br></pre></td></tr></table></figure>
+<p>创建集合</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./solr create-collection -c [新建集合的名字] -n [zookeeper上配置文件的节点名称，上一步设置的那个n] -shards 2 [分两块] -replicationFactor 2 [replic数量]</span><br></pre></td></tr></table></figure>
+<p>如果没有把Solr安装为系统服务，而是直接解压，那么<code>solr.xml</code>就应该在<code>/opt/solr/server/solr</code>目录配置，<code>solr.in.sh</code>应该在<code>/opt/solr/bin</code>下配置，无论是否安装为系统服务，它们的配置是一样的，只是路径不同</p>
+<p>集群版Solr的JAVA客户端连接</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">String ZK_HOST = <span class="string">"192.168.1.2:2181,192.168.1.3:2181,192.168.1.4:2181"</span>;</span><br><span class="line">CloudSolrClient solr=<span class="keyword">new</span> CloudSolrClient.Builder().withZkHost(ZK_HOST).build();</span><br><span class="line">solr.setDefaultCollection(<span class="string">"mycollection"</span>);</span><br><span class="line">solr.setParser(<span class="keyword">new</span> XMLResponseParser());</span><br><span class="line">solr.setRequestWriter(<span class="keyword">new</span> BinaryRequestWriter());</span><br><span class="line"></span><br><span class="line"><span class="comment">//id存在就是改，不存在就是增</span></span><br><span class="line">SolrInputDocument document = <span class="keyword">new</span> SolrInputDocument();</span><br><span class="line">document.setField(<span class="string">"id"</span>, <span class="number">1L</span>);</span><br><span class="line">document.setField(<span class="string">"name"</span>, <span class="string">"小明"</span>);</span><br><span class="line">solr.add(document);</span><br><span class="line">solr.commit();</span><br><span class="line"></span><br><span class="line">solr.close();</span><br></pre></td></tr></table></figure>
+<p>或者</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">ConcurrentUpdateSolrClient solr = <span class="keyword">new</span> ConcurrentUpdateSolrClient.Builder(url).withQueueSize(<span class="number">20</span>).build();</span><br><span class="line">solr.setParser(<span class="keyword">new</span> XMLResponseParser());</span><br><span class="line">solr.setConnectionTimeout(<span class="number">10000</span>);</span><br><span class="line">solr.setRequestWriter(<span class="keyword">new</span> BinaryRequestWriter());</span><br><span class="line"></span><br><span class="line">SolrInputDocument document = <span class="keyword">new</span> SolrInputDocument();</span><br><span class="line">document.setField(<span class="string">"id"</span>, <span class="number">1L</span>);</span><br><span class="line">document.setField(<span class="string">"name"</span>, <span class="string">"小明"</span>);</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">UpdateResponse response = solr.add(d);</span></span><br><span class="line"><span class="comment">commit();</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="comment">//或者</span></span><br><span class="line">UpdateRequest request = <span class="keyword">new</span> UpdateRequest();</span><br><span class="line">request.setAction(ACTION.COMMIT, <span class="keyword">false</span>, <span class="keyword">false</span>);</span><br><span class="line">request.add(document);</span><br><span class="line"></span><br><span class="line">UpdateResponse response1 = request.process(solr);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">UpdateResponse response2 = solr.deleteById(<span class="number">1</span>);</span><br><span class="line">solr.commit();</span><br><span class="line"></span><br><span class="line">solr.close();</span><br></pre></td></tr></table></figure>
+
+        
+            <div class="donate-container">
+    <div class="donate-button">
+        <button id="donate-button">赞赏</button>
+    </div>
+    <div class="donate-img-container hide" id="donate-img-container">
+        <img id="donate-img" src="" data-src="/hexo/img/donate.jpg">
+        <p> 感谢鼓励 </p>
+    </div>
+</div>
+        
+        <br>
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+
+        <div id="lv-container">
+        </div>
+
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+
+        
+
+        
+        <li>
+            <a target="_blank" href="https://github.com/s10715">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-github"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+
+    </ul>
+    
+    <p>
+        <span>/</span>
+        
+        <span><a href="http://s10715.org">s10715</a></span>
+        <span>/</span>
+        
+    </p>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span>
+        Created By <a href="https://hexo.io/">Hexo</a>  Theme <a href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = "search.json"
+    window.hexo_root = "/hexo/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+
+<script src="/hexo/js/index.js"></script>
+<!-- 
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+-->
+
+
+
+
+</html>
