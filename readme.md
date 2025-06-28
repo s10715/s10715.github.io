@@ -18,6 +18,8 @@
 
 [WEB前端](https://s10715.github.io/all-in-one/WEB前端.html)
 
+[Godot引擎基础](https://s10715.github.io/all-in-one/Godot引擎基础.html)
+
 [高等数学](https://s10715.github.io/all-in-one/高等数学笔记.html)
 
 [线性代数](https://s10715.github.io/all-in-one/线性代数笔记.html)
