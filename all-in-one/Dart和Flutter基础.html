@@ -1,0 +1,1228 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang xml:lang>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Dart和Flutter基础</title>
+  <style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+
+ul.task-list[class]{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+font-size: inherit;
+width: 0.8em;
+margin: 0 0.8em 0.2em -1.6em;
+vertical-align: middle;
+}
+.display.math{display: block; text-align: center; margin: 0.5rem auto;}
+
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+{ counter-reset: source-line 0; }
+pre.numberSource code > span
+{ position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+{ content: counter(source-line);
+position: relative; left: -1em; text-align: right; vertical-align: baseline;
+border: none; display: inline-block;
+-webkit-touch-callout: none; -webkit-user-select: none;
+-khtml-user-select: none; -moz-user-select: none;
+-ms-user-select: none; user-select: none;
+padding: 0 4px; width: 4em;
+color: #aaaaaa;
+}
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa; padding-left: 4px; }
+div.sourceCode
+{ }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } 
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.at { color: #7d9029; } 
+code span.bn { color: #40a070; } 
+code span.bu { color: #008000; } 
+code span.cf { color: #007020; font-weight: bold; } 
+code span.ch { color: #4070a0; } 
+code span.cn { color: #880000; } 
+code span.co { color: #60a0b0; font-style: italic; } 
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.do { color: #ba2121; font-style: italic; } 
+code span.dt { color: #902000; } 
+code span.dv { color: #40a070; } 
+code span.er { color: #ff0000; font-weight: bold; } 
+code span.ex { } 
+code span.fl { color: #40a070; } 
+code span.fu { color: #06287e; } 
+code span.im { color: #008000; font-weight: bold; } 
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.kw { color: #007020; font-weight: bold; } 
+code span.op { color: #666666; } 
+code span.ot { color: #007020; } 
+code span.pp { color: #bc7a00; } 
+code span.sc { color: #4070a0; } 
+code span.ss { color: #bb6688; } 
+code span.st { color: #4070a0; } 
+code span.va { color: #19177c; } 
+code span.vs { color: #4070a0; } 
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } 
+</style>
+  <style type="text/css">html {scroll-behavior: smooth;}body {font-size: 1rem;line-height: 1.6;tab-size: 4;color: rgb(51, 51, 51);font-family: Microsoft YaHei,"Open Sans","Clear Sans", "Helvetica Neue", Helvetica, Arial, 'Segoe UI Emoji', sans-serif;-webkit-font-smoothing: antialiased;position: relative;top: 0;left: 300px;width: calc(90% - 300px);padding: 2em 5%;}h1,h2,h3,h4,h5,h6 {position: relative;margin-top: 1rem;margin-bottom: 1rem;padding-bottom: 0;font-weight: bold;line-height: 1.4;cursor: text;}h1 {font-size: 2.25em;line-height: 1.2;border-bottom: 1px solid #eee;}h2 {font-size: 1.75em;line-height: 1.225;border-bottom: 1px solid #eee;}h3 {font-size: 1.5em;line-height: 1.43;}h4 {font-size: 1.25em;}h5 {font-size: 1em;}h6 {font-size: 1em;color: #777;}p,blockquote{ margin: 0.8em 0 !important; }ul,ol,dl,table{margin: 0.8em 0;}li>ol,li>ul {margin: 0 0;}a {color: #4183C4;text-decoration: none;}hr {height: 2px;padding: 0;margin: 16px 0;background-color: #e7e7e7;border: 0 none;overflow: hidden;box-sizing: content-box;}li p.first {display: inline-block;}ul,ol {padding-left: 20px;}ul:first-child,ol:first-child {margin-top: 0;}ul:last-child,ol:last-child {margin-bottom: 0;}blockquote {border-left: 4px solid #dfe2e5 !important;padding: 0 15px;color: #777777 !important;background-color: #ffffff !important;}blockquote blockquote {padding-right: 0;}table {padding: 0;word-break: initial;border-collapse: collapse;}table tr {border: 1px solid #dfe2e5;margin: 0;padding: 0;}table tr:nth-child(2n),thead {background-color: #f8f8f8;}table th {font-weight: normal;text-align: unset;border-bottom: 0;border: 1px solid #dfe2e5;margin: 0;padding: 6px 13px;}table td {border: 1px solid #dfe2e5;margin: 0;padding: 6px 13px;}table th:first-child,table td:first-child {margin-top: 0;}table th:last-child,table td:last-child {margin-bottom: 0;}tt {border: 1px solid #e7eaed;background-color: #f8f8f8;border-radius: 3px;padding: 2px 4px 0px 4px;font-size: 0.9em;}code {border: 1px solid #e7eaed;background-color: #f3f4f4;border-radius: 3px;padding: 0 2px 0 2px;font-size: 0.9em;}img {width: 50%;height: 50%;display: block;vertical-align: middle;image-orientation: from-image;margin: auto;}figcaption {text-align: center;}pre>code{counter-reset: linenumber;display: block;white-space: pre;overflow: auto !important;padding: 0.2em;border-radius: 7px;}pre>code>span {counter-increment: linenumber;display: inline-block;line-height: 1.25em !important;}pre>code>span::before {content: counter(linenumber);display: inline-block;font-size: 0.9em;color: #999;min-width: 1.8em;margin-right: 0.5em;padding-right: 0.25em;text-align: right;border-right: 1px solid #999;line-height: 1.9em;user-select: none;pointer-events: none;}#TOC {font-size: 0.8rem;position: fixed;top: 0;left: 0;width: 300px;height: 100%;padding: 32px 16px 48px 16px !important;box-shadow: 0 0 4px rgba(150,150,150,0.33);box-sizing: border-box;overflow: auto;}#TOC::-webkit-scrollbar{width: 1px;border-right: 1px solid #f5f5f5;}#TOC a{color: #333333;text-decoration: none;}#TOC a:hover{color: #333333 !important;text-decoration: underline !important;}#TOC ul { list-style: none; }#TOC li { margin-bottom: 0.25rem; }@media (max-width: 700px) {#TOC { display: none; }body { left: 0px; width: 90%; }}</style>
+  <script type="text/javascript">
+  window.onload = function(){
+    document.querySelectorAll('a[href^="#"]').forEach(function(item,index,arr){
+        item.addEventListener('click', function(e) {
+            e.preventDefault();
+            const target =  document.getElementById(decodeURI((item.href.substring(item.href.indexOf('#')+1))));
+            if(target == null) { return; }
+            target.scrollIntoView({ behavior: 'smooth' });
+        });
+    })
+    const toc_a = document.querySelectorAll('#TOC a');
+    function updateTOC(){
+      const scrollPosition = window.scrollY;
+      let highlightTarget;
+      for(let i=toc_a.length-1; i>=0; i--){
+        const target = document.getElementById(decodeURI((toc_a[i].href.substring(toc_a[i].href.indexOf('#')+1))));
+        if(target == null) { continue; }
+        const ItemPosition = target.offsetTop;
+        if (scrollPosition > ItemPosition && typeof(highlightTarget) == "undefined") {
+          highlightTarget = toc_a[i];
+        } else if(typeof(highlightTarget) == "undefined" && i == 0) {
+          highlightTarget = toc_a[0];
+        }
+      }
+      toc_a.forEach( item => {
+        item.style.fontWeight = "";
+      });
+      if(typeof(highlightTarget) == "undefined") { return; }
+      highlightTarget.style.fontWeight = "bold";
+    }
+    let timer = null;
+    window.addEventListener('scroll', () => {
+      window.clearTimeout(timer);
+      timer = window.setTimeout(() => { updateTOC() }, 200);
+    });
+  };
+  </script>
+  <base target="_blank">
+</head>
+<body>
+<nav id="TOC" role="doc-toc">
+<ul>
+<li><a href="#dart" id="toc-dart">Dart</a>
+<ul>
+<li><a href="#数据类型" id="toc-数据类型">数据类型</a></li>
+<li><a href="#运算符" id="toc-运算符">运算符</a></li>
+<li><a href="#程序结构" id="toc-程序结构">程序结构</a></li>
+<li><a href="#函数" id="toc-函数">函数</a></li>
+<li><a href="#类" id="toc-类">类</a></li>
+<li><a href="#抽象类接口" id="toc-抽象类接口">抽象类（接口）</a></li>
+<li><a href="#mixins" id="toc-mixins">Mixins</a></li>
+<li><a href="#泛型" id="toc-泛型">泛型</a></li>
+<li><a href="#异步" id="toc-异步">异步</a></li>
+<li><a href="#库" id="toc-库">库</a></li>
+</ul></li>
+<li><a href="#flutter" id="toc-flutter">Flutter</a>
+<ul>
+<li><a href="#自定义widget" id="toc-自定义widget">自定义Widget</a></li>
+<li><a href="#常用widget" id="toc-常用widget">常用Widget</a>
+<ul>
+<li><a href="#text" id="toc-text">Text</a></li>
+<li><a href="#richtext" id="toc-richtext">RichText</a></li>
+<li><a href="#listview" id="toc-listview">ListView</a></li>
+<li><a href="#container" id="toc-container">Container</a></li>
+<li><a href="#布局row和column" id="toc-布局row和column">布局：Row和Column</a></li>
+<li><a href="#布局expanded" id="toc-布局expanded">布局：Expanded</a></li>
+<li><a href="#布局stack" id="toc-布局stack">布局：Stack</a></li>
+<li><a href="#布局宽高比" id="toc-布局宽高比">布局：宽高比</a></li>
+</ul></li>
+<li><a href="#widget状态管理" id="toc-widget状态管理">Widget状态管理</a></li>
+<li><a href="#key的作用" id="toc-key的作用">Key的作用</a></li>
+</ul></li>
+</ul>
+</nav>
+<p><a href="https://dart.dev/">Dart官网</a></p>
+<p><a href="https://docs.flutter.dev/release/archive">Dart和Flutter安装包</a></p>
+<p><a href="https://pub.dev/packages">repository</a></p>
+<h1 id="dart">Dart</h1>
+<h2 id="数据类型">数据类型</h2>
+<p>变量名必须由数字、字母、下划线、美元符号<code>$</code>组成，且不能以数字开头，且不能是关键字。变量名区分大小写。</p>
+<p>注释的写法：</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode dart"><code class="sourceCode dart"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">//注释</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co">/*注释*/</span></span></code></pre></div>
+<p>基本数据类型：</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode dart"><code class="sourceCode dart"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">// 自动类型推断</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="dt">var</span> str1<span class="op">=</span><span class="st">&#39;string1&#39;</span>;</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co">// 字符串用单引号或双引号定义都可以</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="dt">String</span> str2<span class="op">=</span><span class="st">&quot;string2&quot;</span>;</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="dt">String</span> str3<span class="op">=</span><span class="st">&quot;&quot;&quot;换</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="st">行</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="st">字符串&quot;&quot;&quot;</span>;</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="co">// 字符串拼接与打印</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>print(str2 <span class="op">+</span> <span class="st">&quot; &quot;</span> <span class="op">+</span> str3);</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>print(<span class="st">&quot;$str2 $str3&quot;</span>);</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> num1<span class="op">=</span><span class="dv">123</span>;</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="dt">double</span> num2<span class="op">=</span><span class="fl">3.14</span>;</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="dt">bool</span> b1<span class="op">=</span><span class="cn">true</span>;</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="dt">bool</span> b2<span class="op">=</span><span class="cn">false</span>;</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a><span class="co">// 类型判断</span></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>print(str2 <span class="kw">is</span> <span class="dt">String</span>);</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a><span class="co">// 注意dart是强类型的</span></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>print(<span class="dv">123</span><span class="op">!=</span><span class="st">&quot;123&quot;</span>);</span></code></pre></div>
+<p>类型转换：</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode dart"><code class="sourceCode dart"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="dt">String</span> str1<span class="op">=</span><span class="st">&quot;123&quot;</span>;</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="dt">String</span> str2<span class="op">=</span><span class="st">&quot;12.3&quot;</span>;</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> num1<span class="op">=</span><span class="dv">123</span>;</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="dt">String</span> str3<span class="op">=</span><span class="st">&quot;&quot;</span>;</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="dt">var</span> num2<span class="op">=</span><span class="dv">0</span><span class="op">/</span><span class="dv">0</span>;</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> i1<span class="op">=</span><span class="dt">int</span><span class="op">.</span>parse(str1);</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="dt">double</span> d1<span class="op">=</span><span class="dt">double</span><span class="op">.</span>parse(str2);</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="dt">String</span> s1<span class="op">=</span>num1<span class="op">.</span>toString();</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="dt">bool</span> b1<span class="op">=</span>str3<span class="op">.</span>isEmpty;</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="dt">bool</span> b2<span class="op">=</span>num2<span class="op">.</span>isNaN;</span></code></pre></div>
+<p>常量：</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode dart"><code class="sourceCode dart"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">// const只能修饰编译时常量，且一开始就要赋值</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="at">const</span> num1<span class="op">=</span><span class="dv">100</span>;</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="at">const</span> <span class="dt">int</span> num2<span class="op">=</span><span class="dv">200</span>;</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co">// final既可以修饰编译时常量也可以修饰运行时（比如对象），它可以一开始不赋值，但只能赋值一次；且final使用懒加载策略，修饰的东西在第一次使用时才会初始化</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="at">final</span> name1;</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>name1<span class="op">=</span><span class="st">&quot;Bob&quot;</span>;</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="at">final</span> <span class="dt">String</span> name2<span class="op">=</span><span class="st">&quot;Bobby&quot;</span>;</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="at">final</span> time<span class="op">=</span><span class="kw">new</span> DateTime<span class="op">.</span>now();</span></code></pre></div>
+<p>List、Set和Map：</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode dart"><code class="sourceCode dart"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">// List的几种定义方式</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="dt">var</span> l1<span class="op">=</span>[<span class="st">&quot;name1&quot;</span><span class="op">,</span><span class="dv">18</span><span class="op">,</span><span class="cn">true</span>];</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="dt">var</span> l2<span class="op">=&lt;</span><span class="dt">String</span><span class="op">&gt;</span>[<span class="st">&quot;str1&quot;</span><span class="op">,</span><span class="st">&quot;str2&quot;</span>];</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="dt">var</span> l3<span class="op">=</span><span class="dt">List</span><span class="op">.</span>filled(<span class="dv">2</span><span class="op">,</span><span class="st">&quot;&quot;</span>);<span class="co">// 该方法可定义固定长度的List，如果尝试修改长度则会报错，这里2表示长度，空字符串表示各元素的初始值</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="dt">var</span> l4<span class="op">=</span><span class="dt">List</span><span class="op">&lt;</span><span class="dt">String</span><span class="op">&gt;.</span>filled(<span class="dv">2</span><span class="op">,</span><span class="st">&quot;&quot;</span>);</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="dt">var</span> l5<span class="op">=</span><span class="kw">new</span> <span class="dt">List</span><span class="op">&lt;</span><span class="dt">String</span><span class="op">&gt;.</span>filled(<span class="dv">2</span><span class="op">,</span><span class="st">&quot;&quot;</span>);<span class="co">// new可写可不写</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>l1[<span class="dv">0</span>]<span class="op">=</span><span class="st">&quot;name2&quot;</span>;</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>l1<span class="op">.</span>add(<span class="st">&quot;company&quot;</span>);</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>print(l1<span class="op">.</span>length);</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>print(l1[<span class="dv">0</span>]);</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>l1<span class="op">.</span>length<span class="op">=</span><span class="dv">0</span>;<span class="co">//可以这样改变List的长度</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>l1<span class="op">=</span>l1<span class="op">.</span>reversed<span class="op">.</span>toList();</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>print(l1<span class="op">.</span>indexOf(<span class="st">&#39;name1&#39;</span>));</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>l1<span class="op">.</span>removeAt(<span class="dv">2</span>);</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>print(l1<span class="op">.</span>join(<span class="st">&#39;,&#39;</span>));<span class="co">// List转字符串，元素之间用逗号分隔</span></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>l1<span class="op">=</span><span class="st">&quot;1,2,3&quot;</span><span class="op">.</span>split(<span class="st">&#39;,&#39;</span>);<span class="co">// 字符串转List，以逗号分隔</span></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a><span class="co">// Set和List的区别在于，Set中的元素不可重复</span></span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a><span class="dt">var</span> s1<span class="op">=</span><span class="kw">new</span> <span class="dt">Set</span>();</span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>s1<span class="op">.</span>add(<span class="st">&#39;name1&#39;</span>);</span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>s1<span class="op">.</span>add(<span class="st">&#39;name1&#39;</span>);</span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>print(s1);</span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>s1<span class="op">.</span>addAll(l1);</span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a><span class="co">// Map的几种定义方式（key必须是字符串类型）</span></span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a><span class="dt">var</span> m1<span class="op">={</span></span>
+<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;name&quot;</span><span class="op">:</span><span class="st">&quot;zhangsan&quot;</span><span class="op">,</span></span>
+<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;age&quot;</span><span class="op">:</span><span class="dv">18</span></span>
+<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a><span class="op">}</span>;</span>
+<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a><span class="dt">var</span> m2<span class="op">=</span><span class="kw">new</span> <span class="dt">Map</span>();</span>
+<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a>m2[<span class="st">&quot;name&quot;</span>]<span class="op">=</span><span class="st">&quot;zhangsan&quot;</span>;</span>
+<span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a>m2[<span class="st">&quot;age&quot;</span>]<span class="op">=</span><span class="dv">18</span>;</span>
+<span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a>m2[<span class="st">&quot;company&quot;</span>]<span class="op">=</span>[<span class="st">&quot;c1&quot;</span><span class="op">,</span><span class="st">&quot;c2&quot;</span>];</span>
+<span id="cb5-37"><a href="#cb5-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-38"><a href="#cb5-38" aria-hidden="true" tabindex="-1"></a>print(m2);</span>
+<span id="cb5-39"><a href="#cb5-39" aria-hidden="true" tabindex="-1"></a>print(m2[<span class="st">&quot;name&quot;</span>]);</span>
+<span id="cb5-40"><a href="#cb5-40" aria-hidden="true" tabindex="-1"></a>print(m2<span class="op">.</span>keys<span class="op">.</span>toList());</span>
+<span id="cb5-41"><a href="#cb5-41" aria-hidden="true" tabindex="-1"></a>print(m2<span class="op">.</span>values<span class="op">.</span>toList());</span></code></pre></div>
+<p>一些方便的遍历方法：</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode dart"><code class="sourceCode dart"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="dt">List</span> l1<span class="op">=</span>[<span class="st">&quot;a&quot;</span><span class="op">,</span><span class="dv">2</span><span class="op">,</span><span class="cn">true</span>];</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>l1<span class="op">.</span>forEach( (value)<span class="op">=&gt;</span>print(<span class="st">&quot;$value&quot;</span>) );</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="dt">List</span> l2<span class="op">=</span>[<span class="dv">1</span><span class="op">,</span><span class="dv">2</span><span class="op">,</span><span class="dv">3</span><span class="op">,</span><span class="dv">4</span><span class="op">,</span><span class="dv">5</span><span class="op">,</span><span class="dv">6</span>];</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="dt">List</span> l3<span class="op">=</span>l2<span class="op">.</span>map((value)<span class="op">{</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">return</span> value<span class="op">*</span><span class="dv">2</span>;</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="op">}</span>)<span class="op">.</span>toList();</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="co">// where返回符合条件的值</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="dt">List</span> l4<span class="op">=</span>l2<span class="op">.</span>where((value)<span class="op">{</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>    <span class="kw">return</span> value<span class="op">&gt;</span><span class="dv">4</span>;</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="op">}</span>)<span class="op">.</span>toList();</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a><span class="co">// any判断有没有符合条件的值，如果有则返回true，没有就返回false</span></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a><span class="dt">bool</span> b1<span class="op">=</span>l2<span class="op">.</span>any((value)<span class="op">{</span></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>    <span class="kw">return</span> value<span class="op">&gt;</span><span class="dv">6</span>;</span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a><span class="op">}</span>);</span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a><span class="co">// every要求集合里的每个元素都符合条件才会返回true，否则返回false</span></span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a><span class="dt">bool</span> b2<span class="op">=</span>l2<span class="op">.</span>every((value)<span class="op">{</span></span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>    <span class="kw">return</span> value<span class="op">&gt;</span><span class="dv">0</span>;</span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a><span class="op">}</span>);</span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a><span class="dt">var</span> m1<span class="op">={</span></span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;name&quot;</span><span class="op">:</span><span class="st">&quot;zhangsan&quot;</span><span class="op">,</span></span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;age&quot;</span><span class="op">:</span><span class="dv">18</span></span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a><span class="op">}</span>;</span>
+<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a>m1<span class="op">.</span>forEach((key<span class="op">,</span>value)<span class="op">{</span></span>
+<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a>    print(key<span class="op">+</span><span class="st">&quot; &quot;</span><span class="op">+</span>value);</span>
+<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a><span class="op">}</span>);</span></code></pre></div>
+<h2 id="运算符">运算符</h2>
+<p>运算符：</p>
+<ul>
+<li>数值类型之间可以使用：加<code>+</code>、减<code>-</code>、乘<code>*</code>、除<code>/</code>、取余<code>%</code>、取整<code>~/</code>
+等运算符进行计算</li>
+<li>关系运算符：<code>==</code>、<code>!=</code>、<code>&gt;</code>、<code>&lt;</code>、<code>&gt;=</code>、<code>&lt;=</code></li>
+<li>逻辑运算符：取反<code>!</code>、并<code>$$</code>、或<code>||</code></li>
+<li>赋值运算符：赋值<code>=</code>、为空才赋值<code>??=</code>（比如<code>b??=23</code>，表示如果<code>b</code>为空则赋值为<code>23</code>）</li>
+<li>复合赋值运算符：<code>+=</code>、<code>-=</code>、<code>*=</code>、<code>/=</code>、<code>%=</code>、<code>~/=</code></li>
+<li>三目运算符：比如<code>c=flag?&quot;a&quot;:&quot;b&quot;</code>，表示如果<code>flag</code>是<code>true</code>则把<code>a</code>赋值给<code>c</code>，否则把<code>b</code>赋值给<code>c</code></li>
+<li><code>??</code>运算符：<code>c=a ?? b</code>，表示如果<code>a</code>为空则将<code>b</code>赋值给<code>c</code>，否则把<code>a</code>的值赋值给<code>c</code></li>
+<li>自增<code>a++</code>或<code>++a</code>，自减<code>a--</code>或<code>--a</code></li>
+</ul>
+<p>如果是<code>int? i</code>，这里的<code>?</code>表示<strong>空安全</strong>，默认情况下变量不能为null，必须赋予初始值，否则编译时就会报错，加了<code>?</code>后表示变量可以为null或它的类型的任意值，该符号可以用在声明变量、函数参数、返回值，范型等地方。</p>
+<p>相应的，有<code>i!</code>，这里的<code>!</code>表示<strong>非空断言</strong>，比如，空安全类型不能传入非空类型参数的函数里，这时就需要使用非空断言进行强制转换，使用非空断言后，如果变量为空，则会抛出异常。</p>
+<h2 id="程序结构">程序结构</h2>
+<p>Dart同样有<code>if...else</code>、<code>switch...case</code>、<code>try...catch</code>、<code>for</code>、<code>for...in</code>、<code>while</code>、<code>do...while</code></p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode dart"><code class="sourceCode dart"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(flag<span class="op">==</span><span class="st">&quot;flag1&quot;</span>)<span class="op">{</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    print(<span class="st">&quot;1&quot;</span>);</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span> <span class="cf">if</span>(flag<span class="op">==</span><span class="st">&quot;flag2&quot;</span>)<span class="op">{</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    print(<span class="st">&quot;2&quot;</span>);</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span><span class="op">{</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>    print(<span class="st">&quot;3&quot;</span>);</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="cf">switch</span>(flag)<span class="op">{</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">case</span> <span class="st">&quot;flag1&quot;</span><span class="op">:</span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>        print(<span class="st">&quot;1&quot;</span>);</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>        <span class="cf">break</span>;</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">case</span> <span class="st">&quot;flag2&quot;</span><span class="op">:</span></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>        print(<span class="st">&quot;2&quot;</span>);</span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>        <span class="cf">break</span>;</span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">default</span><span class="op">:</span></span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>        print(<span class="st">&quot;3&quot;</span>);</span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>        <span class="cf">break</span>;</span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a><span class="co">// 抛出异常 throw Exception(&quot;网络错误&quot;)</span></span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a><span class="cf">try</span><span class="op">{</span></span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>    <span class="dt">var</span> num<span class="op">=</span><span class="dt">double</span><span class="op">.</span>parse(<span class="st">&#39;&#39;</span>);</span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a>    print(num);</span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a><span class="op">}</span><span class="cf">catch</span>(err)<span class="op">{</span></span>
+<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a>    print(err);</span>
+<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a><span class="co">// 循环可以通过break和continue控制</span></span>
+<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(<span class="dt">int</span> i<span class="op">=</span><span class="dv">0</span>; i<span class="op">&lt;</span><span class="dv">10</span>; i<span class="op">++</span>)<span class="op">{</span></span>
+<span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a>    print(i);</span>
+<span id="cb7-34"><a href="#cb7-34" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb7-35"><a href="#cb7-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-36"><a href="#cb7-36" aria-hidden="true" tabindex="-1"></a><span class="dt">List</span> l1<span class="op">=</span>[<span class="dv">1</span><span class="op">,</span><span class="dv">2</span><span class="op">,</span><span class="dv">3</span><span class="op">,</span><span class="dv">4</span>];</span>
+<span id="cb7-37"><a href="#cb7-37" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(<span class="dt">var</span> item <span class="kw">in</span> l1)<span class="op">{</span></span>
+<span id="cb7-38"><a href="#cb7-38" aria-hidden="true" tabindex="-1"></a>    print(item);</span>
+<span id="cb7-39"><a href="#cb7-39" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb7-40"><a href="#cb7-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-41"><a href="#cb7-41" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> i<span class="op">=</span><span class="dv">0</span>;</span>
+<span id="cb7-42"><a href="#cb7-42" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span>(i<span class="op">&lt;</span><span class="dv">10</span>)<span class="op">{</span></span>
+<span id="cb7-43"><a href="#cb7-43" aria-hidden="true" tabindex="-1"></a>    i<span class="op">++</span>;</span>
+<span id="cb7-44"><a href="#cb7-44" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb7-45"><a href="#cb7-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-46"><a href="#cb7-46" aria-hidden="true" tabindex="-1"></a><span class="cf">do</span><span class="op">{</span></span>
+<span id="cb7-47"><a href="#cb7-47" aria-hidden="true" tabindex="-1"></a>    i<span class="op">--</span>;</span>
+<span id="cb7-48"><a href="#cb7-48" aria-hidden="true" tabindex="-1"></a><span class="op">}</span><span class="cf">while</span>(i<span class="op">&gt;=</span><span class="dv">0</span>);</span></code></pre></div>
+<h2 id="函数">函数</h2>
+<p>函数：</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode dart"><code class="sourceCode dart"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co">// main是入口函数，void可以不写</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> main()<span class="op">{</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    print(getNum1(<span class="dv">1</span>));</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> getNum1(i1)<span class="op">{</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    i1<span class="op">++</span>;</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> getNum2(i2)<span class="op">{</span><span class="co">// 函数可以嵌套，但只能在当前作用域内调用</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>        <span class="kw">return</span> i2<span class="op">+</span><span class="dv">1</span>;</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>    <span class="kw">return</span> getNum2(i1);</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a><span class="co">// 可选位置参数（即行参）、默认参数</span></span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> fun1(<span class="dt">String</span> a<span class="op">,</span> <span class="dt">int</span> b<span class="op">,</span> [<span class="dt">bool</span> c<span class="op">=</span><span class="cn">true</span><span class="op">,</span> <span class="dt">double</span> d])<span class="op">{</span> <span class="op">}</span></span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a><span class="co">// 命名参数，可以加required关键字表示必传参数，也可以指定默认值</span></span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> fun2(<span class="dt">String</span> name<span class="op">,</span> <span class="op">{</span>required <span class="dt">int</span> age<span class="op">,</span> <span class="dt">String</span> gender<span class="op">=</span><span class="st">&#39;male&#39;</span><span class="op">,</span> <span class="dt">String</span> job<span class="op">}</span>)<span class="op">{</span> <span class="op">}</span></span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a><span class="co">// 使用的时候要指定名字</span></span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>fun2(<span class="st">&#39;zhangsan&#39;</span><span class="op">,</span>age<span class="op">:</span><span class="dv">18</span>);</span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a><span class="co">// 可以把函数当作参数</span></span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> fun3(funName)<span class="op">{</span></span>
+<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a>    funName();</span>
+<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a><span class="co">// 匿名函数</span></span>
+<span id="cb8-28"><a href="#cb8-28" aria-hidden="true" tabindex="-1"></a><span class="dt">var</span> fun4<span class="op">=</span>(<span class="dt">String</span> str)<span class="op">{</span></span>
+<span id="cb8-29"><a href="#cb8-29" aria-hidden="true" tabindex="-1"></a>    print(str<span class="op">+</span><span class="st">&quot;Hello world&quot;</span>);</span>
+<span id="cb8-30"><a href="#cb8-30" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb8-31"><a href="#cb8-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-32"><a href="#cb8-32" aria-hidden="true" tabindex="-1"></a><span class="co">// 箭头函数，只能写一行代码</span></span>
+<span id="cb8-33"><a href="#cb8-33" aria-hidden="true" tabindex="-1"></a>mylist<span class="op">.</span>forEach((value)<span class="op">=&gt;</span>print(value));</span>
+<span id="cb8-34"><a href="#cb8-34" aria-hidden="true" tabindex="-1"></a><span class="co">// 还可以写成（注意里面不要写分号，也是只能写一行代码）：</span></span>
+<span id="cb8-35"><a href="#cb8-35" aria-hidden="true" tabindex="-1"></a>mylist<span class="op">.</span>forEach((value)<span class="op">=&gt;{</span></span>
+<span id="cb8-36"><a href="#cb8-36" aria-hidden="true" tabindex="-1"></a>    print(value)</span>
+<span id="cb8-37"><a href="#cb8-37" aria-hidden="true" tabindex="-1"></a><span class="op">}</span>);</span>
+<span id="cb8-38"><a href="#cb8-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-39"><a href="#cb8-39" aria-hidden="true" tabindex="-1"></a><span class="co">// 自执行函数</span></span>
+<span id="cb8-40"><a href="#cb8-40" aria-hidden="true" tabindex="-1"></a>((<span class="dt">int</span> n)<span class="op">{</span></span>
+<span id="cb8-41"><a href="#cb8-41" aria-hidden="true" tabindex="-1"></a>    print(n);</span>
+<span id="cb8-42"><a href="#cb8-42" aria-hidden="true" tabindex="-1"></a>    print(<span class="st">&quot;Hello world&quot;</span>);</span>
+<span id="cb8-43"><a href="#cb8-43" aria-hidden="true" tabindex="-1"></a><span class="op">}</span>)(<span class="dv">10</span>);</span></code></pre></div>
+<p>Dart支持闭包：</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode dart"><code class="sourceCode dart"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> printNum()<span class="op">{</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> a<span class="op">=</span><span class="dv">1</span>;</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    <span class="co">// 返回一个闭包，这样a是局部变量，不会污染全局变量名，也可以常驻内存</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">return</span> ()<span class="op">{</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>        a<span class="op">++</span>;</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>        print(a);</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span>;</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="dt">var</span> b<span class="op">=</span>printNum();</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>b();<span class="co">//2</span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>b();<span class="co">//3</span></span></code></pre></div>
+<p>Dart支持运算符重载，其中只有部分运算符可被重载，以及<code>-&gt;</code>只能被类的成员函数重载：</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode dart"><code class="sourceCode dart"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Person <span class="op">{</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> age;</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    public Person(<span class="kw">this</span><span class="op">.</span>age);</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">bool</span> <span class="kw">operator</span><span class="op">+</span>(Person p)<span class="op">{</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>        <span class="kw">return</span> <span class="kw">this</span><span class="op">.</span>age <span class="op">+</span> p<span class="op">.</span>age;</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>main() <span class="op">{</span></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>    Person p1 <span class="op">=</span> <span class="kw">new</span> Person(<span class="dv">10</span>);</span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>    Person p2 <span class="op">=</span> <span class="kw">new</span> Person(<span class="dv">10</span>);</span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>    print(p1 <span class="op">==</span> p2);</span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p>可以重载全局的运算符，但是符号左边的类型需要在参数中指定：</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode dart"><code class="sourceCode dart"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="dt">bool</span> <span class="kw">operator</span><span class="op">-</span>(Person p1 <span class="op">,</span>Person p2)<span class="op">{</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">return</span> p1<span class="op">.</span>age <span class="op">-</span> p2<span class="op">.</span>age;</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<h2 id="类">类</h2>
+<p><strong>构造函数</strong>、<strong>命名构造函数</strong>，<strong>访问控制</strong>：</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode dart"><code class="sourceCode dart"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co">// 要引入其他文件中的类，使用import</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="kw">import</span> <span class="st">&#39;lib/Person2.dart&#39;</span>;</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Person<span class="op">{</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">String</span> name;</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>    <span class="co">// 要把变量或函数变为静态，使用static修饰，静态方法只能访问静态成员；静态成员可以通过像Person.age来访问</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">static</span> <span class="dt">int</span> age;</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Dart没有访问修饰符，要把变量或函数改为私有，可以在名字前面加一个下划线，并且要单独把该类放到一个文件里才能生效</span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>    <span class="dt">String</span> _gender;</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>    <span class="co">// 默认构造函数，只能有一个</span></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>    Person(<span class="kw">this</span><span class="op">.</span>name<span class="op">,</span> <span class="op">{</span>required <span class="kw">this</span><span class="op">.</span>age<span class="op">,</span> <span class="kw">this</span><span class="op">.</span>_gender<span class="op">}</span>);</span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>    <span class="co">/* 上面的构造函数相当于</span></span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a><span class="co">    Person(String name, int age, String gender){</span></span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a><span class="co">        this.name=name;</span></span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a><span class="co">        this.age=age;</span></span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a><span class="co">        this._gender=gender;</span></span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a><span class="co">    }*/</span></span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a>    <span class="co">// 命名构造函数，可以有多个</span></span>
+<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a>    Perosn<span class="op">.</span>initAge(<span class="dt">int</span> age)<span class="op">{</span></span>
+<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a>        <span class="kw">this</span><span class="op">.</span>age<span class="op">=</span>age;</span>
+<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a>    <span class="dt">void</span> getInfo()<span class="op">{</span></span>
+<span id="cb12-26"><a href="#cb12-26" aria-hidden="true" tabindex="-1"></a>        print(<span class="st">&quot;${this.name} ${this.age}&quot;</span>);</span>
+<span id="cb12-27"><a href="#cb12-27" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb12-28"><a href="#cb12-28" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb12-29"><a href="#cb12-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-30"><a href="#cb12-30" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> main()<span class="op">{</span></span>
+<span id="cb12-31"><a href="#cb12-31" aria-hidden="true" tabindex="-1"></a>    <span class="co">// 从Dart 2.x 开始，new关键字可以省略不写</span></span>
+<span id="cb12-32"><a href="#cb12-32" aria-hidden="true" tabindex="-1"></a>    Person p1<span class="op">=</span><span class="kw">new</span> Person(<span class="st">&quot;zhangsan&quot;</span><span class="op">,</span><span class="dv">18</span>);</span>
+<span id="cb12-33"><a href="#cb12-33" aria-hidden="true" tabindex="-1"></a>    print(p1<span class="op">.</span>name);</span>
+<span id="cb12-34"><a href="#cb12-34" aria-hidden="true" tabindex="-1"></a>    p1<span class="op">.</span>getInfo();</span>
+<span id="cb12-35"><a href="#cb12-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-36"><a href="#cb12-36" aria-hidden="true" tabindex="-1"></a>    print(Person<span class="op">.</span>age);</span>
+<span id="cb12-37"><a href="#cb12-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-38"><a href="#cb12-38" aria-hidden="true" tabindex="-1"></a>    Person p2<span class="op">=</span><span class="kw">new</span> Person<span class="op">.</span>initAge(<span class="dv">18</span>);</span>
+<span id="cb12-39"><a href="#cb12-39" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p><strong>初始化列表</strong>：</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode dart"><code class="sourceCode dart"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Rect<span class="op">{</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> width;</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> height;</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    <span class="co">// 在构造的时候赋予初始值</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>    Rect()<span class="op">:</span>width<span class="op">=</span><span class="dv">5</span><span class="op">,</span>height<span class="op">=</span><span class="dv">10</span><span class="op">{</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p><strong>空安全</strong>：</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode dart"><code class="sourceCode dart"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Person<span class="op">{</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Dart要求每个变量都要初始化，否则无法通过静态检查，加了late关键字就可以通过静态检查，但若忘记赋值，该变量的值是随机的，会带来风险</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">late</span> <span class="dt">int</span> _age;</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">void</span> young() <span class="op">{</span> _age <span class="op">=</span> <span class="st">&#39;18&#39;</span>; <span class="op">}</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>    <span class="dt">void</span> old() <span class="op">{</span> _age <span class="op">=</span> <span class="st">&#39;48&#39;</span>; <span class="op">}</span></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> readAge()<span class="op">{</span> <span class="kw">return</span> <span class="dv">20</span>; <span class="op">}</span></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>main() <span class="op">{</span></span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>    <span class="dt">var</span> p <span class="op">=</span> Person();</span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>    p<span class="op">.</span>young();</span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>    p<span class="op">.</span>old();</span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p>延迟初始化：若上面的例子改成<code>late int _age = readAge();</code>，则只要<code>_age</code>没有被使用，则永远不会调用<code>readAge</code>方法，相当于懒加载。</p>
+<p><strong>常量构造函数</strong></p>
+<p>首先要知道const修饰实例化构造函数的作用：</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode dart"><code class="sourceCode dart"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="kw">import</span> <span class="st">&#39;dart:core&#39;</span>;</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> main()<span class="op">{</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">var</span> o1 <span class="op">=</span> <span class="dt">Object</span>();</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>    <span class="co">// identical函数检查两个引用是否指向同一对象</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>    <span class="dt">var</span> b1 <span class="op">=</span> identical(o1<span class="op">,</span> <span class="dt">Object</span>());<span class="co">// false</span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>    <span class="dt">var</span> b2 <span class="op">=</span> identical(o1<span class="op">,</span> o1);<span class="co">// true</span></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>    <span class="dt">var</span> b3 <span class="op">=</span> identical([<span class="dv">1</span>]<span class="op">,</span> [<span class="dv">1</span>]);<span class="co">// false</span></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>    <span class="dt">var</span> b4 <span class="op">=</span> identical(<span class="at">const</span> <span class="dt">Object</span>()<span class="op">,</span> <span class="at">const</span> <span class="dt">Object</span>());<span class="co">// true，因为const关键字在多个地方创建相同的对象时，会共享内存</span></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>    <span class="dt">var</span> b5 <span class="op">=</span> identical(<span class="at">const</span> [<span class="dv">1</span>]<span class="op">,</span> <span class="at">const</span> [<span class="dv">2</span>]);<span class="co">// false，因为构造时传的参不一样，不是“相同的对象”</span></span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>    <span class="dt">var</span> b6 <span class="op">=</span> identical(<span class="at">const</span> [<span class="dv">1</span>]<span class="op">,</span> <span class="at">const</span> [<span class="dv">1</span>]);<span class="co">// true</span></span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p>使用常量构造函数的类可以节省内存空间：</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode dart"><code class="sourceCode dart"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Rect<span class="op">{</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">final</span> <span class="dt">int</span> width;</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">final</span> <span class="dt">int</span> height;</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>    <span class="co">// 构造函数用const修饰表示常量构造函数，只有当所有成员变量都是final时，才能使用常量构造函数</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>    <span class="co">// 实例化常量构造函数时，也需要用const修饰（否则即使调用的是常量构造函数，参数一样也会占用多份内存空间）</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">const</span> Rect(<span class="op">{</span>required <span class="kw">this</span><span class="op">.</span>width<span class="op">,</span> required <span class="kw">this</span><span class="op">.</span>height<span class="op">}</span>);</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> main()<span class="op">{</span></span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>    <span class="dt">var</span> r1 <span class="op">=</span> <span class="at">const</span> Rect(width<span class="op">:</span> <span class="dv">10</span><span class="op">,</span> height<span class="op">:</span> <span class="dv">10</span>);<span class="co">// 只有定义了常量构造函数的类，才能用const修饰构造函数</span></span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>    <span class="dt">var</span> r2 <span class="op">=</span> <span class="at">const</span> Rect(width<span class="op">:</span> <span class="dv">10</span><span class="op">,</span> height<span class="op">:</span> <span class="dv">10</span>);</span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>    <span class="dt">var</span> r3 <span class="op">=</span> Rect(width<span class="op">:</span> <span class="dv">10</span><span class="op">,</span> height<span class="op">:</span> <span class="dv">10</span>);</span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a>    <span class="dt">var</span> b1 <span class="op">=</span> identical(r1<span class="op">,</span> r2);<span class="co">// true</span></span>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a>    <span class="dt">var</span> b2 <span class="op">=</span> identical(r1<span class="op">,</span> r3);<span class="co">// false</span></span>
+<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p><strong>get、set修饰符</strong>：</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode dart"><code class="sourceCode dart"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Rect<span class="op">{</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>    num width;</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>    num height;</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>    Rect(<span class="kw">this</span><span class="op">.</span>width<span class="op">,</span> <span class="kw">this</span><span class="op">,</span>height);</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">get</span> area<span class="op">{</span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>        <span class="kw">return</span> <span class="kw">this</span><span class="op">.</span>width<span class="op">*</span><span class="kw">this</span><span class="op">,</span>height;</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>    <span class="kw">set</span> setHeight(value)<span class="op">{</span></span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>        <span class="kw">this</span><span class="op">.</span>height<span class="op">=</span>value;</span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> main()<span class="op">{</span></span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>    Rect r<span class="op">=</span><span class="kw">new</span> Rect(<span class="dv">5</span><span class="op">,</span><span class="dv">10</span>);</span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a>    <span class="co">//使用时可以通过属性的方式直接访问get/set修饰的函数</span></span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a>    print(r<span class="op">.</span>area);</span>
+<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a>    r<span class="op">.</span>setHeight<span class="op">=</span><span class="dv">5</span>;</span>
+<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p><strong>继承</strong>，<strong>对象运算符</strong>（<code>?</code>、<code>is</code>、<code>as</code>、<code>..</code>）：</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode dart"><code class="sourceCode dart"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Perosn<span class="op">{</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>    <span class="dt">String</span> name;</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> age;</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>    Person(<span class="kw">this</span><span class="op">.</span>name<span class="op">,</span><span class="kw">this</span><span class="op">.</span>age);</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">void</span> printInfo()<span class="op">{</span></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>        print(<span class="st">&quot;name:${this.name}, age:${this.age}&quot;</span>);</span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>    <span class="dt">void</span> fun1()<span class="op">{}</span></span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a><span class="co">// Dart只能单继承</span></span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a><span class="co">// 使用extends继承，可以继承父类中可见的属性和方法，但不会继承构造函数</span></span>
+<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Child <span class="kw">extends</span> Person<span class="op">{</span></span>
+<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a>    <span class="dt">String</span> gender;</span>
+<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a>    <span class="co">// 给父类的构造函数传参</span></span>
+<span id="cb18-17"><a href="#cb18-17" aria-hidden="true" tabindex="-1"></a>    Child(<span class="dt">String</span> name<span class="op">,</span> <span class="dt">int</span> age<span class="op">,</span> <span class="dt">String</span> gender) <span class="op">:</span> <span class="kw">super</span>(name<span class="op">,</span> age)<span class="op">{</span></span>
+<span id="cb18-18"><a href="#cb18-18" aria-hidden="true" tabindex="-1"></a>        <span class="kw">this</span><span class="op">.</span>gender<span class="op">=</span>gender;</span>
+<span id="cb18-19"><a href="#cb18-19" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb18-20"><a href="#cb18-20" aria-hidden="true" tabindex="-1"></a>    <span class="co">/* 如果要给父类的命名构造函数传参：</span></span>
+<span id="cb18-21"><a href="#cb18-21" aria-hidden="true" tabindex="-1"></a><span class="co">    Child(String name, int age, String gender) : super.xxx(name, age){ ... } */</span></span>
+<span id="cb18-22"><a href="#cb18-22" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb18-23"><a href="#cb18-23" aria-hidden="true" tabindex="-1"></a>    <span class="co">// 子类可以重写父类的方法，重写时最好加上override的注解</span></span>
+<span id="cb18-24"><a href="#cb18-24" aria-hidden="true" tabindex="-1"></a>    <span class="kw">@override</span></span>
+<span id="cb18-25"><a href="#cb18-25" aria-hidden="true" tabindex="-1"></a>    <span class="dt">void</span> fun1()<span class="op">{</span></span>
+<span id="cb18-26"><a href="#cb18-26" aria-hidden="true" tabindex="-1"></a>        <span class="kw">super</span><span class="op">.</span>printInfo();</span>
+<span id="cb18-27"><a href="#cb18-27" aria-hidden="true" tabindex="-1"></a>        print(<span class="kw">this</span><span class="op">.</span>name);</span>
+<span id="cb18-28"><a href="#cb18-28" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb18-29"><a href="#cb18-29" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb18-30"><a href="#cb18-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-31"><a href="#cb18-31" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> main()<span class="op">{</span></span>
+<span id="cb18-32"><a href="#cb18-32" aria-hidden="true" tabindex="-1"></a>    Person p;</span>
+<span id="cb18-33"><a href="#cb18-33" aria-hidden="true" tabindex="-1"></a>    p<span class="op">?.</span>printInfo();<span class="co">// 加的问号表示如果对象为null则不执行后面的方法调用</span></span>
+<span id="cb18-34"><a href="#cb18-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-35"><a href="#cb18-35" aria-hidden="true" tabindex="-1"></a>    print(p <span class="kw">is</span> <span class="dt">Object</span>);<span class="co">// is 表示类型判断，所有类的父类都是Object</span></span>
+<span id="cb18-36"><a href="#cb18-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-37"><a href="#cb18-37" aria-hidden="true" tabindex="-1"></a>    <span class="dt">var</span> c<span class="op">=</span><span class="kw">new</span> Child(<span class="st">&quot;zhangsan&quot;</span><span class="op">,</span><span class="dv">18</span><span class="op">,</span> <span class="st">&quot;male&quot;</span>);</span>
+<span id="cb18-38"><a href="#cb18-38" aria-hidden="true" tabindex="-1"></a>    (c <span class="kw">as</span> Person)<span class="op">.</span>printInfo();<span class="co">// as 表示类型转换，这里不用as也可以，只是为了演示</span></span>
+<span id="cb18-39"><a href="#cb18-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-40"><a href="#cb18-40" aria-hidden="true" tabindex="-1"></a>    <span class="co">// .. 表示级联（即连缀）</span></span>
+<span id="cb18-41"><a href="#cb18-41" aria-hidden="true" tabindex="-1"></a>    c<span class="op">..</span>name<span class="op">=</span><span class="st">&quot;lisi&quot;</span></span>
+<span id="cb18-42"><a href="#cb18-42" aria-hidden="true" tabindex="-1"></a>     <span class="op">..</span>age<span class="op">=</span><span class="dv">20</span></span>
+<span id="cb18-43"><a href="#cb18-43" aria-hidden="true" tabindex="-1"></a>     <span class="op">..</span>printInfo();</span>
+<span id="cb18-44"><a href="#cb18-44" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<h2 id="抽象类接口">抽象类（接口）</h2>
+<p>Dart中没有接口的关键字，接口可以用类或者抽象类间接实现，一般都用抽象类：</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode dart"><code class="sourceCode dart"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co">// 抽象类使用abstract修饰，抽象类不能被实例化，只有继承/实现它的子类才可以实例化</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="kw">abstract</span> <span class="kw">class</span> Animal<span class="op">{</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>    <span class="co">// 子类如果要继承(extends)/实现(implements)抽象类，就必须实现所有的抽象属性和抽象方法</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">String</span> name;<span class="co">// 抽象属性</span></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>    eat();<span class="co">// 抽象方法，它没有方法体</span></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>    <span class="co">// 也可以有普通的方法</span></span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>    run()<span class="op">{</span></span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>        print(<span class="st">&quot;running&quot;</span>);</span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a><span class="kw">abstract</span> <span class="kw">class</span> B<span class="op">{</span></span>
+<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a>    b();</span>
+<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-17"><a href="#cb19-17" aria-hidden="true" tabindex="-1"></a><span class="co">// 可以实现多个接口，用逗号分隔</span></span>
+<span id="cb19-18"><a href="#cb19-18" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Dog <span class="kw">implements</span> Animal<span class="op">,</span>B<span class="op">{</span></span>
+<span id="cb19-19"><a href="#cb19-19" aria-hidden="true" tabindex="-1"></a>    <span class="kw">@override</span></span>
+<span id="cb19-20"><a href="#cb19-20" aria-hidden="true" tabindex="-1"></a>    <span class="dt">String</span> name;</span>
+<span id="cb19-21"><a href="#cb19-21" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb19-22"><a href="#cb19-22" aria-hidden="true" tabindex="-1"></a>    Dog(<span class="kw">this</span><span class="op">.</span>name);</span>
+<span id="cb19-23"><a href="#cb19-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-24"><a href="#cb19-24" aria-hidden="true" tabindex="-1"></a>    <span class="kw">@override</span></span>
+<span id="cb19-25"><a href="#cb19-25" aria-hidden="true" tabindex="-1"></a>    eat() <span class="op">=&gt;</span> print(<span class="st">&quot;a dog is eating&quot;</span>);</span>
+<span id="cb19-26"><a href="#cb19-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-27"><a href="#cb19-27" aria-hidden="true" tabindex="-1"></a>    <span class="kw">@override</span></span>
+<span id="cb19-28"><a href="#cb19-28" aria-hidden="true" tabindex="-1"></a>    b() <span class="op">=&gt;</span> print(<span class="st">&quot;b&quot;</span>);</span>
+<span id="cb19-29"><a href="#cb19-29" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb19-30"><a href="#cb19-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-31"><a href="#cb19-31" aria-hidden="true" tabindex="-1"></a><span class="co">// 只能继承一个类，抽象类也可以被继承</span></span>
+<span id="cb19-32"><a href="#cb19-32" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Cat <span class="kw">extends</span> Animal<span class="op">{</span></span>
+<span id="cb19-33"><a href="#cb19-33" aria-hidden="true" tabindex="-1"></a>    <span class="kw">@override</span></span>
+<span id="cb19-34"><a href="#cb19-34" aria-hidden="true" tabindex="-1"></a>    <span class="dt">String</span> name;</span>
+<span id="cb19-35"><a href="#cb19-35" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb19-36"><a href="#cb19-36" aria-hidden="true" tabindex="-1"></a>    Cat(<span class="kw">this</span><span class="op">.</span>name);</span>
+<span id="cb19-37"><a href="#cb19-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-38"><a href="#cb19-38" aria-hidden="true" tabindex="-1"></a>    <span class="kw">@override</span></span>
+<span id="cb19-39"><a href="#cb19-39" aria-hidden="true" tabindex="-1"></a>    eat() <span class="op">=&gt;</span> print(<span class="st">&quot;a cat is eating&quot;</span>);</span>
+<span id="cb19-40"><a href="#cb19-40" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb19-41"><a href="#cb19-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-42"><a href="#cb19-42" aria-hidden="true" tabindex="-1"></a>main()<span class="op">{</span></span>
+<span id="cb19-43"><a href="#cb19-43" aria-hidden="true" tabindex="-1"></a>    Dog d <span class="op">=</span> <span class="kw">new</span> Dog(<span class="st">&quot;xx&quot;</span>);</span>
+<span id="cb19-44"><a href="#cb19-44" aria-hidden="true" tabindex="-1"></a>    d<span class="op">.</span>eat();</span>
+<span id="cb19-45"><a href="#cb19-45" aria-hidden="true" tabindex="-1"></a>    d<span class="op">.</span>run();</span>
+<span id="cb19-46"><a href="#cb19-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-47"><a href="#cb19-47" aria-hidden="true" tabindex="-1"></a>    <span class="co">//多态：将子类类型赋值给父类类型，同一函数调用会有不同的效果</span></span>
+<span id="cb19-48"><a href="#cb19-48" aria-hidden="true" tabindex="-1"></a>    Animal a <span class="op">=</span> <span class="kw">new</span> Cat(<span class="st">&quot;xxx&quot;</span>);</span>
+<span id="cb19-49"><a href="#cb19-49" aria-hidden="true" tabindex="-1"></a>    a<span class="op">.</span>eat();</span>
+<span id="cb19-50"><a href="#cb19-50" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p>关于extends和implements的使用：如果要重写抽象方法，则用extends；如果要把抽象类当作标准，则用implements。</p>
+<h2 id="mixins">Mixins</h2>
+<p>mixins即混入，就是在类中混入其他功能。在Dart中可以使用mixins实现类似多继承的功能：</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode dart"><code class="sourceCode dart"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> A<span class="op">{</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>    <span class="dt">void</span> a() <span class="op">=&gt;</span> print(<span class="st">&#39;a&#39;</span>);</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> B<span class="op">{</span></span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>    <span class="dt">void</span> b() <span class="op">=&gt;</span> print(<span class="st">&#39;b&#39;</span>);</span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a><span class="co">// 可以Mixins多个</span></span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a><span class="co">// 如果要使用Mixins，则这里的A、B都只能继承自Object，且A、B无法定义构造函数</span></span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> C <span class="kw">with</span> A<span class="op">,</span>B<span class="op">{}</span></span></code></pre></div>
+<p>更一般地，会使用<code>mixin</code>修饰：</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode dart"><code class="sourceCode dart"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co">// 比如我们定义了一个Person，然后不同的人有不同的技能，比如Cure、Teaching、Coding，以此成为不同的职业</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Person <span class="op">{</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>    <span class="co">/*</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="co">    // Perosn可以有构造函数</span></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="co">    String name;</span></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a><span class="co">    Person(this.name);</span></span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a><span class="co">    */</span></span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>    study() <span class="op">=&gt;</span> print(<span class="st">&#39;study&#39;</span>);</span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a><span class="co">// 同样地，Mixins的类只能继承自Object，且无法定义构造函数</span></span>
+<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a><span class="kw">mixin</span> Cure <span class="op">{</span></span>
+<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a>    cure() <span class="op">=&gt;</span> print(<span class="st">&#39;cure&#39;</span>);</span>
+<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-16"><a href="#cb21-16" aria-hidden="true" tabindex="-1"></a><span class="kw">mixin</span> Teaching <span class="op">{</span></span>
+<span id="cb21-17"><a href="#cb21-17" aria-hidden="true" tabindex="-1"></a>    teaching() <span class="op">=&gt;</span> print(<span class="st">&#39;teaching&#39;</span>);</span>
+<span id="cb21-18"><a href="#cb21-18" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb21-19"><a href="#cb21-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-20"><a href="#cb21-20" aria-hidden="true" tabindex="-1"></a><span class="co">// 添加限制条件，只有Person才有Coding这个技能，别的类不能混入Coding</span></span>
+<span id="cb21-21"><a href="#cb21-21" aria-hidden="true" tabindex="-1"></a><span class="kw">mixin</span> Coding <span class="kw">on</span> Person<span class="op">{</span></span>
+<span id="cb21-22"><a href="#cb21-22" aria-hidden="true" tabindex="-1"></a>    coding() <span class="op">=&gt;</span> print(<span class="st">&#39;coding&#39;</span>);</span>
+<span id="cb21-23"><a href="#cb21-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-24"><a href="#cb21-24" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Mixins虽然只能继承自Object，但里面也可以重写方法</span></span>
+<span id="cb21-25"><a href="#cb21-25" aria-hidden="true" tabindex="-1"></a>    <span class="kw">@override</span></span>
+<span id="cb21-26"><a href="#cb21-26" aria-hidden="true" tabindex="-1"></a>    study() <span class="op">{</span></span>
+<span id="cb21-27"><a href="#cb21-27" aria-hidden="true" tabindex="-1"></a>        <span class="kw">super</span><span class="op">.</span>study();<span class="co">// 调用父类的study()</span></span>
+<span id="cb21-28"><a href="#cb21-28" aria-hidden="true" tabindex="-1"></a>        print(<span class="st">&#39;children&#39;</span>);</span>
+<span id="cb21-29"><a href="#cb21-29" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb21-30"><a href="#cb21-30" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb21-31"><a href="#cb21-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-32"><a href="#cb21-32" aria-hidden="true" tabindex="-1"></a><span class="co">// 使用with关键字来给Person添加Mixins</span></span>
+<span id="cb21-33"><a href="#cb21-33" aria-hidden="true" tabindex="-1"></a><span class="co">// 比如Doctor，它的类型既是Person，也是Cure</span></span>
+<span id="cb21-34"><a href="#cb21-34" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Doctor <span class="kw">extends</span> Person <span class="kw">with</span> Cure <span class="op">{}</span></span>
+<span id="cb21-35"><a href="#cb21-35" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Teacher <span class="kw">extends</span> Person <span class="kw">with</span> Teaching <span class="op">{}</span></span>
+<span id="cb21-36"><a href="#cb21-36" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Programmer <span class="kw">extends</span> Person <span class="kw">with</span> Coding <span class="op">{}</span></span></code></pre></div>
+<p>要注意混入的顺序：</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode dart"><code class="sourceCode dart"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="kw">mixin</span> A <span class="op">{</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>    f() <span class="op">=&gt;</span> print(<span class="st">&#39;A&#39;</span>);</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a><span class="kw">mixin</span> B <span class="op">{</span></span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>    f() <span class="op">=&gt;</span> print(<span class="st">&#39;B&#39;</span>);</span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a><span class="co">// 这时，B中的f函数会覆盖掉A中的f函数</span></span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> AB <span class="kw">with</span> A<span class="op">,</span>B<span class="op">{</span></span>
+<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a>    <span class="co">// 要是这里也有f函数，则会覆盖掉A和B中的f函数</span></span>
+<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<h2 id="泛型">泛型</h2>
+<p>泛型函数：</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode dart"><code class="sourceCode dart"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co">// 普通的方法：传入int，返回int</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> getData1(<span class="dt">int</span> value)<span class="op">{</span></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">return</span> value;</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a><span class="co">// 泛型方法：传入任意类型，返回同样的类型</span></span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>T getData2<span class="op">&lt;</span>T<span class="op">&gt;</span>(T value)<span class="op">{</span></span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>    <span class="kw">return</span> value;</span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> main()<span class="op">{</span></span>
+<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a>    print(getData2<span class="op">&lt;</span><span class="dt">int</span><span class="op">&gt;</span>(<span class="dv">123</span>));</span>
+<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p>泛型类（泛型接口定义方法一样）：</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode dart"><code class="sourceCode dart"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> MyArray<span class="op">&lt;</span>T<span class="op">&gt;{</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>    <span class="dt">List</span> list <span class="op">=</span> <span class="op">&lt;</span>T<span class="op">&gt;</span>[];</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">void</span> add(T data)<span class="op">{</span></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>        <span class="kw">this</span><span class="op">.</span>list<span class="op">.</span>add(date);</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>    <span class="dt">List</span> getList() <span class="op">=&gt;</span> <span class="kw">return</span> <span class="kw">this</span><span class="op">.</span>list;</span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> main()<span class="op">{</span></span>
+<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a>    MyArray a1<span class="op">=</span><span class="kw">new</span> MyArray<span class="op">&lt;</span><span class="dt">int</span><span class="op">&gt;</span>();</span>
+<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a>    a1<span class="op">.</span>add(<span class="dv">1</span>);</span>
+<span id="cb24-12"><a href="#cb24-12" aria-hidden="true" tabindex="-1"></a>    a1<span class="op">.</span>add(<span class="dv">2</span>);</span>
+<span id="cb24-13"><a href="#cb24-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-14"><a href="#cb24-14" aria-hidden="true" tabindex="-1"></a>    <span class="co">// 比如List也可以指定泛型</span></span>
+<span id="cb24-15"><a href="#cb24-15" aria-hidden="true" tabindex="-1"></a>    <span class="dt">List</span> list1 <span class="op">=</span> <span class="op">&lt;</span><span class="dt">String</span><span class="op">&gt;</span>[<span class="st">&quot;str1&quot;</span><span class="op">,</span><span class="st">&quot;str2&quot;</span>];</span>
+<span id="cb24-16"><a href="#cb24-16" aria-hidden="true" tabindex="-1"></a>    <span class="dt">List</span> list2 <span class="op">=</span> <span class="kw">new</span> <span class="dt">List</span><span class="op">.</span>filled<span class="op">&lt;</span><span class="dt">String</span><span class="op">&gt;</span>(<span class="dv">2</span><span class="op">,</span><span class="st">&quot;&quot;</span>);</span>
+<span id="cb24-17"><a href="#cb24-17" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<h2 id="异步">异步</h2>
+<p>常规写法：</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode dart"><code class="sourceCode dart"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="dt">Future</span><span class="op">&lt;</span><span class="dt">String</span><span class="op">&gt;</span> getNetworkData()<span class="op">{</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">return</span> <span class="kw">new</span> <span class="dt">Future</span><span class="op">&lt;</span><span class="dt">String</span><span class="op">&gt;</span>(()<span class="op">{</span></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>        sleep(Duration(seconds<span class="op">:</span> <span class="dv">2</span>));</span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>        <span class="kw">return</span> <span class="st">&#39;xxx&#39;</span>;</span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span>);</span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> main() <span class="at">async</span><span class="op">{</span></span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>    print(<span class="st">&quot;start&quot;</span>);</span>
+<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a>    <span class="dt">Future</span><span class="op">&lt;</span><span class="dt">String</span><span class="op">&gt;</span> f <span class="op">=</span> getNetworkData();</span>
+<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a>    f<span class="op">.</span>then((result)<span class="op">=&gt;{</span> print(result) <span class="op">}</span>)<span class="op">.</span>catchError((err)<span class="op">=&gt;{</span> print(err) <span class="op">}</span>);</span>
+<span id="cb25-12"><a href="#cb25-12" aria-hidden="true" tabindex="-1"></a>    print(<span class="st">&quot;end&quot;</span>);</span>
+<span id="cb25-13"><a href="#cb25-13" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p>使用async和await关键字，可以实现用同步的写法写异步：</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode dart"><code class="sourceCode dart"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co">// await只能用在async方法里，用了await的方法都要加async；别的函数要调用异步函数拿返回值时，也要使用await关键字</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="dt">Future</span><span class="op">&lt;</span><span class="dt">String</span><span class="op">&gt;</span> getNetworkData() <span class="at">async</span><span class="op">{</span></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>    sleep(Duration(seconds<span class="op">:</span> <span class="dv">2</span>));</span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">return</span> <span class="st">&#39;xxx&#39;</span>;<span class="co">// 虽然返回的是String，但由于函数加了async，返回值会自动包装进Future中</span></span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> main() <span class="at">async</span><span class="op">{</span></span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>    print(<span class="st">&quot;start&quot;</span>);</span>
+<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a>    <span class="dt">var</span> result <span class="op">=</span> <span class="at">await</span> testAsync();<span class="co">// 加了await会等待异步方法执行完成，且await会自动解包Future</span></span>
+<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a>    print(result);</span>
+<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a>    print(<span class="st">&quot;end&quot;</span>);</span>
+<span id="cb26-12"><a href="#cb26-12" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<h2 id="库">库</h2>
+<p>库的重命名、部分导入：</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode dart"><code class="sourceCode dart"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co">// 如果import的时候类名冲突，可以使用as来指定命名空间，使用时：a.Abc a=new a.Abc();</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="kw">import</span> <span class="st">&#39;/lib/abc1.dart&#39;</span>;</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="kw">import</span> <span class="st">&#39;/lib/abc2.dart&#39;</span> <span class="kw">as</span> a;</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a><span class="co">// 导入时可以指定只能访问某函数，或者不能访问某函数</span></span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a><span class="kw">import</span> <span class="st">&#39;lib/ab1.dart&#39;</span> <span class="kw">show</span> fun1;</span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a><span class="kw">import</span> <span class="st">&#39;lib/ab2.dart&#39;</span> <span class="kw">hide</span> fun2;</span></code></pre></div>
+<p><strong>库的种类</strong></p>
+<p>第一种：自定义的库：</p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode dart"><code class="sourceCode dart"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="kw">import</span> <span class="st">&#39;myLib/xxx.dart&#39;</span>;</span></code></pre></div>
+<p>第二种：系统内置库：</p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode dart"><code class="sourceCode dart"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="kw">import</span> <span class="st">&#39;dart:io&#39;</span>;</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="kw">import</span> <span class="st">&#39;dart:convert&#39;</span>;</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> main() <span class="at">async</span><span class="op">{</span></span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">var</span> result <span class="op">=</span> <span class="at">await</span> _getData();</span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>_getData() <span class="at">async</span><span class="op">{</span></span>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a>    <span class="dt">var</span> httpClient <span class="op">=</span> <span class="kw">new</span> HttpClient();</span>
+<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a>    <span class="dt">var</span> uri <span class="op">=</span> Uri<span class="op">.</span>http(<span class="st">&#39;new-at.zhihu.com&#39;</span><span class="op">,</span><span class="st">&#39;/api/3/stories/latest&#39;</span>);</span>
+<span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a>    <span class="dt">var</span> request <span class="op">=</span> <span class="at">await</span> httpClient<span class="op">.</span>getUrl(uri);</span>
+<span id="cb29-11"><a href="#cb29-11" aria-hidden="true" tabindex="-1"></a>    <span class="dt">var</span> response <span class="op">=</span> <span class="at">await</span> request<span class="op">.</span>close();</span>
+<span id="cb29-12"><a href="#cb29-12" aria-hidden="true" tabindex="-1"></a>    <span class="kw">return</span> <span class="at">await</span> response<span class="op">.</span>transform(utf8<span class="op">.</span>decoder)<span class="op">.</span>join();</span>
+<span id="cb29-13"><a href="#cb29-13" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p>第三种：pub包管理系统中的库：https://pub.dev、https://pub.flutter-io.cn/packages</p>
+<p>如何使用第三方库：</p>
+<p>1、在项目根目录创建一个叫<code>pubspec.yaml</code>的文件；</p>
+<p>2、在该文件中配置名称、描述、依赖等信息，比如：</p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">name</span><span class="kw">:</span><span class="at"> 项目名</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="fu">description</span><span class="kw">:</span><span class="at"> 项目描述</span></span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="fu">version</span><span class="kw">:</span><span class="at"> </span><span class="fl">1.0.0</span></span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a><span class="fu">dependencies</span><span class="kw">:</span></span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">http</span><span class="kw">:</span><span class="at"> ^0.12.0+2</span></span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">data_format</span><span class="kw">:</span><span class="at"> ^1.0.6</span></span></code></pre></div>
+<p>3、然后命令行进入项目所在文件夹，运行<code>pub get</code>下载第三方库；</p>
+<p>4、项目中导入库，比如<code>import &#39;package:http/http.dart&#39; as http;</code>，具体看文档。</p>
+<h1 id="flutter">Flutter</h1>
+<p>Flutter是通过在Android或IOS或其他平台上安装一个渲染引擎，来实现跨平台的，该引擎在不同的平台使用不同的代码编写，但实现的功能是一样的，因此，Flutter的UI不受系统UI库的影响。</p>
+<p>Flutter的代码放在项目的<code>lib</code>文件夹下；图片则一般是放在项目的<code>images</code>文件夹下，且在<code>pubspec.yaml</code>中配置要用到的图片：</p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">flutter</span><span class="kw">:</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">assets</span><span class="kw">:</span></span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> images/1.jpeg</span></span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> images/2.jpeg</span></span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> images/</span><span class="co"> #如果文件夹下的所有图片都要用</span></span></code></pre></div>
+<p>最后使用<code>Image(height: 20, width: 20, image: AssetImage(&#39;images/ic_background.png&#39;))</code>导入。</p>
+<h2 id="自定义widget">自定义Widget</h2>
+<p>在Flutter中，一切显示的部件皆为Widget，比如下面就使用了两个Widget，分别是Center和Text：</p>
+<div class="sourceCode" id="cb32"><pre class="sourceCode dart"><code class="sourceCode dart"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="kw">import</span> <span class="st">&#39;package:flutter/material.dart&#39;</span>;</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> main()<span class="op">{</span></span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>    <span class="co">// 要显示内容，使用runApp；要显示不变的内容，最好用const修饰</span></span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>    runApp(<span class="at">const</span> Center(</span>
+<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a>        child<span class="op">:</span> Text(</span>
+<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a>            <span class="st">&quot;Hello World&quot;</span><span class="op">,</span></span>
+<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a>            textDirection<span class="op">:</span> textDirection<span class="op">.</span>ltr<span class="op">,</span></span>
+<span id="cb32-9"><a href="#cb32-9" aria-hidden="true" tabindex="-1"></a>        )<span class="op">,</span></span>
+<span id="cb32-10"><a href="#cb32-10" aria-hidden="true" tabindex="-1"></a>    ));</span>
+<span id="cb32-11"><a href="#cb32-11" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p>上面的Center(xxx)、Text(xxx)是构造函数，像textDirection是命名参数，具体有什么参数点进源码就能看到。</p>
+<p>看源码可以发现，像Text中的属性都是final修饰的，因此只能赋值一次，而且大多都有默认值，相当于Widget一创建就被渲染了，无法更改，要改变只能新建一个Text然后替换掉原来的。Flutter底层是树的结构，要改变UI，只要改变树中的某个节点就可以了，这就是Flutter的增量渲染。</p>
+<p><strong>自定义Widget</strong>：</p>
+<div class="sourceCode" id="cb33"><pre class="sourceCode dart"><code class="sourceCode dart"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="kw">import</span> <span class="st">&#39;package:flutter/material.dart&#39;</span>;</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a><span class="co">// Widget分为两种，一种是有状态(stateful)，一种是无状态(stateless)；区别就是能否更改内容</span></span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> MyWidget <span class="kw">extends</span> StatelessWidget<span class="op">{</span></span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">@override</span></span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a>    Widget build(BuildContext context)<span class="op">{</span></span>
+<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a>        <span class="kw">return</span> xxx;</span>
+<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb33-9"><a href="#cb33-9" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p>要使用Material Design，可以：</p>
+<div class="sourceCode" id="cb34"><pre class="sourceCode dart"><code class="sourceCode dart"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="kw">import</span> <span class="st">&#39;package:flutter/material.dart&#39;</span>;</span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> main() <span class="op">=&gt;</span> runApp(App());</span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> App <span class="kw">extends</span> StatelessWidget<span class="op">{</span></span>
+<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">@override</span></span>
+<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a>    Widget build(BuildContext context)<span class="op">{</span></span>
+<span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a>        <span class="kw">return</span> MaterialApp(</span>
+<span id="cb34-9"><a href="#cb34-9" aria-hidden="true" tabindex="-1"></a>            home<span class="op">:</span> Scaffold(</span>
+<span id="cb34-10"><a href="#cb34-10" aria-hidden="true" tabindex="-1"></a>                appBar<span class="op">:</span> AppBar(</span>
+<span id="cb34-11"><a href="#cb34-11" aria-hidden="true" tabindex="-1"></a>                    tittle<span class="op">:</span> <span class="at">const</span> Text(<span class="st">&#39;Demo&#39;</span>)<span class="op">,</span></span>
+<span id="cb34-12"><a href="#cb34-12" aria-hidden="true" tabindex="-1"></a>                )<span class="op">,</span></span>
+<span id="cb34-13"><a href="#cb34-13" aria-hidden="true" tabindex="-1"></a>                body<span class="op">:</span> MyWidget()<span class="op">,</span></span>
+<span id="cb34-14"><a href="#cb34-14" aria-hidden="true" tabindex="-1"></a>            )<span class="op">,</span></span>
+<span id="cb34-15"><a href="#cb34-15" aria-hidden="true" tabindex="-1"></a>        );</span>
+<span id="cb34-16"><a href="#cb34-16" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb34-17"><a href="#cb34-17" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<h2 id="常用widget">常用Widget</h2>
+<h3 id="text">Text</h3>
+<div class="sourceCode" id="cb35"><pre class="sourceCode dart"><code class="sourceCode dart"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>Text(</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;xxx&quot;</span><span class="op">,</span></span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>    textAlign<span class="op">:</span> TextAlign<span class="op">.</span>center<span class="op">,</span></span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>    style<span class="op">:</span> TextStyle(fontSize<span class="op">:</span> <span class="fl">16.0</span>)<span class="op">,</span></span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>    maxLines<span class="op">:</span> <span class="dv">3</span><span class="op">,</span></span>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a>    overflow<span class="op">:</span> TextOverflow<span class="op">.</span>ellipsis<span class="op">,</span></span>
+<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a>);</span></code></pre></div>
+<h3 id="richtext">RichText</h3>
+<div class="sourceCode" id="cb36"><pre class="sourceCode dart"><code class="sourceCode dart"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co">// RichText可以实现一段文字里有不同的样式</span></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>RichText(</span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>    text<span class="op">:</span> <span class="at">const</span> TextSpan(</span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>        children<span class="op">:</span> <span class="op">&lt;</span>TextSpan<span class="op">&gt;</span>[</span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a>            TextSpan(</span>
+<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a>                text<span class="op">:</span> <span class="st">&#39;123&#39;</span><span class="op">,</span></span>
+<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a>                style<span class="op">:</span> TextStyle(fontSize<span class="op">:</span> <span class="fl">16.0</span><span class="op">,</span> color<span class="op">:</span> Colors<span class="op">.</span>black)<span class="op">,</span></span>
+<span id="cb36-8"><a href="#cb36-8" aria-hidden="true" tabindex="-1"></a>            )<span class="op">,</span></span>
+<span id="cb36-9"><a href="#cb36-9" aria-hidden="true" tabindex="-1"></a>            TextSpan(</span>
+<span id="cb36-10"><a href="#cb36-10" aria-hidden="true" tabindex="-1"></a>                text<span class="op">:</span> <span class="st">&#39;321&#39;</span><span class="op">,</span></span>
+<span id="cb36-11"><a href="#cb36-11" aria-hidden="true" tabindex="-1"></a>                style<span class="op">:</span> TextStyle(color<span class="op">:</span> Colors<span class="op">.</span>red)</span>
+<span id="cb36-12"><a href="#cb36-12" aria-hidden="true" tabindex="-1"></a>            )<span class="op">,</span></span>
+<span id="cb36-13"><a href="#cb36-13" aria-hidden="true" tabindex="-1"></a>        ]<span class="op">,</span></span>
+<span id="cb36-14"><a href="#cb36-14" aria-hidden="true" tabindex="-1"></a>    )<span class="op">,</span></span>
+<span id="cb36-15"><a href="#cb36-15" aria-hidden="true" tabindex="-1"></a>);</span></code></pre></div>
+<h3 id="listview">ListView</h3>
+<p>模型类<code>lib/model/car.dart</code>，属性一般都写成final：</p>
+<div class="sourceCode" id="cb37"><pre class="sourceCode dart"><code class="sourceCode dart"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Car<span class="op">{</span></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">const</span> Car(<span class="op">{</span><span class="kw">this</span><span class="op">.</span>name<span class="op">,</span> <span class="kw">this</span><span class="op">.</span>imageUrl<span class="op">}</span>);</span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">final</span> <span class="dt">String</span><span class="op">?</span> name;</span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">final</span> <span class="dt">String</span><span class="op">?</span> imageUrl;</span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p><code>lib/main.dart</code>：</p>
+<div class="sourceCode" id="cb38"><pre class="sourceCode dart"><code class="sourceCode dart"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="kw">import</span> <span class="st">&#39;package:flutter/material.dart&#39;</span>;</span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="kw">import</span> <span class="st">&#39;model/car.dart&#39;</span>;</span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a><span class="co">// 假设获取了一堆数据</span></span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a><span class="at">final</span> <span class="dt">List</span><span class="op">&lt;</span>Car<span class="op">&gt;</span> datas <span class="op">=</span> [<span class="at">const</span> Car(name<span class="op">:</span> <span class="st">&quot;123&quot;</span><span class="op">,</span> imageUrl<span class="op">:</span> <span class="st">&quot;xxx&quot;</span>)<span class="op">,</span>];</span>
+<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> main() <span class="op">=&gt;</span> runApp(App());</span>
+<span id="cb38-8"><a href="#cb38-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-9"><a href="#cb38-9" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> App <span class="kw">extends</span> StatelessWidget<span class="op">{</span></span>
+<span id="cb38-10"><a href="#cb38-10" aria-hidden="true" tabindex="-1"></a>    <span class="kw">@override</span></span>
+<span id="cb38-11"><a href="#cb38-11" aria-hidden="true" tabindex="-1"></a>    Widget build(BuildContext context)<span class="op">{</span></span>
+<span id="cb38-12"><a href="#cb38-12" aria-hidden="true" tabindex="-1"></a>        <span class="kw">return</span> MaterialApp(home<span class="op">:</span> Home());</span>
+<span id="cb38-13"><a href="#cb38-13" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb38-14"><a href="#cb38-14" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb38-15"><a href="#cb38-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-16"><a href="#cb38-16" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Home <span class="kw">extends</span> StatelessWidget<span class="op">{</span></span>
+<span id="cb38-17"><a href="#cb38-17" aria-hidden="true" tabindex="-1"></a>    <span class="kw">@override</span></span>
+<span id="cb38-18"><a href="#cb38-18" aria-hidden="true" tabindex="-1"></a>    Widget build(BuildContext context)<span class="op">{</span></span>
+<span id="cb38-19"><a href="#cb38-19" aria-hidden="true" tabindex="-1"></a>        <span class="kw">return</span> Scaffold(</span>
+<span id="cb38-20"><a href="#cb38-20" aria-hidden="true" tabindex="-1"></a>            appBar<span class="op">:</span> AppBar(tittle<span class="op">:</span> <span class="at">const</span> Text(<span class="st">&#39;Demo&#39;</span>))<span class="op">,</span></span>
+<span id="cb38-21"><a href="#cb38-21" aria-hidden="true" tabindex="-1"></a>            body<span class="op">:</span> ListView<span class="op">.</span>builder(</span>
+<span id="cb38-22"><a href="#cb38-22" aria-hidden="true" tabindex="-1"></a>                <span class="co">// 这里指定要传入的函数</span></span>
+<span id="cb38-23"><a href="#cb38-23" aria-hidden="true" tabindex="-1"></a>                itemBuilder<span class="op">:</span> _itemForRow<span class="op">,</span></span>
+<span id="cb38-24"><a href="#cb38-24" aria-hidden="true" tabindex="-1"></a>                itemCounts<span class="op">:</span> datas<span class="op">.</span>length<span class="op">,</span></span>
+<span id="cb38-25"><a href="#cb38-25" aria-hidden="true" tabindex="-1"></a>            )<span class="op">,</span></span>
+<span id="cb38-26"><a href="#cb38-26" aria-hidden="true" tabindex="-1"></a>        );</span>
+<span id="cb38-27"><a href="#cb38-27" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb38-28"><a href="#cb38-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-29"><a href="#cb38-29" aria-hidden="true" tabindex="-1"></a>    <span class="co">//返回每一行要显示的Widget</span></span>
+<span id="cb38-30"><a href="#cb38-30" aria-hidden="true" tabindex="-1"></a>    Widget _itemForRow(BuildContext context<span class="op">,</span> <span class="dt">int</span> index)<span class="op">{</span></span>
+<span id="cb38-31"><a href="#cb38-31" aria-hidden="true" tabindex="-1"></a>        <span class="co">//return Text(datas[index].name!);</span></span>
+<span id="cb38-32"><a href="#cb38-32" aria-hidden="true" tabindex="-1"></a>        <span class="co">// 一般会用Container</span></span>
+<span id="cb38-33"><a href="#cb38-33" aria-hidden="true" tabindex="-1"></a>        <span class="kw">return</span> Container(</span>
+<span id="cb38-34"><a href="#cb38-34" aria-hidden="true" tabindex="-1"></a>            color<span class="op">:</span> Colors<span class="op">.</span>White<span class="op">,</span></span>
+<span id="cb38-35"><a href="#cb38-35" aria-hidden="true" tabindex="-1"></a>            margin<span class="op">:</span> <span class="at">const</span> EdgeInsets<span class="op">.</span>all(<span class="dv">10</span>)<span class="op">,</span></span>
+<span id="cb38-36"><a href="#cb38-36" aria-hidden="true" tabindex="-1"></a>            child<span class="op">:</span> Column(</span>
+<span id="cb38-37"><a href="#cb38-37" aria-hidden="true" tabindex="-1"></a>                children<span class="op">:</span> <span class="op">&lt;</span>Widget<span class="op">&gt;</span>[</span>
+<span id="cb38-38"><a href="#cb38-38" aria-hidden="true" tabindex="-1"></a>                    Image<span class="op">.</span>network(datas[index]<span class="op">.</span>imageUrl<span class="op">!</span>)<span class="op">,</span></span>
+<span id="cb38-39"><a href="#cb38-39" aria-hidden="true" tabindex="-1"></a>                    Container(height<span class="op">:</span> <span class="dv">10</span><span class="op">,</span>)<span class="op">,</span><span class="co">/*Sizebox 也可以用来占位*/</span></span>
+<span id="cb38-40"><a href="#cb38-40" aria-hidden="true" tabindex="-1"></a>                    Text(datas[index]<span class="op">.</span>name<span class="op">!</span>)<span class="op">,</span></span>
+<span id="cb38-41"><a href="#cb38-41" aria-hidden="true" tabindex="-1"></a>                ]<span class="op">,</span></span>
+<span id="cb38-42"><a href="#cb38-42" aria-hidden="true" tabindex="-1"></a>            )<span class="op">,</span></span>
+<span id="cb38-43"><a href="#cb38-43" aria-hidden="true" tabindex="-1"></a>        );</span>
+<span id="cb38-44"><a href="#cb38-44" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb38-45"><a href="#cb38-45" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<h3 id="container">Container</h3>
+<div class="sourceCode" id="cb39"><pre class="sourceCode dart"><code class="sourceCode dart"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>Container(</span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>    color<span class="op">:</span> Colors<span class="op">.</span>yellow<span class="op">,</span></span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>    child<span class="op">:</span> Row(</span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a>        children<span class="op">:</span> <span class="op">&lt;</span>Widget<span class="op">&gt;</span>[</span>
+<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a>            Container(</span>
+<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a>                color<span class="op">:</span> Colors<span class="op">.</span>red<span class="op">,</span></span>
+<span id="cb39-7"><a href="#cb39-7" aria-hidden="true" tabindex="-1"></a>                child<span class="op">:</span> Icon(</span>
+<span id="cb39-8"><a href="#cb39-8" aria-hidden="true" tabindex="-1"></a>                    Icons<span class="op">.</span>add<span class="op">,</span></span>
+<span id="cb39-9"><a href="#cb39-9" aria-hidden="true" tabindex="-1"></a>                    size<span class="op">:</span> <span class="dv">15</span></span>
+<span id="cb39-10"><a href="#cb39-10" aria-hidden="true" tabindex="-1"></a>                )<span class="op">,</span></span>
+<span id="cb39-11"><a href="#cb39-11" aria-hidden="true" tabindex="-1"></a>                padding<span class="op">:</span> EdgeInsets<span class="op">.</span>all(<span class="dv">10</span>)<span class="op">,</span><span class="co">// 内边距</span></span>
+<span id="cb39-12"><a href="#cb39-12" aria-hidden="true" tabindex="-1"></a>                margin<span class="op">:</span> EdgeInsets<span class="op">.</span>all(<span class="dv">5</span>)<span class="op">,</span><span class="co">// 外边距</span></span>
+<span id="cb39-13"><a href="#cb39-13" aria-hidden="true" tabindex="-1"></a>                height<span class="op">:</span> <span class="dv">20</span><span class="op">,</span><span class="co">// 如果padding后的大小超过height，以height为准，超出部分不显示</span></span>
+<span id="cb39-14"><a href="#cb39-14" aria-hidden="true" tabindex="-1"></a>            )<span class="op">,</span></span>
+<span id="cb39-15"><a href="#cb39-15" aria-hidden="true" tabindex="-1"></a>        ]<span class="op">,</span></span>
+<span id="cb39-16"><a href="#cb39-16" aria-hidden="true" tabindex="-1"></a>    )<span class="op">,</span></span>
+<span id="cb39-17"><a href="#cb39-17" aria-hidden="true" tabindex="-1"></a>);</span></code></pre></div>
+<h3 id="布局row和column">布局：Row和Column</h3>
+<div class="sourceCode" id="cb40"><pre class="sourceCode dart"><code class="sourceCode dart"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>Container(</span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>    color<span class="op">:</span> Colors<span class="op">.</span>yellow<span class="op">,</span></span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>    alignment<span class="op">:</span> Alignment(<span class="dv">0</span><span class="op">,</span> <span class="dv">0</span>)<span class="op">,</span><span class="co">// 使用百分比坐标指定位置，参数取值范围-1.0至1.0；(0,0)即该Container的正中心</span></span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>    child<span class="op">:</span> Text(<span class="st">&#39;layout&#39;</span>)<span class="op">,</span></span>
+<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a>);</span></code></pre></div>
+<p>用来指定布局排列方式的Widget有：<strong>Row</strong>（主轴方向从左到右）、<strong>Column</strong>（主轴方向从上到下）、<strong>Center</strong>，以Row为例：</p>
+<div class="sourceCode" id="cb41"><pre class="sourceCode dart"><code class="sourceCode dart"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>Container(</span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>    color<span class="op">:</span> Colors<span class="op">.</span>yellow<span class="op">,</span></span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>    <span class="co">// 由于Row是占满一行的，这样写会把该行竖向居中，但是该行会从最左边开始；对Column依此类推</span></span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a>    alignment<span class="op">:</span> Alignment(<span class="dv">0</span><span class="op">,</span> <span class="dv">0</span>)<span class="op">,</span></span>
+<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a>    child<span class="op">:</span> Row(</span>
+<span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a>        children<span class="op">:</span> [</span>
+<span id="cb41-7"><a href="#cb41-7" aria-hidden="true" tabindex="-1"></a>            Icon(Icons<span class="op">.</span>add<span class="op">,</span> size<span class="op">:</span> <span class="dv">60</span>)<span class="op">,</span></span>
+<span id="cb41-8"><a href="#cb41-8" aria-hidden="true" tabindex="-1"></a>            Icon(Icons<span class="op">.</span>ac_unit<span class="op">,</span> size<span class="op">:</span> <span class="dv">60</span>)<span class="op">,</span></span>
+<span id="cb41-9"><a href="#cb41-9" aria-hidden="true" tabindex="-1"></a>            Icon(Icons<span class="op">.</span>access_alarm<span class="op">,</span> size<span class="op">:</span> <span class="dv">60</span>)<span class="op">,</span></span>
+<span id="cb41-10"><a href="#cb41-10" aria-hidden="true" tabindex="-1"></a>        ]<span class="op">,</span></span>
+<span id="cb41-11"><a href="#cb41-11" aria-hidden="true" tabindex="-1"></a>    )<span class="op">,</span></span>
+<span id="cb41-12"><a href="#cb41-12" aria-hidden="true" tabindex="-1"></a>);</span></code></pre></div>
+<p>对于Row和Column，如果要对齐右/下，可以设置<code>mainAxisAlignment: MainAxisAlignment.end</code>，但是内部Widget的方向不会变；主轴还可以设置成其他值，比如居中、两边对齐、环绕等分…除此以外，还有交叉轴，即垂直于主轴的轴，交叉轴对于Row是从上往下的，对Column是从左到右的，要对齐下/右，可以设置<code>crossAxisAlignment: CrossAxisAlignment.end</code>。</p>
+<p>要改变Row内部Widget的排列顺序同时改变主轴方向，可以用<code>textDirection</code>，比如<code>textDirection: textDirection.rtl</code>，Widget从右往左排列，且对齐右边，但文字方向依然不会改变。Column没有类似的属性。</p>
+<div class="sourceCode" id="cb42"><pre class="sourceCode dart"><code class="sourceCode dart"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>Container(</span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>    color<span class="op">:</span> Colors<span class="op">.</span>yellow<span class="op">,</span></span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>    alignment<span class="op">:</span> Alignment(<span class="dv">0</span><span class="op">,</span> <span class="dv">0</span>)<span class="op">,</span></span>
+<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a>    child<span class="op">:</span> Row(</span>
+<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a>        textDirection<span class="op">:</span> textDirection<span class="op">.</span>rtl<span class="op">,</span></span>
+<span id="cb42-6"><a href="#cb42-6" aria-hidden="true" tabindex="-1"></a>        mainAxisAlignment<span class="op">:</span> MainAxisAlignment<span class="op">.</span>start<span class="op">,</span></span>
+<span id="cb42-7"><a href="#cb42-7" aria-hidden="true" tabindex="-1"></a>        <span class="co">// 如果要使用CrossAxisAlignment.baseline，就必须结合textBaseline使用</span></span>
+<span id="cb42-8"><a href="#cb42-8" aria-hidden="true" tabindex="-1"></a>        crossAxisAlignment<span class="op">:</span> CrossAxisAlignment<span class="op">.</span>baseline<span class="op">,</span></span>
+<span id="cb42-9"><a href="#cb42-9" aria-hidden="true" tabindex="-1"></a>        <span class="co">//textBaseline: TextBaseline.alphabetic,// 英文字符对齐</span></span>
+<span id="cb42-10"><a href="#cb42-10" aria-hidden="true" tabindex="-1"></a>        textBaseline<span class="op">:</span> TextBaseline<span class="op">.</span>ideographic<span class="op">,</span><span class="co">// 中文字符对齐</span></span>
+<span id="cb42-11"><a href="#cb42-11" aria-hidden="true" tabindex="-1"></a>        children<span class="op">:</span> [</span>
+<span id="cb42-12"><a href="#cb42-12" aria-hidden="true" tabindex="-1"></a>            Container(child<span class="op">:</span> Text(<span class="st">&#39;你好&#39;</span><span class="op">,</span> style<span class="op">:</span> TextStyle(fontSize<span class="op">:</span> <span class="dv">12</span>))<span class="op">,</span> color<span class="op">:</span> Colors<span class="op">.</span>red)<span class="op">,</span></span>
+<span id="cb42-13"><a href="#cb42-13" aria-hidden="true" tabindex="-1"></a>            Container(child<span class="op">:</span> Text(<span class="st">&#39;啊啊&#39;</span><span class="op">,</span> style<span class="op">:</span> TextStyle(fontSize<span class="op">:</span> <span class="dv">24</span>))<span class="op">,</span> color<span class="op">:</span> Colors<span class="op">.</span>blue)<span class="op">,</span></span>
+<span id="cb42-14"><a href="#cb42-14" aria-hidden="true" tabindex="-1"></a>            Container(child<span class="op">:</span> Text(<span class="st">&#39;呃呃&#39;</span><span class="op">,</span> style<span class="op">:</span> TextStyle(fontSize<span class="op">:</span> <span class="dv">36</span>))<span class="op">,</span> color<span class="op">:</span> Colors<span class="op">.</span>white)<span class="op">,</span></span>
+<span id="cb42-15"><a href="#cb42-15" aria-hidden="true" tabindex="-1"></a>        ]<span class="op">,</span></span>
+<span id="cb42-16"><a href="#cb42-16" aria-hidden="true" tabindex="-1"></a>    )<span class="op">,</span></span>
+<span id="cb42-17"><a href="#cb42-17" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<h3 id="布局expanded">布局：Expanded</h3>
+<p>Expanded在主轴方向拉伸widget，Widget之间不会留下缝隙；主轴横向width设置没有意义，主轴纵向height设置没有意义；如果Text被Expanded包装，会自动换行。</p>
+<div class="sourceCode" id="cb43"><pre class="sourceCode dart"><code class="sourceCode dart"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>Container(</span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>    color<span class="op">:</span> Colors<span class="op">.</span>yellow<span class="op">,</span></span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>    alignment<span class="op">:</span> Alignment(<span class="dv">0</span><span class="op">,</span> <span class="dv">0</span>)<span class="op">,</span></span>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a>    child<span class="op">:</span> Row(</span>
+<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a>        mainAxisAlignment<span class="op">:</span> MainAxisAlignment<span class="op">.</span>spaceEvenly<span class="op">,</span></span>
+<span id="cb43-6"><a href="#cb43-6" aria-hidden="true" tabindex="-1"></a>        crossAxisAlignment<span class="op">:</span> CrossAxisAlignment<span class="op">.</span>baseline<span class="op">,</span></span>
+<span id="cb43-7"><a href="#cb43-7" aria-hidden="true" tabindex="-1"></a>        textBaseline<span class="op">:</span> TextBaseline<span class="op">.</span>ideographic<span class="op">,</span></span>
+<span id="cb43-8"><a href="#cb43-8" aria-hidden="true" tabindex="-1"></a>        <span class="co">// 对于Row，几个children拉伸后占满一行（字体不拉伸，只拉伸背景），即便设置了width也会被拉伸，且即使设置了spaceEvenly，中间也没有空隙，且文字会自动换行</span></span>
+<span id="cb43-9"><a href="#cb43-9" aria-hidden="true" tabindex="-1"></a>        children<span class="op">:</span> [</span>
+<span id="cb43-10"><a href="#cb43-10" aria-hidden="true" tabindex="-1"></a>            Expanded(child<span class="op">:</span> Container(width<span class="op">:</span> <span class="dv">80</span><span class="op">,</span> child<span class="op">:</span> Text(<span class="st">&#39;你好&#39;</span><span class="op">,</span> style<span class="op">:</span> TextStyle(fontSize<span class="op">:</span> <span class="dv">12</span>))<span class="op">,</span> color<span class="op">:</span> Colors<span class="op">.</span>red))<span class="op">,</span></span>
+<span id="cb43-11"><a href="#cb43-11" aria-hidden="true" tabindex="-1"></a>            Expanded(child<span class="op">:</span> Container(child<span class="op">:</span> Text(<span class="st">&#39;啊啊&#39;</span><span class="op">,</span> style<span class="op">:</span> TextStyle(fontSize<span class="op">:</span> <span class="dv">24</span>))<span class="op">,</span> color<span class="op">:</span> Colors<span class="op">.</span>blue))<span class="op">,</span></span>
+<span id="cb43-12"><a href="#cb43-12" aria-hidden="true" tabindex="-1"></a>            Expanded(child<span class="op">:</span> Container(child<span class="op">:</span> Text(<span class="st">&#39;呃呃&#39;</span><span class="op">,</span> style<span class="op">:</span> TextStyle(fontSize<span class="op">:</span> <span class="dv">36</span>))<span class="op">,</span> color<span class="op">:</span> Colors<span class="op">.</span>white))<span class="op">,</span></span>
+<span id="cb43-13"><a href="#cb43-13" aria-hidden="true" tabindex="-1"></a>        ]<span class="op">,</span></span>
+<span id="cb43-14"><a href="#cb43-14" aria-hidden="true" tabindex="-1"></a>    )<span class="op">,</span></span>
+<span id="cb43-15"><a href="#cb43-15" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<p>对于交叉轴，可以使用<code>crossAxisAlignment: CrossAxisAlignment.strech</code>来填充，比如对于column，就是横向填满。</p>
+<h3 id="布局stack">布局：Stack</h3>
+<p>Stack可以将多个Widget堆叠起来，堆叠时默认按代码顺序，最后写的在最上面：</p>
+<div class="sourceCode" id="cb44"><pre class="sourceCode dart"><code class="sourceCode dart"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>Container(</span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>    color<span class="op">:</span> Colors<span class="op">.</span>yellow<span class="op">,</span></span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>    alignment<span class="op">:</span> Alignment(<span class="dv">0</span><span class="op">,</span> <span class="dv">0</span>)<span class="op">,</span></span>
+<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Stack会放在外部的Container的中心，它的大小是children中最大的大小，内部对齐左上角</span></span>
+<span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a>    child<span class="op">:</span> Stack(</span>
+<span id="cb44-6"><a href="#cb44-6" aria-hidden="true" tabindex="-1"></a>        children<span class="op">:</span> [</span>
+<span id="cb44-7"><a href="#cb44-7" aria-hidden="true" tabindex="-1"></a>            Container(child<span class="op">:</span> Icon(Icons<span class="op">.</span>add<span class="op">,</span> size<span class="op">:</span> <span class="dv">60</span>)<span class="op">,</span> color<span class="op">:</span> Colors<span class="op">.</span>red)<span class="op">,</span></span>
+<span id="cb44-8"><a href="#cb44-8" aria-hidden="true" tabindex="-1"></a>            Container(child<span class="op">:</span> Icon(Icons<span class="op">.</span>ac_unit<span class="op">,</span> size<span class="op">:</span> <span class="dv">40</span>)<span class="op">,</span> color<span class="op">:</span> Colors<span class="op">.</span>blue)<span class="op">,</span></span>
+<span id="cb44-9"><a href="#cb44-9" aria-hidden="true" tabindex="-1"></a>            Container(child<span class="op">:</span> Icon(Icons<span class="op">.</span>access_alarm<span class="op">,</span> size<span class="op">:</span> <span class="dv">20</span>)<span class="op">,</span> color<span class="op">:</span> Colors<span class="op">.</span>white)<span class="op">,</span></span>
+<span id="cb44-10"><a href="#cb44-10" aria-hidden="true" tabindex="-1"></a>        ]<span class="op">,</span></span>
+<span id="cb44-11"><a href="#cb44-11" aria-hidden="true" tabindex="-1"></a>    )<span class="op">,</span></span>
+<span id="cb44-12"><a href="#cb44-12" aria-hidden="true" tabindex="-1"></a>);</span></code></pre></div>
+<p>也可以指定位置：</p>
+<div class="sourceCode" id="cb45"><pre class="sourceCode dart"><code class="sourceCode dart"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>Container(</span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>    color<span class="op">:</span> Colors<span class="op">.</span>yellow<span class="op">,</span></span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>    alignment<span class="op">:</span> Alignment(<span class="dv">0</span><span class="op">,</span> <span class="dv">0</span>)<span class="op">,</span></span>
+<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a>    child<span class="op">:</span> Stack(</span>
+<span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a>        children<span class="op">:</span> [</span>
+<span id="cb45-6"><a href="#cb45-6" aria-hidden="true" tabindex="-1"></a>            Container(child<span class="op">:</span> Icon(Icons<span class="op">.</span>add<span class="op">,</span> size<span class="op">:</span> <span class="dv">80</span>)<span class="op">,</span>color<span class="op">:</span> Colors<span class="op">.</span>red)<span class="op">,</span></span>
+<span id="cb45-7"><a href="#cb45-7" aria-hidden="true" tabindex="-1"></a>            Positioned(</span>
+<span id="cb45-8"><a href="#cb45-8" aria-hidden="true" tabindex="-1"></a>                <span class="co">// 如果Positioned的left和right都设置了，那么child的宽也就定下来的，child内就不用再设置width</span></span>
+<span id="cb45-9"><a href="#cb45-9" aria-hidden="true" tabindex="-1"></a>                child<span class="op">:</span> Container(child<span class="op">:</span> Icon(Icons<span class="op">.</span>ac_unit<span class="op">,</span> size<span class="op">:</span> <span class="dv">40</span>)<span class="op">,</span>color<span class="op">:</span> Colors<span class="op">.</span>blue)<span class="op">,</span></span>
+<span id="cb45-10"><a href="#cb45-10" aria-hidden="true" tabindex="-1"></a>                right<span class="op">:</span> <span class="dv">5</span><span class="op">,</span></span>
+<span id="cb45-11"><a href="#cb45-11" aria-hidden="true" tabindex="-1"></a>            )<span class="op">,</span></span>
+<span id="cb45-12"><a href="#cb45-12" aria-hidden="true" tabindex="-1"></a>            Positioned(</span>
+<span id="cb45-13"><a href="#cb45-13" aria-hidden="true" tabindex="-1"></a>                child<span class="op">:</span> Container(child<span class="op">:</span> Icon(Icons<span class="op">.</span>access_alarm<span class="op">,</span> size<span class="op">:</span> <span class="dv">20</span>)<span class="op">,</span>color<span class="op">:</span> Colors<span class="op">.</span>white)<span class="op">,</span></span>
+<span id="cb45-14"><a href="#cb45-14" aria-hidden="true" tabindex="-1"></a>                left<span class="op">:</span> <span class="dv">10</span><span class="op">,</span></span>
+<span id="cb45-15"><a href="#cb45-15" aria-hidden="true" tabindex="-1"></a>            )<span class="op">,</span></span>
+<span id="cb45-16"><a href="#cb45-16" aria-hidden="true" tabindex="-1"></a>        ]<span class="op">,</span></span>
+<span id="cb45-17"><a href="#cb45-17" aria-hidden="true" tabindex="-1"></a>    )<span class="op">,</span></span>
+<span id="cb45-18"><a href="#cb45-18" aria-hidden="true" tabindex="-1"></a>);</span></code></pre></div>
+<h3 id="布局宽高比">布局：宽高比</h3>
+<div class="sourceCode" id="cb46"><pre class="sourceCode dart"><code class="sourceCode dart"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>Container(</span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>    color<span class="op">:</span> Colors<span class="op">.</span>yellow<span class="op">,</span></span>
+<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a>    alignment<span class="op">:</span> Alignment(<span class="dv">0</span><span class="op">,</span> <span class="dv">0</span>)<span class="op">,</span></span>
+<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a>    child<span class="op">:</span> Container(</span>
+<span id="cb46-5"><a href="#cb46-5" aria-hidden="true" tabindex="-1"></a>        color<span class="op">:</span> Colors<span class="op">.</span>blue<span class="op">,</span></span>
+<span id="cb46-6"><a href="#cb46-6" aria-hidden="true" tabindex="-1"></a>        height<span class="op">:</span> <span class="dv">150</span><span class="op">,</span><span class="co">// 同时设置宽和高，则AspectRatio无效，只需设置其中一个就行</span></span>
+<span id="cb46-7"><a href="#cb46-7" aria-hidden="true" tabindex="-1"></a>        child<span class="op">:</span> <span class="at">const</span> AspectRatio(aspectRatio<span class="op">:</span> <span class="dv">1</span><span class="op">/</span><span class="dv">2</span>)<span class="op">,</span><span class="co">// 它虽然写在child里，但它设置的是父Widget的宽高比</span></span>
+<span id="cb46-8"><a href="#cb46-8" aria-hidden="true" tabindex="-1"></a>        <span class="co">// 注意，AspectRatio虽然可以写child，但是child的宽、高设置都无效，即使设置了也会占满父Widget，一般不用</span></span>
+<span id="cb46-9"><a href="#cb46-9" aria-hidden="true" tabindex="-1"></a>    )<span class="op">,</span></span>
+<span id="cb46-10"><a href="#cb46-10" aria-hidden="true" tabindex="-1"></a>);</span></code></pre></div>
+<p>关于默认宽高：</p>
+<div class="sourceCode" id="cb47"><pre class="sourceCode dart"><code class="sourceCode dart"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>Container(</span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>    color<span class="op">:</span> Colors<span class="op">.</span>yellow<span class="op">,</span></span>
+<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a>    width<span class="op">:</span> <span class="dv">300</span><span class="op">,</span></span>
+<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a>    height<span class="op">:</span> <span class="dv">300</span><span class="op">,</span></span>
+<span id="cb47-5"><a href="#cb47-5" aria-hidden="true" tabindex="-1"></a>    alignment<span class="op">:</span> Alignment(<span class="dv">0</span><span class="op">,</span> <span class="dv">0</span>)<span class="op">,</span></span>
+<span id="cb47-6"><a href="#cb47-6" aria-hidden="true" tabindex="-1"></a>    child<span class="op">:</span> Container(</span>
+<span id="cb47-7"><a href="#cb47-7" aria-hidden="true" tabindex="-1"></a>        color<span class="op">:</span> Colors<span class="op">.</span>blue<span class="op">,</span></span>
+<span id="cb47-8"><a href="#cb47-8" aria-hidden="true" tabindex="-1"></a>        height<span class="op">:</span> <span class="dv">150</span><span class="op">,</span><span class="co">// 这里只写高度，宽度默认是被拉伸成父Widget的宽度的；若宽高都不写，就会占满父部件</span></span>
+<span id="cb47-9"><a href="#cb47-9" aria-hidden="true" tabindex="-1"></a>    )<span class="op">,</span></span>
+<span id="cb47-10"><a href="#cb47-10" aria-hidden="true" tabindex="-1"></a>);</span></code></pre></div>
+<h2 id="widget状态管理">Widget状态管理</h2>
+<p><code>StatefulWidget</code>的思路是渲染逻辑和数据逻辑分开：</p>
+<div class="sourceCode" id="cb48"><pre class="sourceCode dart"><code class="sourceCode dart"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="co">// StatefulWidget就是重写函数返回状态管理者</span></span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> StateManagerDemo <span class="kw">extends</span> StatefulWidget<span class="op">{</span></span>
+<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">@override</span></span>
+<span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a>    State<span class="op">&lt;</span>StatefulWidget<span class="op">&gt;</span> createState() <span class="op">=&gt;</span> _MyState();</span>
+<span id="cb48-5"><a href="#cb48-5" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb48-6"><a href="#cb48-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-7"><a href="#cb48-7" aria-hidden="true" tabindex="-1"></a><span class="co">// 要使用有状态的Widget，需要一个状态管理者，该类用来在更新数据后刷新界面</span></span>
+<span id="cb48-8"><a href="#cb48-8" aria-hidden="true" tabindex="-1"></a><span class="co">// 在State中，要访问Widget的属性，可以用widget.xxx</span></span>
+<span id="cb48-9"><a href="#cb48-9" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> _MyState <span class="kw">extends</span> State<span class="op">&lt;</span>StateManagerDemo<span class="op">&gt;{</span></span>
+<span id="cb48-10"><a href="#cb48-10" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> count <span class="op">=</span> <span class="dv">0</span>;</span>
+<span id="cb48-11"><a href="#cb48-11" aria-hidden="true" tabindex="-1"></a>    _currentIndex <span class="op">=</span> <span class="dv">0</span>;</span>
+<span id="cb48-12"><a href="#cb48-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-13"><a href="#cb48-13" aria-hidden="true" tabindex="-1"></a>    <span class="kw">@override</span></span>
+<span id="cb48-14"><a href="#cb48-14" aria-hidden="true" tabindex="-1"></a>    Widget build(BuildContext context)<span class="op">{</span></span>
+<span id="cb48-15"><a href="#cb48-15" aria-hidden="true" tabindex="-1"></a>        <span class="kw">return</span> MaterialApp(</span>
+<span id="cb48-16"><a href="#cb48-16" aria-hidden="true" tabindex="-1"></a>            debugShowCheckedModeBanner<span class="op">:</span> <span class="cn">false</span><span class="op">,</span></span>
+<span id="cb48-17"><a href="#cb48-17" aria-hidden="true" tabindex="-1"></a>            home<span class="op">:</span> Scaffold(</span>
+<span id="cb48-18"><a href="#cb48-18" aria-hidden="true" tabindex="-1"></a>                backgroundColor<span class="op">:</span> Colors<span class="op">.</span>grey[<span class="dv">100</span>]<span class="op">,</span></span>
+<span id="cb48-19"><a href="#cb48-19" aria-hidden="true" tabindex="-1"></a>                appBar<span class="op">:</span> AppBar(tittle<span class="op">:</span> <span class="at">const</span> Text(<span class="st">&#39;Demo&#39;</span>))<span class="op">,</span></span>
+<span id="cb48-20"><a href="#cb48-20" aria-hidden="true" tabindex="-1"></a>                body<span class="op">:</span> Center(child<span class="op">:</span> Chip(label<span class="op">:</span> Text(<span class="st">&quot;count: $count&quot;</span>)))<span class="op">,</span></span>
+<span id="cb48-21"><a href="#cb48-21" aria-hidden="true" tabindex="-1"></a>                floatingActionButton<span class="op">:</span> FloatingActionButton(</span>
+<span id="cb48-22"><a href="#cb48-22" aria-hidden="true" tabindex="-1"></a>                    child<span class="op">:</span> <span class="at">const</span> Icon(Icons<span class="op">.</span>add)<span class="op">,</span></span>
+<span id="cb48-23"><a href="#cb48-23" aria-hidden="true" tabindex="-1"></a>                    onPressed<span class="op">:</span> ()<span class="op">{</span><span class="co">// 匿名函数写法</span></span>
+<span id="cb48-24"><a href="#cb48-24" aria-hidden="true" tabindex="-1"></a>                        <span class="co">// setState传入一个函数，用来改变数据，这样界面才能随数据改变实时刷新</span></span>
+<span id="cb48-25"><a href="#cb48-25" aria-hidden="true" tabindex="-1"></a>                        <span class="co">// 每调一次setState相当于build了一次，但由于Flutter是增量渲染的，只会重新创建改了数据的部分</span></span>
+<span id="cb48-26"><a href="#cb48-26" aria-hidden="true" tabindex="-1"></a>                        setState(()<span class="op">{</span></span>
+<span id="cb48-27"><a href="#cb48-27" aria-hidden="true" tabindex="-1"></a>                            count <span class="op">+=</span> <span class="dv">1</span>;</span>
+<span id="cb48-28"><a href="#cb48-28" aria-hidden="true" tabindex="-1"></a>                        <span class="op">}</span>);</span>
+<span id="cb48-29"><a href="#cb48-29" aria-hidden="true" tabindex="-1"></a>                        print(<span class="st">&quot;count = $count&quot;</span>);</span>
+<span id="cb48-30"><a href="#cb48-30" aria-hidden="true" tabindex="-1"></a>                    <span class="op">},</span></span>
+<span id="cb48-31"><a href="#cb48-31" aria-hidden="true" tabindex="-1"></a>                )<span class="op">,</span></span>
+<span id="cb48-32"><a href="#cb48-32" aria-hidden="true" tabindex="-1"></a>                bottomNavigationBar<span class="op">:</span> BottomNavigationBar(</span>
+<span id="cb48-33"><a href="#cb48-33" aria-hidden="true" tabindex="-1"></a>                    onTap<span class="op">:</span> (index)<span class="op">{</span></span>
+<span id="cb48-34"><a href="#cb48-34" aria-hidden="true" tabindex="-1"></a>                        setState(()<span class="op">{</span></span>
+<span id="cb48-35"><a href="#cb48-35" aria-hidden="true" tabindex="-1"></a>                            _currentIndex <span class="op">=</span> index;</span>
+<span id="cb48-36"><a href="#cb48-36" aria-hidden="true" tabindex="-1"></a>                        <span class="op">}</span>);</span>
+<span id="cb48-37"><a href="#cb48-37" aria-hidden="true" tabindex="-1"></a>                    <span class="op">},</span></span>
+<span id="cb48-38"><a href="#cb48-38" aria-hidden="true" tabindex="-1"></a>                    type<span class="op">:</span> BottomNavigationBarType<span class="op">.</span>fixed<span class="op">,</span></span>
+<span id="cb48-39"><a href="#cb48-39" aria-hidden="true" tabindex="-1"></a>                    fixedColor<span class="op">:</span> Colors<span class="op">.</span>green<span class="op">,</span></span>
+<span id="cb48-40"><a href="#cb48-40" aria-hidden="true" tabindex="-1"></a>                    currentIndex<span class="op">:</span> _currentIndex<span class="op">,</span></span>
+<span id="cb48-41"><a href="#cb48-41" aria-hidden="true" tabindex="-1"></a>                    item<span class="op">:</span> <span class="at">const</span> [</span>
+<span id="cb48-42"><a href="#cb48-42" aria-hidden="true" tabindex="-1"></a>                        BottomNavigationBarItem(icon<span class="op">:</span> Icon(AssetImage(<span class="st">&#39;images/1.png&#39;</span>))<span class="op">,</span> label<span class="op">:</span> <span class="st">&#39;首页&#39;</span>)<span class="op">,</span></span>
+<span id="cb48-43"><a href="#cb48-43" aria-hidden="true" tabindex="-1"></a>                        BottomNavigationBarItem(icon<span class="op">:</span> Icon(AssetImage(<span class="st">&#39;images/2.png&#39;</span>))<span class="op">,</span> label<span class="op">:</span> <span class="st">&#39;发现&#39;</span>)<span class="op">,</span></span>
+<span id="cb48-44"><a href="#cb48-44" aria-hidden="true" tabindex="-1"></a>                    ]<span class="op">,</span></span>
+<span id="cb48-45"><a href="#cb48-45" aria-hidden="true" tabindex="-1"></a>                )<span class="op">,</span></span>
+<span id="cb48-46"><a href="#cb48-46" aria-hidden="true" tabindex="-1"></a>            )<span class="op">,</span></span>
+<span id="cb48-47"><a href="#cb48-47" aria-hidden="true" tabindex="-1"></a>        );</span>
+<span id="cb48-48"><a href="#cb48-48" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb48-49"><a href="#cb48-49" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<h2 id="key的作用">Key的作用</h2>
+<p>前面一直没有重写Widget的构造函数，实际上Widget的构造函数是可以传入key的，关于Widget的key的作用：</p>
+<p>我们定义一个<code>Stateless</code>的Widget，指定宽高并赋予随机颜色，</p>
+<div class="sourceCode" id="cb49"><pre class="sourceCode dart"><code class="sourceCode dart"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> MyStatelessContainer <span class="kw">extends</span> StatelessWidget <span class="op">{</span></span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">final</span> Color color <span class="op">=</span> RandomColor()<span class="op">.</span>randomColor();</span>
+<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">@override</span></span>
+<span id="cb49-5"><a href="#cb49-5" aria-hidden="true" tabindex="-1"></a>    Widget build(BuildContext context) <span class="op">{</span></span>
+<span id="cb49-6"><a href="#cb49-6" aria-hidden="true" tabindex="-1"></a>        <span class="kw">return</span> Container(width<span class="op">:</span> <span class="dv">100</span><span class="op">,</span> height<span class="op">:</span> <span class="dv">100</span><span class="op">,</span> color<span class="op">:</span> color);</span>
+<span id="cb49-7"><a href="#cb49-7" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb49-8"><a href="#cb49-8" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p>然后在界面上显示两个上述定义的Widget，并在点击按钮时交换两者的位置，</p>
+<div class="sourceCode" id="cb50"><pre class="sourceCode dart"><code class="sourceCode dart"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> MyScreen <span class="kw">extends</span> StatefulWidget <span class="op">{</span></span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">@override</span></span>
+<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a>    _MyScreenState createState() <span class="op">=&gt;</span> _MyScreenState();</span>
+<span id="cb50-4"><a href="#cb50-4" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb50-5"><a href="#cb50-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-6"><a href="#cb50-6" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> _MyScreenState <span class="kw">extends</span> State<span class="op">&lt;</span>Screen<span class="op">&gt;</span> <span class="op">{</span></span>
+<span id="cb50-7"><a href="#cb50-7" aria-hidden="true" tabindex="-1"></a>    <span class="dt">List</span><span class="op">&lt;</span>Widget<span class="op">&gt;</span> widgets <span class="op">=</span> [MyStatelessContainer()<span class="op">,</span> MyStatelessContainer()];</span>
+<span id="cb50-8"><a href="#cb50-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-9"><a href="#cb50-9" aria-hidden="true" tabindex="-1"></a>    <span class="kw">@override</span></span>
+<span id="cb50-10"><a href="#cb50-10" aria-hidden="true" tabindex="-1"></a>    Widget build(BuildContext context) <span class="op">{</span></span>
+<span id="cb50-11"><a href="#cb50-11" aria-hidden="true" tabindex="-1"></a>        <span class="kw">return</span> Scaffold(</span>
+<span id="cb50-12"><a href="#cb50-12" aria-hidden="true" tabindex="-1"></a>            body<span class="op">:</span> Center(</span>
+<span id="cb50-13"><a href="#cb50-13" aria-hidden="true" tabindex="-1"></a>                child<span class="op">:</span> Row(</span>
+<span id="cb50-14"><a href="#cb50-14" aria-hidden="true" tabindex="-1"></a>                    mainAxisAlignment<span class="op">:</span> MainAxisAlignment<span class="op">.</span>center<span class="op">,</span></span>
+<span id="cb50-15"><a href="#cb50-15" aria-hidden="true" tabindex="-1"></a>                    children<span class="op">:</span> widgets</span>
+<span id="cb50-16"><a href="#cb50-16" aria-hidden="true" tabindex="-1"></a>                )</span>
+<span id="cb50-17"><a href="#cb50-17" aria-hidden="true" tabindex="-1"></a>            )<span class="op">,</span></span>
+<span id="cb50-18"><a href="#cb50-18" aria-hidden="true" tabindex="-1"></a>            floatingActionButton<span class="op">:</span> FloatingActionButton(</span>
+<span id="cb50-19"><a href="#cb50-19" aria-hidden="true" tabindex="-1"></a>                onPressed<span class="op">:</span> switchWidget<span class="op">,</span></span>
+<span id="cb50-20"><a href="#cb50-20" aria-hidden="true" tabindex="-1"></a>                child<span class="op">:</span> Icon(Icons<span class="op">.</span>undo)<span class="op">,</span></span>
+<span id="cb50-21"><a href="#cb50-21" aria-hidden="true" tabindex="-1"></a>            )<span class="op">,</span></span>
+<span id="cb50-22"><a href="#cb50-22" aria-hidden="true" tabindex="-1"></a>        );</span>
+<span id="cb50-23"><a href="#cb50-23" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb50-24"><a href="#cb50-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-25"><a href="#cb50-25" aria-hidden="true" tabindex="-1"></a>    switchWidget()<span class="op">{</span></span>
+<span id="cb50-26"><a href="#cb50-26" aria-hidden="true" tabindex="-1"></a>        setState(() <span class="op">{</span></span>
+<span id="cb50-27"><a href="#cb50-27" aria-hidden="true" tabindex="-1"></a>            widgets<span class="op">.</span>insert(<span class="dv">0</span><span class="op">,</span> widgets<span class="op">.</span>removeAt(<span class="dv">1</span>));</span>
+<span id="cb50-28"><a href="#cb50-28" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span>);</span>
+<span id="cb50-29"><a href="#cb50-29" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb50-30"><a href="#cb50-30" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p>目前程序可以正常运行，但是如果把<code>MyStatelessContainer</code>换成<code>Stateful</code>，</p>
+<div class="sourceCode" id="cb51"><pre class="sourceCode dart"><code class="sourceCode dart"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> MyStatefulContainer <span class="kw">extends</span> StatefulWidget <span class="op">{</span></span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>    MyStatefulContainer(<span class="op">{</span>Key key<span class="op">}</span>) <span class="op">:</span> <span class="kw">super</span>(key<span class="op">:</span> key);</span>
+<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-4"><a href="#cb51-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">@override</span></span>
+<span id="cb51-5"><a href="#cb51-5" aria-hidden="true" tabindex="-1"></a>    _MyStatefulContainerState createState() <span class="op">=&gt;</span> _MyStatefulContainerState();</span>
+<span id="cb51-6"><a href="#cb51-6" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb51-7"><a href="#cb51-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-8"><a href="#cb51-8" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> _MyStatefulContainerState <span class="kw">extends</span> State<span class="op">&lt;</span>MyStatefulContainer<span class="op">&gt;</span> <span class="op">{</span></span>
+<span id="cb51-9"><a href="#cb51-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">final</span> Color color <span class="op">=</span> RandomColor()<span class="op">.</span>randomColor();</span>
+<span id="cb51-10"><a href="#cb51-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-11"><a href="#cb51-11" aria-hidden="true" tabindex="-1"></a>    <span class="kw">@override</span></span>
+<span id="cb51-12"><a href="#cb51-12" aria-hidden="true" tabindex="-1"></a>    Widget build(BuildContext context) <span class="op">{</span></span>
+<span id="cb51-13"><a href="#cb51-13" aria-hidden="true" tabindex="-1"></a>        <span class="kw">return</span> Container(width<span class="op">:</span> <span class="dv">100</span><span class="op">,</span> height<span class="op">:</span> <span class="dv">100</span><span class="op">,</span> color<span class="op">:</span> color);</span>
+<span id="cb51-14"><a href="#cb51-14" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb51-15"><a href="#cb51-15" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p>这时无论怎么点击，都无法交换两者的位置了。但是如果把<code>color</code>放在<code>StatefulWidget</code>中，又变得可以正常交换位置了。</p>
+<p><strong>原理</strong>：</p>
+<p>Flutter渲染底层是树形结构，其中<code>Element树</code>是根据<code>Widget树</code>自动生成的，它俩是一一对应的，此外还有<code>Render树</code>：</p>
+<ul>
+<li><code>Widget</code>是最轻量的，只存储组件的配置信息，它不可修改，要更改只能重建；</li>
+<li><code>Element</code>是真正使用的对象，它可以被修改；</li>
+<li>而<code>RenderObject</code>才是真正负责UI渲染的；</li>
+</ul>
+<p>因此<code>Element</code>和<code>RenderObject</code>的重建非常消耗资源，只会在有必要的情况下才会重建。</p>
+<p>当我们调用<code>setState</code>时，Flutter就会根据各个Widget节点是否有更改，去决定是否需要重建对应的Element节点，这个判断的函数就是<code>canUpdate</code>，它主要判断新Widget的<code>runTimeType</code>以及<code>key</code>是否和旧Widget相同：</p>
+<ul>
+<li>只要<code>runTimeType</code>不同，就说明组件的类型发生了改变，Element也就无法复用，会调用Widget的<code>build</code>方法重建Element；</li>
+<li><code>key</code>没有设置或相同的情况下，若<code>runTimeType</code>相同，说明只是组件的配置发生了改变，这时可以复用Element，只需修改Element对应RenderObject中的配置信息即可；</li>
+<li><code>key</code>是用来唯一标识Widget的，若<code>key</code>不同，说明新Widget和旧Widget不一致，此时对应位置的Element不会立刻被销毁，而是会根据由它创建的RenderObject中的旧Widget，在<strong>同级目录</strong>下逐个查找：
+<ul>
+<li>如果能找到和旧Widget一致的新Widget（包括<code>runTimeType</code>和<code>key</code>都要一样），则会重新建立Element和新Widget的对应关系；</li>
+<li>如果没能找到一致的新Widget，则Element就会被销毁，再用新Widget的<code>build</code>方法重新创建Element，而Element一旦被销毁，那么其中保存的<code>state</code>也会丢失，对应的旧的RenderObject也会被销毁；</li>
+</ul></li>
+</ul>
+<p>不难看出，key只在<code>StatefulWidget</code>的情况下有用，而<code>StatelessWidget</code>是不需要key的。</p>
+<p><strong>解析</strong>：</p>
+<p>在<code>Stateless</code>的情况下，我们互换的是Widget，而<code>color</code>写在了Widget里，因此MyStatefulContainer所渲染的颜色也会发生改变。</p>
+<p>在<code>Stateful</code>的情况下，由于<code>state</code>是由<code>Element</code>管理的，而我们把<code>color</code>放在了<code>State</code>中，我们互换的是Widget，此时调用<code>setState</code>，会发现两个MyStatefulContainer的类型是一致的，且没有设置key，因此会复用Element，而Element没有发生互换，则其中存储<code>color</code>的<code>state</code>也就没有发生互换，因此颜色没有改变。</p>
+<p><strong>解决方法</strong>：</p>
+<p>如果想在<code>State</code>中定义变量，且希望仍能正常刷新，只需要在构造的时候加上key：</p>
+<div class="sourceCode" id="cb52"><pre class="sourceCode dart"><code class="sourceCode dart"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> _MyScreenState <span class="kw">extends</span> State<span class="op">&lt;</span>Screen<span class="op">&gt;</span> <span class="op">{</span></span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">List</span><span class="op">&lt;</span>Widget<span class="op">&gt;</span> widgets <span class="op">=</span> [</span>
+<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a>    StatefulContainer(key<span class="op">:</span> ValueKey(<span class="st">&#39;111&#39;</span>))<span class="op">,</span></span>
+<span id="cb52-4"><a href="#cb52-4" aria-hidden="true" tabindex="-1"></a>    StatefulContainer(key<span class="op">:</span> ValueKey(<span class="st">&#39;222&#39;</span>))<span class="op">,</span></span>
+<span id="cb52-5"><a href="#cb52-5" aria-hidden="true" tabindex="-1"></a>  ];</span>
+<span id="cb52-6"><a href="#cb52-6" aria-hidden="true" tabindex="-1"></a><span class="op">...</span></span></code></pre></div>
+<p>加上key之后，Widget和Element就有了对应关系，如果一方的key没有对应就会重新在<strong>同层级</strong>下寻找，如果找不到，最终这个Widget或Element就会被删除。</p>
+<p>key分为两种：</p>
+<ul>
+<li>局部key（LocalKey），常用的有
+<ul>
+<li><code>ValueKey(&#39;xxx&#39;)</code>，使用任何东西做key都可以，如果使用自定义的对象，且该对象重写了<code>operator ==</code>方法以及<code>hashCode</code>方法，则会按照重写后的结果判断key是否一致；</li>
+<li>`<code>ObjectKey(Object)</code>，无论是否重写<code>==</code>运算符，只要是两个不同的对象（内存地址不一样），就会被视为不同的Key；</li>
+<li><code>UniqueKey()</code>，它每次调用都会生成一个新的值，因此每次刷新界面的时候，旧Widget的key总是无法找到新Widget的key与之对应，因此状态会一直丢失，这个多用于要强制刷新的动画，比如AnimatedSwitcher；</li>
+</ul></li>
+<li>全局key：
+<ul>
+<li><code>GlobalObjectKey(Object)</code>，和<code>ObjectKey</code>一样；</li>
+<li><code>GlobalKey()</code>，是全局唯一的键，用途有：
+<ul>
+<li>获取配置、状态以及组件位置尺寸等信息，比如<code>final GlobalKey&lt;_CounterState&gt; _globalKey = GlobalKey()</code>，且某个组件设置了<code>key: _globalKey</code>，则<code>_globalKey.currentWidget</code>可以获取当前组件的配置信息；</li>
+<li>实现控件的局部刷新；</li>
+</ul></li>
+</ul></li>
+</ul>
+</body>
+</html>

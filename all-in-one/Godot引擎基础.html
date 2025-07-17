@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang xml:lang>
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Godot引擎基础</title>
+  <style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+
+ul.task-list[class]{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+font-size: inherit;
+width: 0.8em;
+margin: 0 0.8em 0.2em -1.6em;
+vertical-align: middle;
+}
+.display.math{display: block; text-align: center; margin: 0.5rem auto;}
+
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+{ counter-reset: source-line 0; }
+pre.numberSource code > span
+{ position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+{ content: counter(source-line);
+position: relative; left: -1em; text-align: right; vertical-align: baseline;
+border: none; display: inline-block;
+-webkit-touch-callout: none; -webkit-user-select: none;
+-khtml-user-select: none; -moz-user-select: none;
+-ms-user-select: none; user-select: none;
+padding: 0 4px; width: 4em;
+color: #aaaaaa;
+}
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa; padding-left: 4px; }
+div.sourceCode
+{ }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } 
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.at { color: #7d9029; } 
+code span.bn { color: #40a070; } 
+code span.bu { color: #008000; } 
+code span.cf { color: #007020; font-weight: bold; } 
+code span.ch { color: #4070a0; } 
+code span.cn { color: #880000; } 
+code span.co { color: #60a0b0; font-style: italic; } 
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.do { color: #ba2121; font-style: italic; } 
+code span.dt { color: #902000; } 
+code span.dv { color: #40a070; } 
+code span.er { color: #ff0000; font-weight: bold; } 
+code span.ex { } 
+code span.fl { color: #40a070; } 
+code span.fu { color: #06287e; } 
+code span.im { color: #008000; font-weight: bold; } 
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.kw { color: #007020; font-weight: bold; } 
+code span.op { color: #666666; } 
+code span.ot { color: #007020; } 
+code span.pp { color: #bc7a00; } 
+code span.sc { color: #4070a0; } 
+code span.ss { color: #bb6688; } 
+code span.st { color: #4070a0; } 
+code span.va { color: #19177c; } 
+code span.vs { color: #4070a0; } 
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } 
+</style>
+  <style type="text/css">html {scroll-behavior: smooth;}body {font-size: 1rem;line-height: 1.6;tab-size: 4;color: rgb(51, 51, 51);font-family: Microsoft YaHei,"Open Sans","Clear Sans", "Helvetica Neue", Helvetica, Arial, 'Segoe UI Emoji', sans-serif;-webkit-font-smoothing: antialiased;position: relative;top: 0;left: 300px;width: calc(90% - 300px);padding: 2em 5%;}h1,h2,h3,h4,h5,h6 {position: relative;margin-top: 1rem;margin-bottom: 1rem;padding-bottom: 0;font-weight: bold;line-height: 1.4;cursor: text;}h1 {font-size: 2.25em;line-height: 1.2;border-bottom: 1px solid #eee;}h2 {font-size: 1.75em;line-height: 1.225;border-bottom: 1px solid #eee;}h3 {font-size: 1.5em;line-height: 1.43;}h4 {font-size: 1.25em;}h5 {font-size: 1em;}h6 {font-size: 1em;color: #777;}p,blockquote{ margin: 0.8em 0 !important; }ul,ol,dl,table{margin: 0.8em 0;}li>ol,li>ul {margin: 0 0;}a {color: #4183C4;text-decoration: none;}hr {height: 2px;padding: 0;margin: 16px 0;background-color: #e7e7e7;border: 0 none;overflow: hidden;box-sizing: content-box;}li p.first {display: inline-block;}ul,ol {padding-left: 20px;}ul:first-child,ol:first-child {margin-top: 0;}ul:last-child,ol:last-child {margin-bottom: 0;}blockquote {border-left: 4px solid #dfe2e5 !important;padding: 0 15px;color: #777777 !important;background-color: #ffffff !important;}blockquote blockquote {padding-right: 0;}table {padding: 0;word-break: initial;border-collapse: collapse;}table tr {border: 1px solid #dfe2e5;margin: 0;padding: 0;}table tr:nth-child(2n),thead {background-color: #f8f8f8;}table th {font-weight: normal;text-align: unset;border-bottom: 0;border: 1px solid #dfe2e5;margin: 0;padding: 6px 13px;}table td {border: 1px solid #dfe2e5;margin: 0;padding: 6px 13px;}table th:first-child,table td:first-child {margin-top: 0;}table th:last-child,table td:last-child {margin-bottom: 0;}tt {border: 1px solid #e7eaed;background-color: #f8f8f8;border-radius: 3px;padding: 2px 4px 0px 4px;font-size: 0.9em;}code {border: 1px solid #e7eaed;background-color: #f3f4f4;border-radius: 3px;padding: 0 2px 0 2px;font-size: 0.9em;}img {width: 50%;height: 50%;display: block;vertical-align: middle;image-orientation: from-image;margin: auto;}figcaption {text-align: center;}pre>code{counter-reset: linenumber;display: block;white-space: pre;overflow: auto !important;padding: 0.2em;border-radius: 7px;}pre>code>span {counter-increment: linenumber;display: inline-block;line-height: 1.25em !important;}pre>code>span::before {content: counter(linenumber);display: inline-block;font-size: 0.9em;color: #999;min-width: 1.8em;margin-right: 0.5em;padding-right: 0.25em;text-align: right;border-right: 1px solid #999;line-height: 1.9em;user-select: none;pointer-events: none;}#TOC {font-size: 0.8rem;position: fixed;top: 0;left: 0;width: 300px;height: 100%;padding: 32px 16px 48px 16px !important;box-shadow: 0 0 4px rgba(150,150,150,0.33);box-sizing: border-box;overflow: auto;scrollbar-color: #f5f5f5;scrollbar-width: 1px;}#TOC::-webkit-scrollbar{width: 1px;border-right: 1px solid #f5f5f5;}#TOC a{color: #333333;text-decoration: none;}#TOC a:hover{color: #333333 !important;text-decoration: underline !important;}#TOC ul { list-style: none; }#TOC li { margin-bottom: 0.25rem; }@media (max-width: 700px) {#TOC { display: none; }body { left: 0px; width: 90%; }}</style>
+  <script type="text/javascript">
+  window.onload = function(){
+    document.querySelectorAll('a[href^="#"]').forEach(function(item,index,arr){
+        item.addEventListener('click', function(e) {
+            e.preventDefault();
+            const target =  document.getElementById(decodeURI((item.href.substring(item.href.indexOf('#')+1))));
+            if(target == null) { return; }
+            target.scrollIntoView({ behavior: 'smooth' });
+        });
+    })
+    const toc_a = document.querySelectorAll('#TOC a');
+    function updateTOC(){
+      const scrollPosition = window.scrollY;
+      let highlightTarget;
+      for(let i=toc_a.length-1; i>=0; i--){
+        const target = document.getElementById(decodeURI((toc_a[i].href.substring(toc_a[i].href.indexOf('#')+1))));
+        if(target == null) { continue; }
+        const ItemPosition = target.offsetTop;
+        if (scrollPosition > ItemPosition && typeof(highlightTarget) == "undefined") {
+          highlightTarget = toc_a[i];
+        } else if(typeof(highlightTarget) == "undefined" && i == 0) {
+          highlightTarget = toc_a[0];
+        }
+      }
+      toc_a.forEach( item => {
+        item.style.fontWeight = "";
+      });
+      if(typeof(highlightTarget) == "undefined") { return; }
+      highlightTarget.style.fontWeight = "bold";
+    }
+    let timer = null;
+    window.addEventListener('scroll', () => {
+      window.clearTimeout(timer);
+      timer = window.setTimeout(() => { updateTOC() }, 200);
+    });
+  };
+  </script>
+  <base target="_blank">
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Godot引擎基础</h1>
+</header>
+<nav id="TOC" role="doc-toc">
+<ul>
+<li><a href="#变量" id="toc-变量">变量</a></li>
+<li><a href="#函数" id="toc-函数">函数</a></li>
+<li><a href="#ifwhile与for" id="toc-ifwhile与for">if、while与for</a></li>
+<li><a href="#单例" id="toc-单例">单例</a></li>
+<li><a href="#node与场景" id="toc-node与场景">Node与场景</a></li>
+<li><a href="#mainloop与scenetree" id="toc-mainloop与scenetree">MainLoop与SceneTree</a></li>
+<li><a href="#信号与await" id="toc-信号与await">信号与await</a></li>
+<li><a href="#类与继承" id="toc-类与继承">类与继承</a></li>
+<li><a href="#refcounted" id="toc-refcounted">RefCounted</a></li>
+<li><a href="#常用node" id="toc-常用node">常用Node</a>
+<ul>
+<li><a href="#viewport" id="toc-viewport">Viewport</a></li>
+<li><a href="#physicsbody2d和area2d" id="toc-physicsbody2d和area2d">PhysicsBody2D和Area2D</a></li>
+<li><a href="#control" id="toc-control">Control</a></li>
+</ul></li>
+</ul>
+</nav>
+<h2 id="变量">变量</h2>
+<p>变量必须以字母或下划线开头，可以由字母、下划线、数字构成变量名：</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode gdscript"><code class="sourceCode gdscript"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> a <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> b <span class="op">=</span> <span class="st">&quot;Hello&quot;</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 不同类型的变量可以相互赋值</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>b<span class="op">=</span>a</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># 指定变量类型，基本变量类型有int、float、String、bool，指定后相互赋值前需先转换</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> a :int <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> b :float <span class="op">=</span> <span class="fl">2.6</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> c :String <span class="op">=</span> <span class="st">&quot;Hello&quot;</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> d :bool <span class="op">=</span> <span class="va">true</span></span></code></pre></div>
+<p>不同类型变量的转换</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode gdscript"><code class="sourceCode gdscript"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># float转为int会取整数部分</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>a<span class="op">=</span>b</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(a) <span class="co">#输出2</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co"># int或float转为String</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>c<span class="op">=</span>String.<span class="fu">num_int64</span>(a) <span class="co">#1</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>c<span class="op">=</span>String.<span class="fu">num</span>(b) <span class="co">#2.6</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>c<span class="op">=</span>c<span class="op">+</span>c <span class="co">#2.62.6</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="co"># bool不能转为String，非0数字为true，0为false</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>d<span class="op">=</span>a <span class="co">#true</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>d<span class="op">=!</span>a <span class="co">#取反，false</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>d<span class="op">=</span><span class="dv">0</span> <span class="co">#false</span></span></code></pre></div>
+<p>数组</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode gdscript"><code class="sourceCode gdscript"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 数组</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> a :Array <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>, <span class="fl">1.2</span>, <span class="st">&quot;string&quot;</span>, <span class="va">true</span>]</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 指定数组期待的元素类型</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> b :Array[int] <span class="op">=</span> [<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">4</span>]</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co"># 数组下标从0开始</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(b[<span class="dv">1</span>]) <span class="co">#3</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="co"># 增删数组的元素</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>b.<span class="fu">append</span>(<span class="dv">6</span>) <span class="co">#在最后添加6，变为[2, 3, 4, 5, 4, 6]</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>b.<span class="fu">erase</span>(<span class="dv">4</span>) <span class="co">#删除数组中出现的第一个的4，变为[2, 3, 5, 4, 6]</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(b) <span class="co">#打印数组</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(b.<span class="fu">size</span>()) <span class="co">#打印数组的元素个数，输出5</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a><span class="co"># 数组是引用类型</span></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> c :Array[int] <span class="op">=</span> [<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>]</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> d <span class="op">=</span> c</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>d.<span class="fu">append</span>(<span class="dv">4</span>)</span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(c) <span class="co">#[2, 3, 4, 5, 6, 4]</span></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(d) <span class="co">#[2, 3, 4, 5, 6, 4]</span></span></code></pre></div>
+<p>字典</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode gdscript"><code class="sourceCode gdscript"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> dict <span class="op">=</span> {<span class="st">&quot;a&quot;</span>: <span class="dv">0</span>, <span class="st">&quot;b&quot;</span>: <span class="dv">1</span>, <span class="st">&quot;c&quot;</span>: <span class="dv">2</span>}</span></code></pre></div>
+<h2 id="函数">函数</h2>
+<p>函数块通过<code>Tab</code>缩进识别，有<code>Tab</code>的是函数的作用域，无<code>Tab</code>的是当前节点公用的作用域；各个函数都有一个独立的作用域，在一个函数内部定义的变量无法在另一个函数中直接访问变量名。函数运行结束后基本变量会自动销毁，引用类型的变量在被外部引用时函数运行结束后不会自动销毁。</p>
+<p>空函数体要加<code>pass</code>，注意<code>pass</code>要缩进。非空的函数体也可以添加<code>pass</code>，只是没有任何作用。</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode gdscript"><code class="sourceCode gdscript"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># _enter_tree 是内置虚函数</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="kw">func</span> <span class="bu">_enter_tree</span>():</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> d <span class="op">=</span> <span class="fu">add</span>(<span class="dv">2</span>,<span class="dv">3</span>)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(d) <span class="co">#5</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> e <span class="op">=</span> <span class="fu">add</span>(<span class="dv">1</span>)</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(e) <span class="co">#11</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> f <span class="op">=</span> <span class="fu">add2</span>(<span class="fl">3.5</span>, <span class="dv">4</span>)</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(f) <span class="co">#7</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="co"># 指定参数类型，默认参数</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="kw">func</span> <span class="fu">add</span>(a:int, b:int<span class="op">=</span><span class="dv">10</span>):</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> c<span class="op">=</span>a<span class="op">+</span>b</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a><span class="co"># 让返回值转为int</span></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a><span class="kw">func</span> <span class="fu">add2</span>(a,b)<span class="op">-&gt;</span>int:</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> c<span class="op">=</span>a<span class="op">+</span>b</span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span></span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a><span class="kw">func</span> <span class="fu">test</span>()</span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>    <span class="cf">pass</span></span></code></pre></div>
+<p><strong>内置虚函数</strong></p>
+<p>内置虚函数是指没有实际处理流程的函数，节点内的虚函数会在特定的条件下自动被触发，类似安卓的生命周期函数。</p>
+<p>常用的虚函数有：</p>
+<ul>
+<li><code>_init()</code>：节点被创建时触发；</li>
+<li><code>_ready()</code>：节点的全部子节点加入场景树后触发；</li>
+<li><code>_process(delta)</code>：画面刷新时触发，即每逻辑帧触发一次；</li>
+<li><code>_physic_process(delta)</code>：物理引擎刷新时触发；</li>
+</ul>
+<h2 id="ifwhile与for">if、while与for</h2>
+<p><strong>if</strong></p>
+<p>每个<code>if</code>、<code>elif</code>、<code>else</code>都有独立的作用域，在其作用域内定义的变量外部的作用域无法访问。<code>while</code>和<code>for</code>同理。</p>
+<p>比较运算符：<code>&gt;</code>、<code>&gt;=</code>、<code>&lt;</code>、<code>&lt;=</code>、<code>==</code>、<code>!=</code></p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode gdscript"><code class="sourceCode gdscript"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> a <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (a<span class="op">!=</span><span class="dv">0</span>):</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">&quot;Hello&quot;</span>)</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> b <span class="op">=</span> <span class="dv">2</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> b<span class="op">&gt;</span><span class="dv">3</span>:</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">&quot;b&gt;3&quot;</span>)</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="cf">elif</span> b<span class="op">&gt;</span><span class="dv">2</span>:</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">&quot;b&gt;2&quot;</span>)</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="cf">elif</span> b<span class="op">&gt;</span><span class="dv">1</span>:</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">&quot;b&gt;1&quot;</span>) <span class="co">#输出</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">&quot;b&lt;=1&quot;</span>)</span></code></pre></div>
+<p>对于浮点数要注意：</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode gdscript"><code class="sourceCode gdscript"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> a <span class="op">=</span> <span class="fl">0.1</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> b <span class="op">=</span> <span class="fl">0.2</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (a<span class="op">+</span>b<span class="op">==</span><span class="fl">0.3</span>):</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">&quot;Hello&quot;</span>) <span class="co">#不会输出</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="co"># 要改为</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="bu">is_equal_approx</span>(a<span class="op">+</span>b, <span class="fl">0.3</span>)):</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">&quot;Hello&quot;</span>) <span class="co">#会输出</span></span></code></pre></div>
+<p>字符串虽然不能转为bool，但是<code>if</code>可以写成如下形式：</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode gdscript"><code class="sourceCode gdscript"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> a:String <span class="op">=</span> <span class="st">&quot;test&quot;</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> a:</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">&quot;Hello&quot;</span>) <span class="co">#会输出</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> b:String <span class="op">=</span> <span class="st">&quot;&quot;</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> b:</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">&quot;Hello&quot;</span>) <span class="co">#空字符串代表false，所以这里不会输出</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> c:String <span class="op">=</span> <span class="st">&quot;123&quot;</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> c<span class="op">==</span><span class="st">&quot;123&quot;</span>:</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">&quot;Hello&quot;</span>) <span class="co">#会输出</span></span></code></pre></div>
+<p><strong>while</strong></p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode gdscript"><code class="sourceCode gdscript"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> a <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> a<span class="op">&lt;</span><span class="dv">10</span>:</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    a<span class="op">+=</span><span class="dv">1</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(a)</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> a <span class="op">==</span> <span class="dv">5</span>:</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>        <span class="cf">break</span></span></code></pre></div>
+<p><strong>for</strong></p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode gdscript"><code class="sourceCode gdscript"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 遍历数组</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> a :Array[int] <span class="op">=</span> [<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>]</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> a:</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(i)</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="co"># 遍历字典</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> dict <span class="op">=</span> {<span class="st">&quot;a&quot;</span>: <span class="dv">0</span>, <span class="st">&quot;b&quot;</span>: <span class="dv">1</span>, <span class="st">&quot;c&quot;</span>: <span class="dv">2</span>}</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> key <span class="kw">in</span> dict:</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(dict[key])</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a><span class="co"># 遍历字符串</span></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> <span class="bu">char</span> <span class="kw">in</span> <span class="st">&quot;Hello&quot;</span>:</span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="bu">char</span>)</span></code></pre></div>
+<h2 id="单例">单例</h2>
+<p>单例是一个可以在任意脚本中对其进行访问的对象，Godot内置了很多单例，主要成员是各类Server；我们也可以自定义单例，但自定义单例必须是节点类型的对象，是开发者自定义的全局对象。每个单例都是独一无二的对象。</p>
+<p><strong>内置单例</strong></p>
+<p>比如<code>Input</code>单例，他可以对玩家的按键进行反馈。游戏中的按键通过如下方法设置：项目-&gt;项目设置-&gt;输入映射-&gt;添加新动作（输入动作名字）-&gt;右侧”+“号-&gt;设置对应键位。然后就可以在代码中通过Input单例来获取：</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode gdscript"><code class="sourceCode gdscript"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">func</span> <span class="bu">_process</span>(delta: float) <span class="op">-&gt;</span> void:</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 比如设置了一个名为&quot;left&quot;的动作，通过Input.get_action_strength可以获取按下对应键的力度，是0-1的值，若是键盘按键则只会是0或者1</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> Input.<span class="fu">get_action_strength</span>(<span class="st">&quot;left&quot;</span>):</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.position.x <span class="op">=</span> <span class="va">self</span>.position.x <span class="op">-</span> <span class="dv">1</span> <span class="co">#其中self可以省略</span></span></code></pre></div>
+<p>再比如<code>ProjectSettings</code>单例，可以使用代码在这个单例中设置项目设置的信息，并保存为<code>project.godot</code>或<code>override.cfg</code>。</p>
+<p><strong>自定义单例</strong></p>
+<p>先新建脚本，然后：项目-&gt;项目设置-&gt;全局（或者叫Autoload）-&gt;路径（选择刚刚创建的脚本）-&gt;修改节点名称-&gt;添加。然后就可以在刚刚创建的脚本中定义函数，并在任意脚本中通过<code>节点名称.函数名</code>调用对应函数。</p>
+<h2 id="node与场景">Node与场景</h2>
+<p>节点(Node)是Godot中最基本最常用的开发组件。</p>
+<p><strong>Node的获取</strong>：</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode gdscript"><code class="sourceCode gdscript"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 比如有一个声音节点名字为audio（双击左侧节点栏中对应的节点可以改名）</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> soud <span class="op">=</span> <span class="fu">get_node</span>(<span class="st">&quot;audio&quot;</span>)</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>soud.<span class="fu">play</span>()</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="co"># get_node()也可以简写为 $节点名称 ，比如这里可以简写为</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="va">$soud</span>.<span class="fu">play</span>()</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a><span class="co"># 获取子节点，比如第2个子节点</span></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a><span class="fu">get_child</span>(<span class="dv">1</span>)</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a><span class="co"># 获取所有直接子节点</span></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a><span class="fu">get_children</span>()</span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a><span class="co"># 获取多级子节点（类似目录的形式）</span></span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a><span class="fu">get_node</span>(<span class="st">&quot;node1/node2&quot;</span>)</span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a><span class="co"># 获取父节点</span></span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a><span class="fu">get_parent</span>()</span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a><span class="fu">get_node</span>(<span class="st">&quot;..&quot;</span>)</span></code></pre></div>
+<p>补充：为节点添加导出属性</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode gdscript"><code class="sourceCode gdscript"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 添加导出属性，在右侧检查器中可以快速调整该属性</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>@export <span class="kw">var</span> x <span class="op">=</span> <span class="dv">5</span></span></code></pre></div>
+<p><strong>场景</strong></p>
+<p>Godot是以场景-&gt;节点管理内容的，每个场景（比如人物场景、地图场景等）下有多个子节点、及子节点的子节点等，要运行脚本，就要为节点附加脚本。场景文件是一组节点的集合，是节点加载和存储的基本单位。Godot通过Server在节点与渲染引擎之间沟通。</p>
+<p>一般来说只会在场景的根节点附加脚本，避免脚本管理混乱。</p>
+<p>加载场景并添加到场景树的代码如下：</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode gdscript"><code class="sourceCode gdscript"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="kw">func</span> <span class="bu">_ready</span>():</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> scene_resource <span class="op">=</span> <span class="bu">load</span>(<span class="st">&quot;res://sprite.tscn&quot;</span>) <span class="co">#加载场景资源</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> root_node <span class="op">=</span> scene_resource.<span class="fu">instantiate</span>() <span class="co">#生成节点集合</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>    <span class="va">self</span>.<span class="fu">add_child</span>(root_node)</span></code></pre></div>
+<p><strong>场景实例化的过程</strong>：①资源文件-&gt;②经过<code>load()</code>转换为资源对象-&gt;③调用<code>instantiate()</code>实例化-&gt;④生成各个节点并调用<code>_init()</code>，此时脚本中定义的函数外部变量也首次出现-&gt;⑤节点建立起位置和父子关系-&gt;⑥经过<code>add_child</code>将节点集合加入场景树⑦从根节点自上而下开始执行<code>_enter_tree()</code>-&gt;⑧自下而上开始执行<code>_ready()</code>-&gt;⑨节点开始受场景树管控.</p>
+<p>也就是说，在执行<code>_init()</code>时，节点间的层级关系还没构建，此时若在<code>_init()</code>中使用<code>get_child()</code>等方法是无法获取到其他节点的。</p>
+<p>在函数外部使用 <code>@onready</code> 来修饰变量，可将变量的赋值拖延到
+<code>_ready()</code> 执行的时刻。</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode gdscript"><code class="sourceCode gdscript"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> a <span class="op">=</span> <span class="fu">get_child</span>(<span class="dv">0</span>)</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>@onready <span class="kw">var</span> b <span class="op">=</span> <span class="fu">get_child</span>(<span class="dv">0</span>)</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="kw">func</span> <span class="bu">_init</span>():</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">&quot;_init-start&quot;</span>)</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="fu">get_child</span>(<span class="dv">0</span>)) <span class="co">#&lt;Object#null&gt;</span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(a) <span class="co">#&lt;Object#null&gt;</span></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(b) <span class="co">#&lt;null&gt;</span></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">&quot;_init-end&quot;</span>)</span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a><span class="kw">func</span> <span class="bu">_ready</span>():</span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">&quot;_ready-start&quot;</span>)</span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="fu">get_child</span>(<span class="dv">0</span>)) <span class="co">#可以获取到对象</span></span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(a) <span class="co">#&lt;Object#null&gt;</span></span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(b) <span class="co">#可以获取到对象</span></span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">&quot;_ready-end&quot;</span>)</span></code></pre></div>
+<p><strong>节点的owner属性</strong>：<code>owner</code>是一个节点类型的变量，用来表示某个节点。在一个场景文件实例化所产生的节点集合中所有节点的<code>owner</code>属性都指向这次实例化生成的根节点。</p>
+<p><strong>使用代码生成场景并设置owner</strong>：</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode gdscript"><code class="sourceCode gdscript"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="kw">extends</span> Node</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="kw">func</span> <span class="bu">_ready</span>():</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> root_node <span class="op">=</span> Node.<span class="fu">new</span>()</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> child_node1 <span class="op">=</span> Node.<span class="fu">new</span>()</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>    root_node.name <span class="op">=</span> <span class="st">&quot;aaa&quot;</span></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>    child_node1.name <span class="op">=</span> <span class="st">&quot;bbb&quot;</span></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>    root_node.<span class="fu">add_child</span>(child_node1)</span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>    <span class="co"># owner指向根节点</span></span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>    child_node1.owner <span class="op">=</span> root_node</span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 使用场景资源对象的相关函数保存场景</span></span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> scene_pack :PackedScene <span class="op">=</span> PackedScene.<span class="fu">new</span>()</span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 打包场景时只打包场景的根节点</span></span>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a>    scene_pack.<span class="fu">pack</span>(root_node)</span>
+<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 使用ResourceSaver单例相关函数导出到项目文件</span></span>
+<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a>    ResourceSaver.<span class="fu">save</span>(scene_pack, <span class="st">&quot;res://aaa.tscn&quot;</span>)</span></code></pre></div>
+<h2 id="mainloop与scenetree">MainLoop与SceneTree</h2>
+<p>场景树(SceneTree)是游戏的管理者，它负责Godot的内置服务器与节点的沟通。内置服务是Godot的各种模块，包括计时系统、物理模拟系统、图像绘制系统等。</p>
+<p>场景树继承自主循环(MainLoop)类，场景树是在主循环的基础上，对节点管理进行了扩写。虽然存在主循环类，但游戏运行时只存在场景树对象。</p>
+<p>程序启动后，程序会创建一个主循环对象（一般是场景树），它包含了初始化、空闲帧同步回调、物理帧同步回调等方法。这个类中不包含节点相关的具体操作。</p>
+<p><strong>物理处理</strong>(Physic
+Process)：Godot游戏程序中会内置一个物理服务器，用于处理游戏世界内的各种物理运算，在每一次物理运算前，这个服务器都会给予主循环一次参与计算的机会，这就是主循环中的物理处理。默认情况下，物理服务器一秒内会进行60次运算，因此主循环中的物理处理也会每秒进行60次处理。</p>
+<p><strong>空闲处理</strong>(Idle
+Process)：在Godot游戏程序相对”空闲”，即某些内置服务器运行结束的时候，执行此处理。引擎会尽可能快的利用空闲时间来绘制新的游戏图像。</p>
+<p>相关函数：</p>
+<ul>
+<li>物理处理对应的虚函数是<code>_physic_process(delta)</code>，其中<code>delta</code>表示距上次物理帧调用的时间；</li>
+<li>空闲处理对应的虚函数是<code>_process(delta)</code>，其中<code>delta</code>表示距上次空闲帧调用的时间；</li>
+<li><code>call(函数名)</code>，立即调用函数；</li>
+<li><code>call_deffer(函数名)</code>，到下个空闲帧调用函数；一般修改界面的代码都要在空闲帧中更新，比如更改焦点、删除场景树下的节点等；</li>
+</ul>
+<p>涉及到删除对象的代码，都必须要在空闲帧中执行。</p>
+<p><strong>场景树的功能</strong></p>
+<p>使用场景树可以命令同组节点调用函数或修改属性：</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode gdscript"><code class="sourceCode gdscript"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 分组的操作</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="va">self</span>.<span class="fu">add_to_group</span>(<span class="st">&quot;group1&quot;</span>)</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="va">self</span>.<span class="fu">remove_from_group</span>(<span class="st">&quot;group1&quot;</span>)</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="va">self</span>.<span class="fu">is_in_group</span>(<span class="st">&quot;group1&quot;</span>)</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="co"># 获取场景树</span></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a><span class="fu">get_tree</span>()</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a><span class="co"># 获取组内的所有节点</span></span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> nodes :Array[Node] <span class="op">=</span> <span class="fu">get_tree</span>().<span class="fu">get_nodes_in_group</span>(<span class="st">&quot;group1&quot;</span>)</span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a><span class="co"># 命令同一组内节点调用函数</span></span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a><span class="fu">get_tree</span>().<span class="fu">call_group</span>(<span class="st">&quot;group1&quot;</span>, <span class="st">&quot;test_func&quot;</span>) <span class="co">#假设分组group1中的节点都有test_func函数</span></span></code></pre></div>
+<p>游戏暂停，当场景树进入暂停后，节点会根据自己的暂停模式来调节自己的状态，并且<code>paused</code>及<code>process_mode</code>满足条件时不再调用<code>_process()</code>、<code>_physic_process</code>、<code>_input()</code>等虚函数：</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode gdscript"><code class="sourceCode gdscript"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 场景树暂停</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">get_tree</span>().paused <span class="op">=</span> <span class="va">true</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 设置当前节点的暂停模式</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="va">self</span>.process_mode <span class="op">=</span> Node.PROCESS_MODE_PAUSABLE</span></code></pre></div>
+<h2 id="信号与await">信号与await</h2>
+<p>使用<code>get_node</code>获取节点后，如果要调用的节点函数不存在，程序会崩溃；而使用信号调用函数，如果双方对象或目标方法不存在，程序只会警告，而不会崩溃。</p>
+<p>信号是指将一个对象的”信号”与另一个对象的”函数”绑定，信号发射后程序会进行函数的调用。这样可以保证每个场景都能单独运行，方便单独测试。信号有内置信号与自定义信号，一个节点所有的信号可以在右侧节点处查看，右键选择信号名可以选择链接并选取要绑定的函数，也可以通过代码去绑定。</p>
+<p>自定义信号（信号的作用域只在对象内部，其他对象无法访问）：</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode gdscript"><code class="sourceCode gdscript"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 定义一个函数</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="kw">func</span> <span class="fu">test_function</span>(p):</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(p)</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a><span class="co"># 定义一个信号</span></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a><span class="kw">signal</span> test_signal</span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a><span class="kw">func</span> <span class="bu">_ready</span>() <span class="op">-&gt;</span> void:</span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 进行绑定，将test_signal信号绑定到当前对象的test_function函数中</span></span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>    <span class="va">self</span>.<span class="bu">connect</span>(<span class="st">&quot;test_signal&quot;</span>, <span class="fu">Callable</span>(<span class="va">self</span>, <span class="st">&quot;test_function&quot;</span>))</span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 发射信号</span></span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">emit_signal</span>(<span class="st">&quot;test_signal&quot;</span>, <span class="st">&quot;Hello world&quot;</span>)</span></code></pre></div>
+<p><code>await</code>可以使某个函数暂停运行，直至接收到了来自某个对象的信号：</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode gdscript"><code class="sourceCode gdscript"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="kw">func</span> <span class="bu">_ready</span>() <span class="op">-&gt;</span> void:</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 暂停2秒</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> time <span class="op">=</span> <span class="fu">get_tree</span>().<span class="fu">create_timer</span>(<span class="dv">2</span>)</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>    await time.timeout</span></code></pre></div>
+<h2 id="类与继承">类与继承</h2>
+<p>我们称拥有自己属性、函数与信号的数据单位为对象，比如节点，它有内置属性、内置函数，也可以通过脚本的形式添加属性或函数。我们可以称具有相同、函数与信号的对象们为一个类。</p>
+<p>继承分为：</p>
+<ul>
+<li>内置继承：Godot中的节点都存在继承关系，<code>Object</code>是所有对象的基类；</li>
+<li>自定义继承：使用 <code>extends 类名或路径</code>
+。类名使用<code>class_name</code>或<code>class</code>关键字指定；</li>
+</ul>
+<p><strong>Object中常用的函数</strong>：</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode gdscript"><code class="sourceCode gdscript"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 初始化的虚函数，当一个对象生成时，此函数会被自动调用</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="kw">func</span> <span class="bu">_init</span>() <span class="op">-&gt;</span> void:</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">pass</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a><span class="co"># 从程序中删除此对象，但不能直接使用</span></span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a><span class="co"># self.free()</span></span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a><span class="co"># 应该改为在空闲帧中删除</span></span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a><span class="va">self</span>.<span class="fu">call_deferred</span>(<span class="st">&quot;free&quot;</span>) <span class="co"># call或call_deferred都是Object的函数</span></span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a><span class="co"># 效果和如下相同，但该函数不是Object的函数</span></span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a><span class="va">self</span>.<span class="fu">queue_free</span>()</span>
+<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a><span class="co"># 接收通知虚函数，比如节点即将被销毁前会调用，此时 what=1</span></span>
+<span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a><span class="kw">func</span> <span class="bu">_notification</span>(what: int) <span class="op">-&gt;</span> void:</span>
+<span id="cb21-16"><a href="#cb21-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> what <span class="op">==</span> <span class="dv">1</span>:</span>
+<span id="cb21-17"><a href="#cb21-17" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">&quot;节点即将被销毁&quot;</span>)</span>
+<span id="cb21-18"><a href="#cb21-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-19"><a href="#cb21-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-20"><a href="#cb21-20" aria-hidden="true" tabindex="-1"></a><span class="co"># 为对象设置脚本，大部分对象都可以设置脚本</span></span>
+<span id="cb21-21"><a href="#cb21-21" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> scr <span class="op">=</span> <span class="bu">load</span>(<span class="st">&quot;res://script.gd&quot;</span>)</span>
+<span id="cb21-22"><a href="#cb21-22" aria-hidden="true" tabindex="-1"></a><span class="va">$node</span>.<span class="fu">set_script</span>(scr)</span>
+<span id="cb21-23"><a href="#cb21-23" aria-hidden="true" tabindex="-1"></a><span class="va">$node</span>.<span class="fu">test</span>() <span class="co">#设置好后就可以调用脚本内的函数了</span></span></code></pre></div>
+<p><strong>继承</strong></p>
+<p>定义一个类：</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode gdscript"><code class="sourceCode gdscript"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class_name</span> A</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="kw">extends</span> Object</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">func</span> <span class="fu">test</span>():</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>        <span class="cf">pass</span></span></code></pre></div>
+<p>另一个类继承：</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode gdscript"><code class="sourceCode gdscript"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># extends &quot;res://A.gd&quot;</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 或者</span></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="kw">extends</span> A</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">func</span> <span class="fu">test</span>():</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">pass</span></span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>    <span class="kw">func</span> <span class="bu">_ready</span>() <span class="op">-&gt;</span> void:</span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>        <span class="co"># 调用自己的函数</span></span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>        <span class="fu">test</span>()</span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>        <span class="co"># 调用父类的函数</span></span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a>        super.<span class="fu">test</span>()</span></code></pre></div>
+<p>创建对应的实例：</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode gdscript"><code class="sourceCode gdscript"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> a :A <span class="op">=</span> A.<span class="fu">new</span>()</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 继承自Object的类的实例就像一个游戏物体，不会自动删除释放，需要手动释放内存</span></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>a.<span class="fu">free</span>()</span></code></pre></div>
+<p><strong>内部类</strong></p>
+<p>我们通过<code>class_name</code>定义的是全局类，全局类在Godot整个项目内都可以通过代码实例化。</p>
+<p>我们可以通过<code>class</code>关键字来定义一个内部类，内部类只有当前脚本才可以实例化。内部类默认继承自Object，也可以通过<code>extends</code>关键字指定要继承自哪个类。内部类的作用域和脚本不同，是两个独立的作用域，因此内部类无法访问脚本中的全局变量。</p>
+<p><strong>静态变量和静态方法</strong></p>
+<p>静态变量是在程序运行期间，保持其存在和值的变量，静态变量用<code>static</code>关键字修饰：</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode gdscript"><code class="sourceCode gdscript"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="kw">static</span> <span class="kw">var</span> a :int <span class="op">=</span> <span class="dv">0</span></span></code></pre></div>
+<p>类似的，有静态方法，静态方法只能访问静态变量。</p>
+<p>我们可以直接通过类名访问静态变量和静态方法：</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode gdscript"><code class="sourceCode gdscript"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="kw">func</span> <span class="bu">_ready</span>() <span class="op">-&gt;</span> void:</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(AAA.name)</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>    AAA.<span class="fu">test_static</span>()</span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> AAA:</span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">extends</span> RefCounted</span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>    <span class="kw">static</span> <span class="kw">var</span> name :String <span class="op">=</span> <span class="st">&quot;name&quot;</span></span>
+<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a>    <span class="kw">static</span> <span class="kw">func</span> <span class="fu">test_static</span>():</span>
+<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">&quot;test&quot;</span>)</span></code></pre></div>
+<h2 id="refcounted">RefCounted</h2>
+<p>一般来说，继承自<code>Object</code>的类要手动删除，否则会一直留在内存里。</p>
+<p><code>RefCounted</code>继承自<code>Object</code>，但它内置了一个独特的引用计数器，当引用计数器归0时，此对象会自动被程序删除。它的优点在于不包含任何内置属性，仅有四个内置函数，也不必像节点那样要频繁地受到场景树的控制参与服务器的计算，相比节点更加轻量，并且还能进行内存的自动管理。</p>
+<p><code>RefCounted</code>对象的生成可以通过 <code>类名.new()</code> 或
+<code>load(&quot;路径&quot;).new()</code> 或 <code>preload(&quot;路径&quot;).new()</code>
+.</p>
+<p>例如，定义一个类继承自<code>RefCounted</code>：</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode gdscript"><code class="sourceCode gdscript"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class_name</span> person</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="kw">extends</span> RefCounted</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> name:String <span class="op">=</span> <span class="st">&quot;&quot;</span></span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> age:int <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a><span class="co"># 通过 _init 的参数，指定 new 时要传入的参数</span></span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a><span class="kw">func</span> <span class="bu">_init</span>(p_name) <span class="op">-&gt;</span> void:</span>
+<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a>    name <span class="op">=</span> p_name</span>
+<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(name <span class="op">+</span> <span class="st">&quot;被初始化&quot;</span>)</span>
+<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-12"><a href="#cb27-12" aria-hidden="true" tabindex="-1"></a><span class="kw">func</span> <span class="fu">one_year_past</span>():</span>
+<span id="cb27-13"><a href="#cb27-13" aria-hidden="true" tabindex="-1"></a>    <span class="va">self</span>.age <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb27-14"><a href="#cb27-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-15"><a href="#cb27-15" aria-hidden="true" tabindex="-1"></a><span class="kw">func</span> <span class="bu">_notification</span>(what: int) <span class="op">-&gt;</span> void:</span>
+<span id="cb27-16"><a href="#cb27-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> what <span class="op">==</span> <span class="dv">1</span> :</span>
+<span id="cb27-17"><a href="#cb27-17" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(name <span class="op">+</span> String.<span class="fu">num_int64</span>(age) <span class="op">+</span> <span class="st">&quot;被销毁&quot;</span>)</span></code></pre></div>
+<p>创建对应的实例：</p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode gdscript"><code class="sourceCode gdscript"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> person1</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="kw">func</span> <span class="bu">_ready</span>() <span class="op">-&gt;</span> void:</span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>    person1 <span class="op">=</span> person.<span class="fu">new</span>(<span class="st">&quot;张三&quot;</span>)</span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 或者</span></span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> person2 <span class="op">=</span> <span class="bu">load</span>(<span class="st">&quot;res://person.gd&quot;</span>).<span class="fu">new</span>(<span class="st">&quot;李四&quot;</span>)</span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a>    person2.<span class="fu">one_year_past</span>()</span></code></pre></div>
+<p>输出结果如下，可以看到，张三并没有被销毁：</p>
+<pre><code>张三被初始化
+李四被初始化
+李四1被销毁</code></pre>
+<p><strong>常用的RefCounted子类</strong>：</p>
+<ul>
+<li>Resource：所有的脚本、图片、音频、视频、3D模型文件等都必须先转为Resource才能被节点等对象使用；</li>
+<li>Astar2D/Astar3D：用于构建寻路数据；</li>
+<li>Thread/Mutex/SemaPhore：用于构建多线程；</li>
+<li>FileAccess/DirAccess：用于加载读取计算机中的文件，还可以使用某些子类进行UDP、TCP或WebSocket的网络通信；</li>
+<li>StreamPeer：可以以字节为单位对网络传输中收发的数据进行处理；</li>
+</ul>
+<p><strong>Resource</strong></p>
+<p>将资源文件转为Resource有几种方法：</p>
+<p>方法一：</p>
+<p>1、将资源文件拖入到项目中；</p>
+<p>2、编辑器对资源文件进行导入，生成特殊文件及其资源文件对应的import文件；</p>
+<p>3、游戏启动后借由import文件加载特殊文件生成资源对象；</p>
+<p>方法二：</p>
+<p>使用 <code>load(&quot;路径&quot;)</code> 或 <code>preload(&quot;路径&quot;)</code>.</p>
+<p>通过这种方法加载的资源，如果加载的文件已经被转化为资源，且此资源引用计数器不为0，则再次加载该文件不会产生新的资源对象，而是返回一个原先资源对象的引用，此时任意一处对该资源的修改，都将影响所有使用此资源的对象。</p>
+<p><code>load</code>和<code>preload</code>的区别：<code>load</code>的参数可以是字符串变量，而<code>preload</code>则无法使用变量。脚本文件转换为脚本资源时，转换程序会自动翻找文件中是否出现了<code>preload</code>函数，若出现，则在脚本资源转换的同时进行<code>preload</code>资源的加载，这时变量还没有出现，因此只能以文本字符串的形式来告知<code>preload</code>加载的内容。</p>
+<p>方法三：</p>
+<p>通过 <code>类名.new()</code>
+创建，通过这种方法加载的资源不会产生相同的引用。某些文件也可以通过内置资源的代码进行加载。</p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode gdscript"><code class="sourceCode gdscript"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="kw">extends</span> Sprite2D</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="kw">func</span> <span class="bu">_ready</span>():</span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> img <span class="op">=</span> Image.<span class="fu">new</span>()</span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>    img.<span class="bu">load</span>(<span class="st">&quot;res://icon.svg&quot;</span>)</span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> tex <span class="op">=</span> ImageTexture.<span class="fu">create_from_image</span>(img)</span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a>    <span class="va">self</span>.texture <span class="op">=</span> tex</span></code></pre></div>
+<h2 id="常用node">常用Node</h2>
+<p>常用节点有：</p>
+<ul>
+<li><code>Viewport</code>和<code>Window</code>：视窗，由Godot生成的根节点；一般用于输入事件的处理；</li>
+<li><code>CanvasItem</code>：<code>CanvasItem</code>节点继承自<code>Node</code>，可以用这个节点进行2D图画绘制，比如<code>Modulate</code>和<code>Self Modulate</code>属性可以改变颜色，<code>Z Index</code>和<code>Y Sort Enable</code>可以调节渲染顺序。它有<code>Node2D</code>和<code>Control</code>两个子类，<code>Node2D</code>用于制作2D游戏对象，可以实现调整位置、旋转、缩放、倾斜等属性；<code>Control</code>用于制作游戏界面；</li>
+<li><code>CanvasLayer</code>：图层节点，用于创建不同的图层；对于<code>CanvasItem</code>类节点，上层的对象在绘制时会覆盖下层的对象（这时无法通过<code>Z index</code>修改不同图层的层级关系），并且可以阻断传往下层的事件输入（如鼠标点击等）（对于<code>Control</code>类节点，可以通过mouse
+filter属性进行修改阻断与否）；对于<code>Node2D</code>类节点，不同图层的物理对象无法进行物理交互；对于<code>Camera2D</code>节点，<code>Camera2D</code>节点仅能影响到自己所在图层上的显示区域，无法影响其他图层；</li>
+<li><code>Sprite2D</code>：图片节点；</li>
+<li><code>AnimatedSprite2D</code>：通过切换图像、显示不同图片来显示动画的节点；可以通过右侧检查器中新建<code>Sprite Frame</code>导入图片并按规律裁剪，设置动画名称，然后通过<code>play(String)</code>和<code>stop()</code>来控制动画的播放和暂停；</li>
+<li><code>AnimationPlayer</code>：动画播放节点；为其添加图片子节点，通过设置在不同时间不同的属性，可以制作简单的线性动画；它还可以实现更复杂的功能，比如在时间轴上设置属性的改变过程，或在某个时间点设置函数的调用；</li>
+<li><code>AudioStreamPlayer</code>：声音节点；</li>
+<li><code>PhysicsBody2D</code>和<code>Area2D</code>：图片节点可以提供视觉上的游戏对象，却无法在游戏中产生”触觉”；想要让游戏中出现可以感知的，且占据一定空间体积的物理对象，就要借助Body类和Area类节点；</li>
+<li><code>RayCast2D</code>和<code>ShapeCast2D</code>：射线投射检测和形状投射检测，可以检测获取2D世界内的Body节点和Area节点。这两个节点都拥有一个靶坐标，<code>RayCast2D</code>会从节点坐标出发，创建一条到靶坐标的射线，检测这条射线上距离节点坐标最近的Body和Area；<code>ShapeCast2D</code>则会向靶坐标处创建若干连续的Shape以检测距离节点坐标最近的Body和Area；它们都是通过<code>get_collider()</code>函数来获取碰撞目标的；此外，它们还可以分别通过<code>force_raycast_update()</code>和<code>force_shapecast_update()</code>来使此节点立即重新进行一次物理检测，以避免物理计算有延迟导致的实际画面与物理计算不同步；</li>
+<li><code>TileMapLayer</code>：基于2D贴图块的节点，多用于制作游戏的地图；使用内置资源对象<code>TileSet</code>可以指定图块列表，但只包含一个图块层，想要多层的地图可以使用多个<code>TileMapLayer</code>实现；
+<ul>
+<li>使用方法：创建<code>TileMapLayer</code>节点-&gt;右侧检查器新建<code>TileSet</code>-&gt;下方选择<code>TileSet</code>-&gt;新建图集并导入图片-&gt;设置分割的图块大小等属性-&gt;下方选择<code>TileMap</code>-&gt;选中要绘制的图块-&gt;选择画笔工具并在视图界面绘制；</li>
+<li>此外，还可以通过右侧检查器的<code>TileSet</code>部分的Physics
+Layers选项来添加物理对象，然后打开下方<code>TileSet</code>-&gt;使用选择工具-&gt;选择图块-&gt;点击出现的Physics选项并展开-&gt;然后就可以像<code>CollisionPolygon2D</code>那样为图块设置物理形状；</li>
+<li>如果想让图块之间的衔接更自然，可以在右侧检查器选择<code>Terrain Sets</code>添加地形元素，并选择<code>Terrains</code>添加地形-&gt;下方选择<code>TileSet</code>-&gt;使用绘制工具-&gt;绘制属性选择地形-&gt;<code>Terrain Sets</code>选择刚刚创建的地形-&gt;然后绘制，给比如草地相关的图块边缘添加掩码-&gt;然后选择下方<code>TileMap</code>-&gt;选择地形，并使用直线或矩形工具绘制；</li>
+</ul></li>
+<li><code>Timer</code>：倒数计时器节点，一般用作技能cd、关卡通关计时等；如果只是想创建一次性的倒数计时器，不想实例化节点，可以使用场景树的函数<code>get_tree().create_timer(时间)</code>；</li>
+</ul>
+<h3 id="viewport">Viewport</h3>
+<p><code>Viewport</code>节点是游戏运行时出现的第一个节点，当场景树第一次加载主场景时，游戏程序会先创建一个<code>viewport</code>节点并将此节点添加到场景树下，然后再将主场景的根节点作为<code>viewport</code>的子节点添加过去。也就是说，场景树下的节点都是第一个<code>viewport</code>节点的子节点。（在新版本已经改为<code>Window</code>节点作为根节点，<code>Window</code>是<code>Viewport</code>的子节点，所以基本用法是一样的）</p>
+<p><code>Viewport</code>节点可以在屏幕中创建一个不同的窗口或在另一个窗口中创建子窗口。<code>Viewport</code>节点的Camera2D/Camera（2D摄像机/3D摄像机）子节点，可以调整游戏的显示区域，也会改变游戏世界中监听游戏音效的位置坐标。常见应用有：双人游戏的分屏效果（将两个<code>subviewport</code>的<code>world_2d</code>属性设置为同一个，再通过设置不同的<code>Camera2D</code>节点来显示不同的位置）、获取屏幕画面截图、获取鼠标位置、输入事件的处理等。</p>
+<p><strong>输入事件的处理</strong>（最常用功能）</p>
+<p><code>_input</code>和<code>_unhandled_input</code>都是输入事件处理函数，一个输入时间被创建时，会在节点中进行传播，此时节点中的<code>_input</code>函数将根据传播的顺序依次被调用。如果在<code>_input</code>传播中，输入时间未被处理掉，则在节点中再进行一次此事件的传播，此时<code>_unhandled_input</code>自动被调用。</p>
+<p>比如，判断鼠标左键按下：</p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode gdscript"><code class="sourceCode gdscript"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="kw">func</span> <span class="bu">_input</span>(event: InputEvent) <span class="op">-&gt;</span> void:</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> event <span class="kw">is</span> InputEventMouseButton :</span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> event.button_index <span class="op">==</span> MOUSE_BUTTON_LEFT :</span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> event.pressed <span class="op">==</span> <span class="va">true</span> :</span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>                <span class="bu">print</span>(<span class="st">&quot;鼠标左键1&quot;</span>)</span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>                <span class="co"># 这里要启用SubViewportContainer的Stretch属性，才能使它的SubViewport子节点占满，然后下面的代码才能生效</span></span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a>                <span class="va">$SubViewportContainer</span><span class="op">/</span>SubViewport.<span class="fu">set_input_as_handled</span>()</span>
+<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a><span class="kw">func</span> <span class="bu">_unhandled_input</span>(event: InputEvent) <span class="op">-&gt;</span> void:</span>
+<span id="cb31-10"><a href="#cb31-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> event <span class="kw">is</span> InputEventMouseButton :</span>
+<span id="cb31-11"><a href="#cb31-11" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> event.button_index <span class="op">==</span> MOUSE_BUTTON_LEFT :</span>
+<span id="cb31-12"><a href="#cb31-12" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> event.pressed <span class="op">==</span> <span class="va">true</span> :</span>
+<span id="cb31-13"><a href="#cb31-13" aria-hidden="true" tabindex="-1"></a>                <span class="bu">print</span>(<span class="st">&quot;鼠标左键2&quot;</span>)</span></code></pre></div>
+<p>比如，创建鼠标点击事件：</p>
+<div class="sourceCode" id="cb32"><pre class="sourceCode gdscript"><code class="sourceCode gdscript"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="kw">func</span> <span class="bu">_ready</span>() <span class="op">-&gt;</span> void:</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> event <span class="op">=</span> InputEventMouseButton.<span class="fu">new</span>()</span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>    event.button_index <span class="op">=</span> MOUSE_BUTTON_LEFT</span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>    event.pressed <span class="op">=</span> <span class="va">true</span></span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>    <span class="va">$SubViewportContainer</span><span class="op">/</span>SubViewport.<span class="fu">push_input</span>(event)</span></code></pre></div>
+<h3 id="physicsbody2d和area2d">PhysicsBody2D和Area2D</h3>
+<p><code>PhysicsBody2D</code>和<code>Area2D</code>：用于制作在游戏中可以被感知的，且占据一定空间体积的物理对象。Body类节点主要用于制作游戏中的物理对象，而Area节点主要用于检测感知这些物理对象、施加额外的物理属性、修改区域内的音轨情况等。它们两者均继承自<code>CollisionObject2D</code>，<code>CollisionObject2D</code>节点是2D世界中物理对象的基类，他可以容纳任意数量的2D碰撞形状，这些2D形状用于定义Body代表的实体形状和Area节点所规定的范围。</p>
+<p>常用的<code>PhysicsBody2D</code>类：</p>
+<ul>
+<li><code>StaticBody2D</code>：用于制作相对静态的物理对象，比如静止的墙壁或移动方式较为固定的平台等；</li>
+<li><code>RigidBody2D</code>：用于制作拥有质量、重力缩放、受力情况等多种物理属性，可以用于制作不受代码控制而能够自由移动的物理对象；</li>
+<li><code>CharacterBody2D</code>：内置了许多与移动相关或位置相关的函数，拥有位置用于制作受代码控制的物理对象；</li>
+</ul>
+<p><code>CollisionObject2D</code>的<code>Layer</code>属性代表节点在第几层，而<code>Mask</code>属性表示当前节点可以和第几层的节点发生碰撞。节点可以同时在不同的层，也可以同时和不同层的节点发生碰撞。<code>Layer</code>和<code>Mask</code>的id都是2的指数。</p>
+<p>要使Body类和Area类节点可以发生碰撞，需添加子节点比如<code>CollisionShape2D</code>或<code>CollisionPolygon2D</code>.</p>
+<p><strong>碰撞检测</strong></p>
+<p>碰撞检测代码如下（要被检测碰撞的物体可以通过<code>self.add_to_group(&quot;group_collision&quot;)</code>来设置对应分组，分组名是自定义的），主要是通过<code>get_overlapping_areas()</code>和<code>get_overlapping_bodies()</code>函数进行检测：</p>
+<div class="sourceCode" id="cb33"><pre class="sourceCode gdscript"><code class="sourceCode gdscript"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 检测碰撞的代码要放在物理处理的虚函数中</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="kw">func</span> <span class="bu">_physics_process</span>(delta: float) <span class="op">-&gt;</span> void:</span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="fu">get_overlapping_areas</span>():</span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> i.<span class="fu">is_in_group</span>(<span class="st">&quot;group_collision&quot;</span>):</span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>            i.position.x <span class="op">=</span> i.position.x <span class="op">+</span> <span class="dv">1</span></span></code></pre></div>
+<p>对应的节点结构如下：</p>
+<pre><code>|--Area2D
+| |--Sprite2D (用于显示图片)
+| |--CollisionShape2D (用于设置碰撞区域，一般是把图片的范围包裹住)</code></pre>
+<h3 id="control">Control</h3>
+<p><code>Control</code>是所有界面类节点的父节点。<code>Control</code>类节点提供了输入处理(<code>_gui_input</code>)、拖拽、鼠标移动、语言翻译转换、快捷切换界面节点、主题(Theme)、界面提示文本等相关的属性与虚函数。</p>
+<div class="sourceCode" id="cb35"><pre class="sourceCode gdscript"><code class="sourceCode gdscript"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co"># _gui_input函数的事件与Control类节点的范围绑定，只有当比如鼠标移动到Control类节点范围内才会触发_gui_input函数</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 此外，_gui_input函数还与Control类节点的可见性、层次关系（渲染顺序）等绑定</span></span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 可在右侧检查器中找到Control的Mouse选项，把Filter设置为Stop，这样上层的Control类节点就会截断事件，下层重叠的Control类节点就不会触发_gui_input函数</span></span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a><span class="kw">func</span> <span class="fu">_gui_input</span>(event: InputEvent) <span class="op">-&gt;</span> void:</span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(event)</span></code></pre></div>
+<p>常用的Control类节点：</p>
+<ul>
+<li><code>Button</code>：按钮；通过右侧检查器绑定信号对应的函数来处理点击事件；</li>
+<li><code>TextureButton</code>：带图片的按钮；通过设置<code>texture_click_mask</code>属性，可以自定义可点击的区域；</li>
+<li><code>Label</code>：用于显示文字；</li>
+<li><code>TextureRect</code>：用于显示图片，类似Node2D下的Sprite2D节点，不过它是Control的子节点；比如想让图片占满父节点的大小，可以将Layout
+Mode改为Anchors，然后将Anchors Preset改为Custom，将出现的Anchors
+Points选项的Left、Top改为0，Right、Bottom改为1，其实这里的左、上、右、下指的是当前节点的锚点相对于父节点大小的百分比；</li>
+<li><code>TextureProgressBar</code>：带图片的进度条；也可以用于制作血条等；</li>
+<li><code>VideoStreamPlayer</code>：用于播放视频；</li>
+<li><code>LineEdit</code>：单行文本框；</li>
+<li><code>TextEdit</code>：多行文本框；</li>
+<li><code>SpinBox</code>：用于输入数值的单行文本框；</li>
+<li><code>ColorRect</code>：可以设置单色背景的矩形；</li>
+<li><code>Container</code>：当新的<code>Control</code>类节点加入成为<code>Container</code>节点的子节点时，<code>Container</code>类节点会发出<code>pre_sort_children</code>信号，然后<code>Container</code>节点会根据代码设置（遍历所有子节点并通过<code>fit_child_in_rect</code>函数规定各子节点的大小、位置）的布局方式，排布子节点；常用的<code>Container</code>类节点有：<code>HBoxContainer</code>、<code>VBoxContainer</code>、<code>GridContainer</code>、<code>ScrollContainer</code>等；</li>
+</ul>
+</body>
+</html>
